@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<!--[if IE 8]>
+<html lang="en" class="lt-ie9">
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<!--<![endif]-->
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <meta http-equiv="Page-Enter" content="blendTrans(Duration=2.0)"/>
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png?20190731"/>
+    <link href="plugin/select2/select2.min.css?20190715" rel="stylesheet"/>
+    <link href="plugin/wow/animate.css?20190715" rel="stylesheet"/>
+    <link href="css/layout_v2.css?20190731" rel="stylesheet" id="linkCss"/>
+    <title>1177PAY - 服務申請</title>
+    <!-- Global site tag (gtag.js) - Google Analytics-->
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-147220497-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-147220497-1');
+    </script>
+  </head>
+  <body>
+    <header class="header_blue">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="logo"><a href="index.html"><img src="images/logo_w.png?20190731" alt=""/></a></div>
+      </nav>
+    </header>
+    <div class="pt-0" id="wrapper">
+      <section class="mainArea">
+        <div class="container mdArea mt-5 mt-lg-0">
+          <h2 class="info_title">相關證件上傳
+            <ul class="stepBar">
+              <li class="active stepok">
+                <div class="step_in">
+                  <div class="step_ball"> <span>1</span></div>
+                  <div class="step_txt">商家資料</div>
+                </div>
+              </li>
+              <li class="active stepok">
+                <div class="step_in">
+                  <div class="step_ball"> <span>2</span></div>
+                  <div class="step_txt">帳戶設定</div>
+                </div>
+              </li>
+              <li class="active stepok">
+                <div class="step_in">
+                  <div class="step_ball"> <span>3</span></div>
+                  <div class="step_txt">系統串接設定</div>
+                </div>
+              </li>
+              <li class="active">
+                <div class="step_in">
+                  <div class="step_ball"> <span>4</span></div>
+                  <div class="step_txt">證件上傳</div>
+                </div>
+              </li>
+            </ul>
+          </h2>
+          <div class="mainForm">
+            <div class="form-group row">
+              <label class="col-sm-12 col-md-4 col-form-label" for="colFormLabel">個人身分證正反面</label>
+              <div class="col-sm-12 col-md-8 input_file">
+                <input class="uploadFile1 form-control" id="contract_id" placeholder="請選擇檔案" readonly=""/>
+                <div class="fileUpload btn btn-sm btn-rounded btn-primary"><span>選擇檔案</span>
+                  <input class="uploadBtn1 upload form-control" type="file"/>
+                </div>
+              </div>
+            </div>
+            <!-- form-group row-->
+            <div class="form-group row">
+              <label class="col-sm-12 col-md-4 col-form-label" for="colFormLabel">個人存摺封面</label>
+              <div class="col-sm-12 col-md-8 input_file">
+                <input class="uploadFile2 form-control" id="contract_id" placeholder="請選擇檔案" readonly=""/>
+                <div class="fileUpload btn btn-sm btn-rounded btn-primary"><span>選擇檔案</span>
+                  <input class="uploadBtn2 upload form-control" type="file"/>
+                </div>
+              </div>
+              <div class="col-sm-12 col-md-4"></div>
+              <div class="col-sm-12 col-md-8 mt-4">
+                <p class="txt_note mb-1" style="font-size:15px;">單檔上限為5MB</p>
+                <p class="txt_note" style="font-size:15px;">僅接受JPG.JPEG.PDF格式檔案</p>
+              </div>
+            </div>
+            <!-- form-group row-->
+            <div class="form-group mt-4" style="text-align:center;">
+              <label class="col-form-label" for="colFormLabel">驗證碼</label><img id="verifyimage" src="images/VerifyImage.jpg" alt="" style="width: 80px; height: 100%; margin-top: -5px; margin-left: 10px; vertical-align: middle;"/>
+              <input class="form-control ml-2" id="colFormLabel" type="text" name="inputverify" placeholder="" style="width:110px; display: inline-block;"/>
+            </div>
+            <div class="custom-control custom-checkbox" style="text-align:center;">
+              <input class="custom-control-input" id="clause" type="checkbox"/>
+              <label class="custom-control-label" for="clause">我同意 <a target="_blank" href="https://www.1177tech.com.tw/txt_page_trems.html">1177PAY平台服務條款</a></label>
+            </div>
+            <!-- form-group row-->
+          </div>
+          <!--/ section mainArea-->
+        </div>
+        <center>
+        </center>
+      </section>
+      <!--/ section mainArea-->
+    </div>
+    <footer>
+      <div class="footer_register"><span>壹壹柒柒科技股份有限公司</span><span>客服電話 : 02-8797-3300</span><span>客服信箱 : service@1177pay.com.tw</span></div>
+      <center class="copyright">2018 Copyright 壹壹柒柒科技股份有限公司 All Rights Reserved</center>
+    </footer>
+  </body>
+  <script src="js/jquery-3.3.1.min.js?20190506"></script>
+  <script src="js/popper.min.js?20190506"></script>
+  <script src="js/bootstrap.min.js?20190506"></script>
+  <script src="js/main.js?20190506"></script>
+  <script src="plugin/wow/wow.min.js?20190506"></script>
+  <script>new WOW().init();</script>
+  <script src="plugin/select2/jquery-3.3.1.min.js?20190506"></script>
+  <script src="plugin/select2/select2.min.js?20190506"></script>
+  <script src="plugin/select2/zh-TW.js?20190506"></script>
+  <script src="js/form.js?20190506"></script>
+  <script>
+    $('#verifyimage').click(function () {
+        //- $('#verifyimage').attr("src", "/MerchantDBFrontEnd/VerifyImage?random=" + Math.random());
+    }).click();
+  </script>
+</html>

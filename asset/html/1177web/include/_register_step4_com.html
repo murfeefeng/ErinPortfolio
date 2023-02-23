@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<!--[if IE 8]>
+<html lang="en" class="lt-ie9">
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<!--<![endif]-->
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png"/>
+    <link href="css/layout.css" rel="stylesheet"/>
+    <title>1177官網 - 註冊會員</title>
+  </head>
+  <body>
+    <header class="header_blue">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="logo"><a href="index.html"><img src="images/logo_w.png" alt=""/></a></div>
+      </nav>
+    </header>
+    <div class="pt-0" id="wrapper">
+      <section class="mainArea">
+        <div class="container mdArea mt-5 mt-lg-0">
+          <h2 class="info_title">開啟支付工具與指定撥款帳戶</h2>
+          <ul class="stepBar">
+            <li class="active stepok">
+              <div class="step_in">
+                <div class="step_ball"> <span></span></div>
+                <div class="step_txt">商店資料</div>
+              </div>
+            </li>
+            <li class="active stepok">
+              <div class="step_in">
+                <div class="step_ball"> <span></span></div>
+                <div class="step_txt">帳戶設定</div>
+              </div>
+            </li>
+            <li class="active stepok">
+              <div class="step_in">
+                <div class="step_ball"> <span></span></div>
+                <div class="step_txt">系統串接設定</div>
+              </div>
+            </li>
+            <li class="active">
+              <div class="step_in">
+                <div class="step_ball"> <span></span></div>
+                <div class="step_txt">證件上傳</div>
+              </div>
+            </li>
+          </ul>
+          <div class="mainForm">
+            <h6 class="tit_md tit_md_bg">測試環境</h6>
+            <div class="form-group row">
+              <label class="col-sm-3 col-form-label" for="colFormLabel">異步通知網址</label>
+              <div class="col-sm-9">
+                <input class="form-control" size="50" maxlength="200" type="text" name="s_payment_t_notifyurl" placeholder=""/>
+                <p class="txt_note">＊請正確填寫，此為於測試環境接收交易通知的接收網址。</p>
+              </div>
+            </div>
+            <!--/ form-group-->
+            <div class="form-group row">
+              <label class="col-sm-3 col-form-label" for="colFormLabel">交易結果接收網址</label>
+              <div class="col-sm-9">
+                <input class="form-control" size="50" maxlength="200" type="text" name="s_payment_t_resultpageurl" placeholder=""/>
+                <p class="txt_note">＊請正確填寫，此為於測試環境接收交易通知的接收網址。</p>
+              </div>
+            </div>
+            <!--/ form-group-->
+            <h6 class="tit_md tit_md_bg mt-5">正式環境</h6>
+            <div class="form-group row">
+              <label class="col-sm-3 col-form-label" for="colFormLabel">異步通知網址</label>
+              <div class="col-sm-9">
+                <input class="form-control" size="50" maxlength="200" type="text" name="s_payment_t_notifyurl" placeholder=""/>
+                <p class="txt_note">＊請正確填寫，此為於正式環境接收交易通知的接收網址。</p>
+              </div>
+            </div>
+            <!--/ form-group-->
+            <div class="form-group row">
+              <label class="col-sm-3 col-form-label" for="colFormLabel">交易結果接收網址</label>
+              <div class="col-sm-9">
+                <input class="form-control" size="50" maxlength="200" type="text" name="s_payment_t_resultpageurl" placeholder=""/>
+                <p class="txt_note">＊請正確填寫，此為於正式環境接收交易通知的接收網址。</p>
+              </div>
+            </div>
+            <!--/ form-group-->
+          </div>
+          <!--/ section mainArea-->
+        </div>
+        <center>
+        </center>
+      </section>
+      <!--/ section mainArea-->
+    </div>
+    <footer>
+      <div class="footer_register"><span>壹壹柒柒科技股份有限公司</span><span>客服電話 : <a href="">02-8797-3300</a></span><span>台北市內湖區瑞光路268號11樓</span><span>客服信箱 : <a href="mailto:service@1177pay.com.tw">service@1177pay.com.tw</a></span></div>
+      <center class="copyright">2018 Copyright 壹壹柒柒科技股份有限公司 All Rights Reserved</center>
+    </footer>
+  </body>
+  <script src="js/jquery-3.3.1.slim.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/form.js"></script>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<!--[if IE 8]>
+<html lang="en" class="lt-ie9">
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<!--<![endif]-->
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <meta http-equiv="Page-Enter" content="blendTrans(Duration=2.0)"/>
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png?20190731"/>
+    <link href="plugin/select2/select2.min.css?20190715" rel="stylesheet"/>
+    <link href="plugin/wow/animate.css?20190715" rel="stylesheet"/>
+    <link href="css/layout_v2.css?20190731" rel="stylesheet" id="linkCss"/>
+    <title>1177PAY - 服務申請</title>
+    <!-- Global site tag (gtag.js) - Google Analytics-->
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-147220497-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-147220497-1');
+    </script>
+  </head>
+  <body>
+    <header class="header_blue">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="logo"><a href="index.html"><img src="images/logo_w.png?20190731" alt=""/></a></div>
+      </nav>
+    </header>
+    <div class="pt-0" id="wrapper">
+      <section class="mainArea">
+        <div class="container mdArea mt-5 mt-lg-0">
+          <h2 class="info_title">系統串接設定</h2>
+          <ul class="stepBar">
+            <li class="active stepok">
+              <div class="step_in">
+                <div class="step_ball"> <span>1</span></div>
+                <div class="step_txt">商家資料</div>
+              </div>
+            </li>
+            <li class="active stepok">
+              <div class="step_in">
+                <div class="step_ball"> <span>2</span></div>
+                <div class="step_txt">帳戶設定</div>
+              </div>
+            </li>
+            <li class="active">
+              <div class="step_in">
+                <div class="step_ball"> <span>3</span></div>
+                <div class="step_txt">系統串接設定</div>
+              </div>
+            </li>
+            <li>
+              <div class="step_in">
+                <div class="step_ball"> <span>4</span></div>
+                <div class="step_txt">證件上傳</div>
+              </div>
+            </li>
+          </ul>
+          <div class="mainForm">
+            <h6 class="tit_md tit_md_bg">測試環境</h6>
+            <div class="form-group row">
+              <label class="col-md-4 col-lg-3 col-form-label" for="colFormLabel">異步通知網址</label>
+              <div class="col-md-8 col-lg-9">
+                <input class="form-control" size="50" maxlength="200" type="text" name="s_payment_t_notifyurl" placeholder=""/>
+                <p class="txt_note">請正確填寫，此為於測試環境接收交易通知的接收網址。</p>
+              </div>
+            </div>
+            <!--/ form-group-->
+            <div class="form-group row">
+              <label class="col-md-4 col-lg-3 col-form-label" for="colFormLabel">交易結果接收網址</label>
+              <div class="col-md-8 col-lg-9">
+                <input class="form-control" size="50" maxlength="200" type="text" name="s_payment_t_resultpageurl" placeholder=""/>
+                <p class="txt_note">請正確填寫，此為於測試環境接收交易通知的接收網址。</p>
+              </div>
+            </div>
+            <!--/ form-group-->
+            <h6 class="tit_md tit_md_bg mt-5">正式環境</h6>
+            <div class="form-group row">
+              <label class="col-md-4 col-lg-3 col-form-label" for="colFormLabel">異步通知網址</label>
+              <div class="col-md-8 col-lg-9">
+                <input class="form-control" size="50" maxlength="200" type="text" name="s_payment_t_notifyurl" placeholder=""/>
+                <p class="txt_note">請正確填寫，此為於正式環境接收交易通知的接收網址。</p>
+              </div>
+            </div>
+            <!--/ form-group-->
+            <div class="form-group row">
+              <label class="col-md-4 col-lg-3 col-form-label" for="colFormLabel">交易結果接收網址</label>
+              <div class="col-md-8 col-lg-9">
+                <input class="form-control" size="50" maxlength="200" type="text" name="s_payment_t_resultpageurl" placeholder=""/>
+                <p class="txt_note">請正確填寫，此為於正式環境接收交易通知的接收網址。</p>
+              </div>
+            </div>
+            <!--/ form-group-->
+          </div>
+          <!--/ section mainArea-->
+        </div>
+        <center>
+          <button class="btn btn-outline-primary mr-2" type="button" onclick="location.href='register_payment_p2.html'">上一步
+            <button class="btn btn-primary" type="button" onclick="location.href='register_payment_p4.html'">下一步</button>
+          </button>
+        </center>
+      </section>
+      <!--/ section mainArea-->
+    </div>
+    <footer>
+      <div class="footer_register"><span>壹壹柒柒科技股份有限公司</span><span>客服電話 : 02-8797-3300</span><span>客服信箱 : service@1177pay.com.tw</span></div>
+      <center class="copyright">2018 Copyright 壹壹柒柒科技股份有限公司 All Rights Reserved</center>
+    </footer>
+  </body>
+  <script src="js/jquery-3.3.1.min.js?20190506"></script>
+  <script src="js/popper.min.js?20190506"></script>
+  <script src="js/bootstrap.min.js?20190506"></script>
+  <script src="js/main.js?20190506"></script>
+  <script src="plugin/wow/wow.min.js?20190506"></script>
+  <script>new WOW().init();</script>
+  <script src="plugin/select2/jquery-3.3.1.min.js?20190506"></script>
+  <script src="plugin/select2/select2.min.js?20190506"></script>
+  <script src="plugin/select2/zh-TW.js?20190506"></script>
+  <script src="js/form.js?20190506"></script>
+</html>

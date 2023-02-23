@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<!--[if IE 8]>
+<html lang="en" class="lt-ie9">
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<!--<![endif]-->
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <meta http-equiv="Page-Enter" content="blendTrans(Duration=2.0)"/>
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png?20190731"/>
+    <link href="plugin/select2/select2.min.css?20190715" rel="stylesheet"/>
+    <link href="plugin/wow/animate.css?20190715" rel="stylesheet"/>
+    <link href="css/layout_v2.css?20190731" rel="stylesheet" id="linkCss"/>
+    <title>1177PAY - 付款問題</title>
+    <!-- Global site tag (gtag.js) - Google Analytics-->
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-147220497-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-147220497-1');
+    </script>
+  </head>
+  <body>
+    <header class="header_blue" id="headerArea">
+      <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="logo"><a href="index.html"><img src="images/logo_w.png?20190731" alt=""/></a></div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <ul class="navbar-nav nav_main">
+            <li class="nav-item"><a class="nav-link" id="navbarDropdownMenuLink" href="">收款</a>
+              <div class="nav_main_in"><a class="dropdown-item" href="receipt_online.html"> <i class="nav_icon"> <img src="images/nav_icon_11.png" alt=""/></i>線上收款</a><a class="dropdown-item" href="receipt_bill.html"> <i class="nav_icon"> <img src="images/nav_icon_12.png" alt=""/></i>帳單收款</a><a class="dropdown-item" href="receipt_recbill.html"> <i class="nav_icon"> <img src="images/nav_icon_13.png" alt=""/></i>繳費收款</a>
+              </div>
+            </li>
+            <li class="nav-item"><a class="nav-link" id="navbarDropdownMenuLink" href="">付款</a>
+              <div class="nav_main_in"><a class="dropdown-item" href="pay_card.html"> <i class="nav_icon"> <img src="images/nav_icon_21.png" alt=""/></i>信用卡</a><a class="dropdown-item" href="pay_atm.html"> <i class="nav_icon"> <img src="images/nav_icon_22.png" alt=""/></i>虛擬帳號</a><a class="dropdown-item" href="pay_storecode.html"> <i class="nav_icon"> <img src="images/nav_icon_23.png" alt=""/></i>超商代收</a><a class="dropdown-item" href="pay_fee.html"> <i class="nav_icon"> <img src="images/nav_icon_24.png" alt=""/></i>收費表</a><a class="dropdown-item" href="pay_app.html"> <i class="nav_icon"> <img src="images/nav_icon_25.png?20190731" alt=""/></i>1177PAY</a>
+              </div>
+            </li>
+          </ul>
+          <div class="nav_right">
+            <div class="btn_close"><img src="images/close.png" alt="" srcset=""/></div><a class="nav-link btn_login" href="https://sso.1177tech.com.tw/SSO/external/login.jsp" target="_blank">登入</a>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <div class="pt-0" id="wrapper">
+      <div id="topArea">
+        <div class="bg_blue"></div>
+      </div>
+      <div class="faqArea">
+        <div class="container">
+          <div class="row">
+            <div class="col-12 order-2 order-md-1">
+              <div class="faq_path">
+                <h2 class="tit_main"><i class="icon_faq"><img class="img-fluid" src="images/icon_faq.png?20190731" alt=""/></i><span class="tit_page text-primary">常見問題</span><i class="triangle"><img class="img-fluid" src="images/select_arrow.png?20190731" alt="" srcset=""/></i><span>付款問題</span></h2>
+              </div>
+            </div>
+            <div class="col-md-4 col-lg-3 order-1 order-md-2">
+              <aside class="sideBar">
+                <ul>
+                                  <li><a href="faq_1.html"><i class="icon_sidebar"><img class="img-fluid" src="images/faq_nav_icon_01.png" alt=""/></i><span class="txt_sidebar">收款<span>問題</span></span></a></li>
+                                  <li><a class="active" href="faq_2.html"><i class="icon_sidebar"><img class="img-fluid" src="images/faq_nav_icon_02.png" alt=""/></i><span class="txt_sidebar">付款<span>問題</span></span></a></li>
+                                  <li><a href="faq_3.html"><i class="icon_sidebar"><img class="img-fluid" src="images/faq_nav_icon_03.png" alt=""/></i><span class="txt_sidebar">帳戶<span>問題</span></span></a></li>
+                                  <li><a href="faq_4.html"><i class="icon_sidebar"><img class="img-fluid" src="images/faq_nav_icon_04.png" alt=""/></i><span class="txt_sidebar">技術<span>問題</span></span></a></li>
+                                  <li><a href="faq_5.html"><i class="icon_sidebar"><img class="img-fluid" src="images/faq_nav_icon_05.png" alt=""/></i><span class="txt_sidebar">安全機制<span></span></span></a></li>
+                </ul>
+              </aside>
+            </div>
+            <div class="col-md-8 col-lg-9 order-3">
+              <section class="faqBox">
+                <div class="faqList">
+                  <p class="listHead">【WebATM】 偵測不到讀卡機如何處理?<i class="icon_arrow"><img src="images/arrow_right.png?20190731" alt="" srcset=""/></i></p>
+                  <div class="listItem">
+                    <ul class="list_main list_blue">
+                      <li>更換瀏覽器(IE)。</li>
+                      <li>在【我的電腦】點擊右鍵，選擇【管理】或搜尋【電腦管理】<br/>選擇【裝置管理員】，點選【智慧讀卡機】，檢查是否有連接至電腦上的讀卡機名稱且為正常運作，若運作不正常(出現驚嘆號)，可以點擊內容後，先嘗試著更新驅動程式。<br/>上述還是無法排除，建議先行解除安裝，再將讀卡機重新插入，重新安裝一次。</li>
+                      <li>請在讀卡機連接電腦的狀態下重新開機。因有些情形是開機後插上讀卡機，會造成無法偵測。</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="faqList">
+                  <p class="listHead">【信用卡】訂單使用信用卡付款，但訂單顯示未付款，銀行又說有成功，要如何處理?<i class="icon_arrow"><img src="images/arrow_right.png?20190731" alt="" srcset=""/></i></p>
+                  <div class="listItem">當信用卡交易，訂單顯示失敗或未付款，但銀行又說明為成功(授權成功)，此情形有可能為銀行先行圈存款項，等待商家進行請款作業，建議持卡人若有此問題產生，可致電發卡行確認。另當交易不成功時，商家不會請款，故可先請銀行解除圈存(原則上視每間銀行作業不同而訂，解除圈存作業天數約7-14個工作天)。</div>
+                </div>
+                <div class="faqList">
+                  <p class="listHead">【信用卡】可以用那一些信用卡付款?<i class="icon_arrow"><img src="images/arrow_right.png?20190731" alt="" srcset=""/></i></p>
+                  <div class="listItem">目前可使用VISA 、 MasterCard 、 JCB信用卡別進行付款。</div>
+                </div>
+                <div class="faqList">
+                  <p class="listHead">【信用卡】分期付款方式有哪一些?<i class="icon_arrow"><img src="images/arrow_right.png?20190731" alt="" srcset=""/></i></p>
+                  <div class="listItem">依每間銀行而訂，可分3期、6期、9期、12期、18期、24期。</div>
+                </div>
+                <div class="faqList">
+                  <p class="listHead">【信用卡】分期付款銀行有哪一些?<i class="icon_arrow"><img src="images/arrow_right.png?20190731" alt="" srcset=""/></i></p>
+                  <div class="listItem">目前配合分期銀行為國泰世華。</div>
+                </div>
+                <div class="faqList">
+                  <p class="listHead">【信用卡】分期付款每期金額如何計算?<i class="icon_arrow"><img src="images/arrow_right.png?20190731" alt="" srcset=""/></i></p>
+                  <div class="listItem">依消費者所選擇的期數作均攤，若有剩餘金額，會直接加總於第一期帳單中付款。(視每間銀行實際作業而訂)</div>
+                </div>
+                <div class="faqList">
+                  <p class="listHead">【信用卡】信用卡紅利折抵如何使用?<i class="icon_arrow"><img src="images/arrow_right.png?20190731" alt="" srcset=""/></i></p>
+                  <div class="listItem">使用信用卡紅利點數折抵消費，但需依每間銀行實際折抵則而訂。</div>
+                </div>
+                <div class="faqList">
+                  <p class="listHead">【信用卡】為什麼信用卡會付款失敗？<i class="icon_arrow"><img src="images/arrow_right.png?20190731" alt="" srcset=""/></i></p>
+                  <div class="listItem">信用卡交易失敗說明如下:
+                    <ul class="list_main list_blue">
+                      <li>信用卡未開卡</li>
+                      <li>信用卡已過有效期限</li>
+                      <li>信用卡相關資訊輸入錯誤(卡號、到期日、背面末三碼…)</li>
+                      <li>信用卡額度不足</li>
+                      <li>網路連線不穩定</li>
+                    </ul>詳細情形，建議與您的信用卡發卡銀行進行確認。
+                  </div>
+                </div>
+                <div class="faqList">
+                  <p class="listHead">【虛擬帳號】虛擬帳號可以去銀行櫃檯繳費嗎?<i class="icon_arrow"><img src="images/arrow_right.png?20190731" alt="" srcset=""/></i></p>
+                  <div class="listItem">1177PAY所提供的虛擬帳號，可以直接至銀行櫃檯繳費。</div>
+                </div>
+                <div class="faqList">
+                  <p class="listHead">【虛擬帳號】虛擬帳號轉帳，我需要付手續費嗎?<i class="icon_arrow"><img src="images/arrow_right.png?20190731" alt="" srcset=""/></i></p>
+                  <div class="listItem">建議您，可以選擇您有開立的銀行帳戶相同的虛擬帳號，才能無需負擔跨行手續費，因此手續費是銀行收取的，實際也需視銀行作業而訂。</div>
+                </div>
+                <div class="faqList">
+                  <p class="listHead">【虛擬帳號】ATM選擇轉帳，一直轉帳失敗，要如何處理?<i class="icon_arrow"><img src="images/arrow_right.png?20190731" alt="" srcset=""/></i></p>
+                  <div class="listItem">建議您可以核對轉帳帳號、轉帳金額是否輸入正確，若仍無法順利付款，您可以提供轉帳收據及轉帳畫面至1177PAY客服信箱，客服會為您進一步確認。</div>
+                </div>
+                <div class="faqList">
+                  <p class="listHead">【虛擬帳號】虛擬帳號轉帳有轉帳金額限制嗎?<i class="icon_arrow"><img src="images/arrow_right.png?20190731" alt="" srcset=""/></i></p>
+                  <div class="listItem">目前銀行轉帳金額上限為3萬元，若選擇繳費最高可以至10萬，但實際需依各間銀行作業規定。</div>
+                </div>
+                <div class="faqList">
+                  <p class="listHead">【超商代碼】超商代碼繳費有上限嗎?<i class="icon_arrow"><img src="images/arrow_right.png?20190731" alt="" srcset=""/></i></p>
+                  <div class="listItem">超商代碼繳費上限為2萬元。</div>
+                </div>
+                <div class="faqList">
+                  <p class="listHead">【超商代碼】超商代碼是所有超商都可以繳費嗎?<i class="icon_arrow"><img src="images/arrow_right.png?20190731" alt="" srcset=""/></i></p>
+                  <div class="listItem">目前提供超商為7-ELEVEN、全家、萊爾富可進行繳費。</div>
+                </div>
+                <div class="faqList">
+                  <p class="listHead">【超商代碼】超商代碼付款我需要付手續費嗎?<i class="icon_arrow"><img src="images/arrow_right.png?20190731" alt="" srcset=""/></i></p>
+                  <div class="listItem">交易手續費由賣家負擔，超商店員不會額外收取費用。</div>
+                </div>
+                <div class="faqList">
+                  <p class="listHead">【超商代碼】超商代碼的期限是多久、過期了怎麼辦？<i class="icon_arrow"><img src="images/arrow_right.png?20190731" alt="" srcset=""/></i></p>
+                  <div class="listItem">超商代碼繳費期限依商家設定為主，若繳費期限已過，建議聯絡賣家，重新取得新的超商代碼付款。</div>
+                </div>
+                <div class="faqList">
+                  <p class="listHead">【其他】付款後一直沒有收到商品怎麼辦？<i class="icon_arrow"><img src="images/arrow_right.png?20190731" alt="" srcset=""/></i></p>
+                  <div class="listItem">由於1177PAY僅提供給商店與消費者完善的付款機制，主要處理訂單與金流間的資訊拋轉，實際貨品發貨與運送並不在壹壹柒柒科技服務範疇裡，故仍需得請消費者主動與商店聯繫，必要時本公司將善盡調解之義務協助排除交易糾紛。</div>
+                </div>
+                <div class="faqList">
+                  <p class="listHead">【其他】我已付款完成，要如何確認?<i class="icon_arrow"><img src="images/arrow_right.png?20190731" alt="" srcset=""/></i></p>
+                  <div class="listItem">在付款頁面需請消費者填寫Email信箱，於付款成功後會發出付款結果通知信，若未收到此信，建議可以聯絡賣家確認。</div>
+                </div>
+                <div class="faqList">
+                  <p class="listHead">【其他】可以變更付款方式嗎?<i class="icon_arrow"><img src="images/arrow_right.png?20190731" alt="" srcset=""/></i></p>
+                  <div class="listItem">目前原訂單無法變更付款方式，建議您可以重新選擇訂購／下單。</div>
+                </div>
+                <div class="faqList">
+                  <p class="listHead">【其他】如何取消訂單?<i class="icon_arrow"><img src="images/arrow_right.png?20190731" alt="" srcset=""/></i></p>
+                  <div class="listItem">您可以依您的訂單需求，向您的賣家聯繫。</div>
+                </div>
+                <div class="faqList">
+                  <p class="listHead">【其他】我遇到了詐騙該如何處理？<i class="icon_arrow"><img src="images/arrow_right.png?20190731" alt="" srcset=""/></i></p>
+                  <div class="listItem">當消費者遇到疑似詐騙，建議您趕緊保留所有交易來往證明，舉凡通訊對話記錄、電話往來記錄、Email往來信件、交易時間與交易地點等所有證據妥善保管並報警處理，您亦可致電本公司告知您所遇到之狀況，本公司會同時與商店聯繫並持續關注該爭議事件。1177PAY本質為提供平台之服務，不負商店之貨務履行之責，故僅能於報案流程及事件處理上給予適當協助。</div>
+                </div>
+                <div class="faqList">
+                  <p class="listHead">【其他】購買商品有瑕疵怎麼辦？<i class="icon_arrow"><img src="images/arrow_right.png?20190731" alt="" srcset=""/></i></p>
+                  <div class="listItem">請與您的賣家聯繫處理。</div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <div class="footer_main">
+        <div class="foot_link">
+          <h5>公司</h5>
+          <div class="links"><a target="_blank" href="https://www.104.com.tw/jobbank/custjob/index.php?r=cust&amp;j=44524a733c3e466f383a426b40463e2193131312f49643a7109j52">人才招募</a><a href="txt_page_privacy.html">隱私權保護政策</a><a href="txt_page_trems.html">服務條款</a><a target="_blank" href="pcidss.html">安全規範與認證</a><a href="contact.html">聯絡我們</a></div>
+        </div>
+        <div class="foot_link">
+          <h5>連結</h5>
+          <div class="links"><a href="faq.html">常見問題</a><a href="txt_page_anti_fraud.html">詐騙防範須知</a><a href="txt_page_disputes.html">買/賣雙方交易爭議處理機制</a></div>
+        </div>
+        <div class="foot_link">
+          <h5>下載</h5>
+          <div class="links"><a href="https://apps.apple.com/app/id1460243252" target="_blank">iOS</a><a href="https://play.google.com/store/apps/details?id=com.estech.espay" target="_blank">Android</a></div>
+        </div>
+        <div class="foot_link">
+          <h5>開發者中心</h5>
+          <div class="links"><a href="api.html">API</a></div>
+        </div>
+        <div class="foot_info"><span>壹壹柒柒科技股份有限公司</span>客服電話 : 02-8797-3300<br/>客服信箱 : service@1177pay.com.tw</div>
+      </div>
+      <center class="copyright">2018 Copyright 壹壹柒柒科技股份有限公司 All Rights Reserved</center>
+    </footer>
+  </body>
+  <script src="js/jquery-3.3.1.min.js?20190506"></script>
+  <script src="js/popper.min.js?20190506"></script>
+  <script src="js/bootstrap.min.js?20190506"></script>
+  <script src="js/main.js?20190506"></script>
+  <script src="plugin/wow/wow.min.js?20190506"></script>
+  <script>new WOW().init();</script>
+</html>

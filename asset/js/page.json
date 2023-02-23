@@ -1,0 +1,167 @@
+[{
+    "page01": [{
+            "title": "PolyLulu官網",
+            "info": ["網站 UI & UX 規劃與設計", "電商網站", "網站RWD切版製作", "操作介面互動效果"],
+            "img": "asset/img/web/01-polylulu.png",
+            "url": "https://www.polylulu.com.tw/"
+        }, {
+            "title": "Aurora官網",
+            "info": ["網站 UI & UX 規劃與設計", "電商網站", "網站RWD切版製作", "操作介面互動效果"],
+            "img": "asset/img/web/01-aurora.png",
+            "url": "asset/html/aurora/index.html"
+        }, {
+            "title": "智慧生物感應共同平台",
+            "info": ["網站 UI & UX 規劃與設計", "網站RWD切版製作", "JS動態資料整合", "操作介面互動效果"],
+            "img": "asset/img/web/01-IBP.png",
+            "url": "http://ibp.bime.ntu.edu.tw/home/index.html"
+        }, {
+            "title": "MyUncle官網",
+            "info": ["網站 UI & UX 規劃與設計", "電商網站", "操作介面互動效果"],
+            "img": "asset/img/web/01-myUncle.png",
+            "url": "https://www.myday-cn.com/"
+        }, {
+            "title": "Sisdora形象官網",
+            "info": ["網站 UI & UX 規劃與設計", "形象官網", "操作介面互動效果"],
+            "img": "asset/img/web/01-sisdora.png",
+            "url": "asset/html/sisdora/index.html"
+        }, {
+            "title": "Matchbank形象官網",
+            "info": ["網站 UI & UX 規劃與設計", "形象官網"],
+            "img": "asset/img/web/01-matchbank.png",
+            "url": "asset/html/matchbank/index.html"
+        }]
+}, {
+    "page02": [{
+        "title": "服飾館促銷活動",
+        "info": ["視覺設計", "HTML切版", "一頁式網頁", "操作介面互動效果"],
+        "img": "asset/img/web/02-myday_event_sg_0807.png",
+        "url": "asset/html/myday_event_sg_0807/html/index.html"
+    }, {
+        "title": "相機館促銷活動",
+        "info": ["視覺設計", "HTML切版", "一頁式網頁", "操作介面互動效果"],
+        "img": "asset/img/web/02-myday_event_sg_0823.png",
+        "url": "asset/html/myday_event_sg_0823/html/index.html"
+    }, {
+        "title": "新加坡運費優惠活動",
+        "info": ["視覺設計", "HTML切版", "一頁式網頁", "操作介面互動效果"],
+        "img": "asset/img/web/02-myday_event_sg_1030.png",
+        "url": "asset/html/myday_event_sg_1030/html/index.html"
+    }, {
+        "title": "APP下載優惠活動",
+        "info": ["視覺設計", "HTML切版", "一頁式網頁", "操作介面互動效果"],
+        "img": "asset/img/web/02-myday_event_app_1101.png",
+        "url": "asset/html/myday_event_app_1101/html/index.html"
+    }, {
+        "title": "日本運費優惠活動",
+        "info": ["視覺設計", "HTML切版", "一頁式網頁", "操作介面互動效果"],
+        "img": "asset/img/web/02-myday_event0208.png",
+        "url": "asset/html/myday_event0208/html/index.html"
+    }, {
+        "title": "運動館促銷活動",
+        "info": ["視覺設計", "HTML切版", "一頁式網頁", "操作介面互動效果"],
+        "img": "asset/img/web/02-myday_event0513.png",
+        "url": "asset/html/myday_event0513/html/index.html"
+    }, {
+        "title": "日本代購流程說明",
+        "info": ["視覺設計", "HTML切版", "一頁式網頁", "操作介面互動效果"],
+        "img": "asset/img/web/02-myday_event0602.png",
+        "url": "asset/html/myday_event0602/html/index.html"
+    }, {
+        "title": "玩具館促銷活動",
+        "info": ["視覺設計", "HTML切版", "一頁式網頁", "操作介面互動效果"],
+        "img": "asset/img/web/02-myday_event0718.png",
+        "url": "asset/html/myday_event0718/html/index.html"
+    }, {
+        "title": "新加坡代購流程說明",
+        "info": ["視覺設計", "HTML切版", "一頁式網頁", "操作介面互動效果"],
+        "img": "asset/img/web/02-myday_event0813.png",
+        "url": "asset/html/myday_event0813/html/index.html"
+    }, {
+        "title": "日本代購優惠活動",
+        "info": ["視覺設計", "HTML切版", "一頁式網頁", "操作介面互動效果"],
+        "img": "asset/img/web/02-myday_event1022.png",
+        "url": "asset/html/myday_event1022/html/index.html"
+    }, {
+        "title": "運動館促銷活動",
+        "info": ["視覺設計", "HTML切版", "一頁式網頁", "操作介面互動效果"],
+        "img": "asset/img/web/02-myday_event1027.png",
+        "url": "asset/html/myday_event1027/html/index.html"
+    }, {
+        "title": "聖誕節代購優惠活動",
+        "info": ["視覺設計", "HTML切版", "一頁式網頁", "操作介面互動效果"],
+        "img": "asset/img/web/02-myday_event1203.png",
+        "url": "asset/html/myday_event1203/html/index.html"
+    }]
+}, {
+    "page03": [{
+        "title": "1177PAY 官網建置",
+        "info": ["網站RWD切版製作", "操作介面互動效果", "網站前端維護"],
+        "img": "asset/img/web/03-1177web.png",
+        "url": "asset/html/1177web/index.html"
+    }]
+}, {
+    "page04": [{
+            "pageTIT": "LOGO",
+            "items": [{
+                "title": "視覺整合設計公司",
+                "img": "asset/img/pic/logo/logo_yourway.png"
+            }, {
+                "title": "家居飾品公司",
+                "img": "asset/img/pic/logo/logo_homePlus.png"
+            }, {
+                "title": "金融投資顧問公司",
+                "img": "asset/img/pic/logo/logo_daochen.png"
+            }, {
+                "title": "金融理財公司",
+                "img": "asset/img/pic/logo/logo_matchbank.png"
+            }, {
+                "title": "農業原料公司",
+                "img": "asset/img/pic/logo/logo_BonBon.png"
+            }, {
+                "title": "網頁遊戲形象LOGO",
+                "img": "asset/img/pic/logo/logo_fgl.png"
+            }, {
+                "title": "畜牧業飼料公司",
+                "img": "asset/img/pic/logo/logo_hanbo.png"
+            }, {
+                "title": "手遊形象LOGO",
+                "img": "asset/img/pic/logo/logo_royal74.png"
+            }]
+        },
+        {
+            "pageTIT": "PACKAGE",
+            "items": [{
+                "title": "壁貼零售包裝",
+                "img": "asset/img/pic/wallSticker/package/wlplus_pack1.png"
+            }, {
+                "title": "壁貼零售包裝",
+                "img": "asset/img/pic/wallSticker/package/wlplus_pack2.png"
+            }, {
+                "title": "壁貼零售包裝",
+                "img": "asset/img/pic/wallSticker/package/WS3037_pack.png"
+            }, {
+                "title": "壁貼零售包裝",
+                "img": "asset/img/pic/wallSticker/package/WS3038_pack.png"
+            }, {
+                "title": "壁貼零售包裝",
+                "img": "asset/img/pic/wallSticker/package/ws9040_pack.png"
+            }]
+        },
+        {
+            "pageTIT": "OTHERS",
+            "items": [{
+                "title": "佛光山套書",
+                "img": "asset/img/pic/graphic/fgs_book.jpg"
+            }, {
+                "title": "教學平台DM",
+                "img": "asset/img/pic/graphic/ischool_3d.jpg"
+            }, {
+                "title": "藝術品拍賣型錄",
+                "img": "asset/img/pic/graphic/kin_book.jpg"
+            }, {
+                "title": "公司活動周邊",
+                "img": "asset/img/pic/graphic/tshirtphoto.jpg"
+            }]
+        }
+    ]
+}]

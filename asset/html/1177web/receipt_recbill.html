@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<!--[if IE 8]>
+<html lang="en" class="lt-ie9">
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<!--<![endif]-->
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <meta http-equiv="Page-Enter" content="blendTrans(Duration=2.0)"/>
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png?20190731"/>
+    <link href="plugin/select2/select2.min.css?20190715" rel="stylesheet"/>
+    <link href="plugin/wow/animate.css?20190715" rel="stylesheet"/>
+    <link href="css/layout_v2.css?20190731" rel="stylesheet" id="linkCss"/>
+    <title>1177PAY - 繳費收款</title>
+    <!-- Global site tag (gtag.js) - Google Analytics-->
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-147220497-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-147220497-1');
+    </script>
+  </head>
+  <body>
+    <header class="header_blue" id="headerArea">
+      <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="logo"><a href="index.html"><img src="images/logo_w.png?20190731" alt=""/></a></div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <ul class="navbar-nav nav_main">
+            <li class="nav-item"><a class="nav-link active" id="navbarDropdownMenuLink" href="">收款</a>
+              <div class="nav_main_in"><a class="dropdown-item" href="receipt_online.html"> <i class="nav_icon"> <img src="images/nav_icon_11.png" alt=""/></i>線上收款</a><a class="dropdown-item" href="receipt_bill.html"> <i class="nav_icon"> <img src="images/nav_icon_12.png" alt=""/></i>帳單收款</a><a class="dropdown-item" href="receipt_recbill.html"> <i class="nav_icon"> <img src="images/nav_icon_13.png" alt=""/></i>繳費收款</a>
+              </div>
+            </li>
+            <li class="nav-item"><a class="nav-link" id="navbarDropdownMenuLink" href="">付款</a>
+              <div class="nav_main_in"><a class="dropdown-item" href="pay_card.html"> <i class="nav_icon"> <img src="images/nav_icon_21.png" alt=""/></i>信用卡</a><a class="dropdown-item" href="pay_atm.html"> <i class="nav_icon"> <img src="images/nav_icon_22.png" alt=""/></i>虛擬帳號</a><a class="dropdown-item" href="pay_storecode.html"> <i class="nav_icon"> <img src="images/nav_icon_23.png" alt=""/></i>超商代收</a><a class="dropdown-item" href="pay_fee.html"> <i class="nav_icon"> <img src="images/nav_icon_24.png" alt=""/></i>收費表</a><a class="dropdown-item" href="pay_app.html"> <i class="nav_icon"> <img src="images/nav_icon_25.png?20190731" alt=""/></i>1177PAY</a>
+              </div>
+            </li>
+          </ul>
+          <div class="nav_right">
+            <div class="btn_close"><img src="images/close.png" alt="" srcset=""/></div><a class="nav-link btn_login" href="https://sso.1177tech.com.tw/SSO/external/login.jsp" target="_blank">登入</a>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <div class="pt-0" id="wrapper">
+      <div id="topAreaPage">
+        <div class="topBox">
+          <div class="infoBox wow bounceInLeft" data-wow-duration="1s" data-wow-delay="0s">
+            <h2 class="tit_main text-primary"><span><i class="icon_main"> <img src="images/nav_icon_13.png?20190731" alt="" srcset=""/></i>繳費收款 <span>簡單自動化  </span></span></h2>
+            <p class="txt_main">利用繳費系統建立帳單，可預定日期自動發送帳單給買家。
+              <button class="btn btn-success d-block mt-4" type="button" onclick="location.href='contact.html'">立即申請服務</button>
+            </p>
+          </div>
+          <div class="imgBox">
+            <div class="imgGroup">
+              <div class="img_item wow bounceInDown" data-wow-duration="1s" data-wow-delay="0.5s"><img class="img-fluid" src="images/recbill_img_top.png?20190731" alt="" srcset=""/></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <section class="mainArea recbill_box1">
+        <div class="container">
+          <div class="row mainInfo">
+            <div class="col-6 info_pic wow" data-wow-duration="0s" data-wow-delay="3s"><img class="img-fluid" src="images/checkbox.gif?20190731" alt="" srcset=""/></div>
+            <div class="col-6 mainBox">
+              <h2 class="info_title_xl no_icon text-primary">適合你</h2>
+              <ul class="list_main list_blue">
+                <li>無系統管理後台</li>
+                <li>無技術開發能力</li>
+                <li>週期性帳單發送需求</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="mainArea recbill_box2 bg_gray">
+        <div class="container">
+          <div class="row mainInfo align-items-start">
+            <div class="col-md-4">
+              <div class="mainBox text-center">
+                <div class="info_pic"><img class="img-fluid" src="images/recbill_img_02.png?20190731" alt="" srcset=""/></div>
+                <h2 class="info_title_xl no_icon text-primary mt-0">預定自動發送日期</h2>
+                <p>可隨時調整帳單發送的預定日期</p>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="mainBox text-center">
+                <div class="info_pic"><img class="img-fluid" src="images/recbill_img_03.png?20190731" alt="" srcset=""/></div>
+                <h2 class="info_title_xl no_icon text-primary mt-0">無紙化收款</h2>
+                <p>解決你繁瑣的列印成本、寄送時間，告別傳統寄送紙本帳單流程</p>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="mainBox text-center">
+                <div class="info_pic"><img class="img-fluid" src="images/recbill_img_04.png?20190731" alt="" srcset=""/></div>
+                <h2 class="info_title_xl no_icon text-primary mt-0">帳單容易管理</h2>
+                <p>可查詢所有帳單詳情，收款狀態一目了然</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <center class="btBtn mt-5">
+          <button class="btn btn-success" type="button" onclick="location.href='contact.html'">立即申請服務</button>
+        </center>
+      </section>
+    </div>
+    <footer>
+      <div class="footer_main">
+        <div class="foot_link">
+          <h5>公司</h5>
+          <div class="links"><a target="_blank" href="https://www.104.com.tw/jobbank/custjob/index.php?r=cust&amp;j=44524a733c3e466f383a426b40463e2193131312f49643a7109j52">人才招募</a><a href="txt_page_privacy.html">隱私權保護政策</a><a href="txt_page_trems.html">服務條款</a><a target="_blank" href="pcidss.html">安全規範與認證</a><a href="contact.html">聯絡我們</a></div>
+        </div>
+        <div class="foot_link">
+          <h5>連結</h5>
+          <div class="links"><a href="faq.html">常見問題</a><a href="txt_page_anti_fraud.html">詐騙防範須知</a><a href="txt_page_disputes.html">買/賣雙方交易爭議處理機制</a></div>
+        </div>
+        <div class="foot_link">
+          <h5>下載</h5>
+          <div class="links"><a href="https://apps.apple.com/app/id1460243252" target="_blank">iOS</a><a href="https://play.google.com/store/apps/details?id=com.estech.espay" target="_blank">Android</a></div>
+        </div>
+        <div class="foot_link">
+          <h5>開發者中心</h5>
+          <div class="links"><a href="api.html">API</a></div>
+        </div>
+        <div class="foot_info"><span>壹壹柒柒科技股份有限公司</span>客服電話 : 02-8797-3300<br/>客服信箱 : service@1177pay.com.tw</div>
+      </div>
+      <center class="copyright">2018 Copyright 壹壹柒柒科技股份有限公司 All Rights Reserved</center>
+    </footer>
+  </body>
+  <script src="js/jquery-3.3.1.min.js?20190506"></script>
+  <script src="js/popper.min.js?20190506"></script>
+  <script src="js/bootstrap.min.js?20190506"></script>
+  <script src="js/main.js?20190506"></script>
+  <script src="plugin/wow/wow.min.js?20190506"></script>
+  <script>new WOW().init();</script>
+</html>

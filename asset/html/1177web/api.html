@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<!--[if IE 8]>
+<html lang="en" class="lt-ie9">
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<!--<![endif]-->
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <meta http-equiv="Page-Enter" content="blendTrans(Duration=2.0)"/>
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png?20190731"/>
+    <link href="plugin/select2/select2.min.css?20190715" rel="stylesheet"/>
+    <link href="plugin/wow/animate.css?20190715" rel="stylesheet"/>
+    <link href="css/layout_v2.css?20190731" rel="stylesheet" id="linkCss"/>
+    <title>1177PAY - API</title>
+    <!-- Global site tag (gtag.js) - Google Analytics-->
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-147220497-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-147220497-1');
+    </script>
+  </head>
+  <body>
+    <header class="header_blue" id="headerArea">
+      <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="logo"><a href="index.html"><img src="images/logo_w.png?20190731" alt=""/></a></div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <ul class="navbar-nav nav_main">
+            <li class="nav-item"><a class="nav-link" id="navbarDropdownMenuLink" href="">收款</a>
+              <div class="nav_main_in"><a class="dropdown-item" href="receipt_online.html"> <i class="nav_icon"> <img src="images/nav_icon_11.png" alt=""/></i>線上收款</a><a class="dropdown-item" href="receipt_bill.html"> <i class="nav_icon"> <img src="images/nav_icon_12.png" alt=""/></i>帳單收款</a><a class="dropdown-item" href="receipt_recbill.html"> <i class="nav_icon"> <img src="images/nav_icon_13.png" alt=""/></i>繳費收款</a>
+              </div>
+            </li>
+            <li class="nav-item"><a class="nav-link" id="navbarDropdownMenuLink" href="">付款</a>
+              <div class="nav_main_in"><a class="dropdown-item" href="pay_card.html"> <i class="nav_icon"> <img src="images/nav_icon_21.png" alt=""/></i>信用卡</a><a class="dropdown-item" href="pay_atm.html"> <i class="nav_icon"> <img src="images/nav_icon_22.png" alt=""/></i>虛擬帳號</a><a class="dropdown-item" href="pay_storecode.html"> <i class="nav_icon"> <img src="images/nav_icon_23.png" alt=""/></i>超商代收</a><a class="dropdown-item" href="pay_fee.html"> <i class="nav_icon"> <img src="images/nav_icon_24.png" alt=""/></i>收費表</a><a class="dropdown-item" href="pay_app.html"> <i class="nav_icon"> <img src="images/nav_icon_25.png?20190731" alt=""/></i>1177PAY</a>
+              </div>
+            </li>
+          </ul>
+          <div class="nav_right">
+            <div class="btn_close"><img src="images/close.png" alt="" srcset=""/></div><a class="nav-link btn_login" href="https://sso.1177tech.com.tw/SSO/external/login.jsp" target="_blank">登入</a>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <div class="pt-0" id="wrapper">
+      <div id="topArea">
+        <div class="bg_blue"></div>
+      </div>
+      <div class="faqArea faqIndex feeArea">
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <div class="faq_path">
+                <h2 class="tit_main"><i class="icon_faq"><img class="img-fluid" src="images/icon_api.png?20190731" alt=""/></i><span class="tit_page text-primary">串接文件</span></h2>
+              </div>
+            </div>
+            <div class="col-12 px-4 px-md-8">
+              <div class="table-responsive mb-5">
+                <div class="receipt_table_border" style="min-width: 700px;">
+                  <table class="table receipt_table">
+                    <thbody>
+                      <tr>
+                        <th>串接文件名稱</th>
+                        <th>文件版本</th>
+                        <th>更新日期</th>
+                        <th width="40%">說明</th>
+                        <th>檢視</th>
+                      </tr>
+                      <tr>
+                        <td>Payment API</td>
+                        <td>V 1.2.0</td>
+                        <td>2019/12/31</td>
+                        <td style="text-align:left;">Payment API 可直接將交易資料傳送過來進行交易，交易完成後會回覆資料，中間不透過網頁傳導。<br/>                                                優點為快速，且商店可使用自己的付款頁而不用考慮風格不同的問題。<br/>                                                API規格中的編碼皆為utf-8</td>
+                        <td><a target="_blank" href="API_Payment_NonCC_V1.2.0.html">
+                            <button class="btn btn-sm btn-rounded btn-primary">非信用卡</button></a></td>
+                      </tr>
+                      <tr>
+                        <td>PayPage API</td>
+                        <td>V 1.3.0</td>
+                        <td>2019/12/31</td>
+                        <td style="text-align:left;">PayPage 是交易付款頁面，讓商店不用處理各個支付工具的選擇或填寫，也不用處理信用卡的相關規範(例如須通過PCI)，只要以固定的串接資料即可使用各支付工具。<br/>                                                PayPage也允許從商店端指定支付工具，此時除固定參數外，需另外帶該支付工具的特殊參數，即可簡化支付流程。<br/>                                                API規格中的編碼皆為utf-8。</td>
+                        <td><a target="_blank" href="API_PayPage_CC_V1.3.0.html">
+                            <button class="btn btn-sm btn-rounded btn-primary">信用卡</button></a><br/><br/><a target="_blank" href="API_PayPage_NonCC_V1.3.0.html">
+                            <button class="btn btn-sm btn-rounded btn-primary">非信用卡</button></a></td>
+                      </tr>
+                    </thbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <div class="footer_main">
+        <div class="foot_link">
+          <h5>公司</h5>
+          <div class="links"><a target="_blank" href="https://www.104.com.tw/jobbank/custjob/index.php?r=cust&amp;j=44524a733c3e466f383a426b40463e2193131312f49643a7109j52">人才招募</a><a href="txt_page_privacy.html">隱私權保護政策</a><a href="txt_page_trems.html">服務條款</a><a target="_blank" href="pcidss.html">安全規範與認證</a><a href="contact.html">聯絡我們</a></div>
+        </div>
+        <div class="foot_link">
+          <h5>連結</h5>
+          <div class="links"><a href="faq.html">常見問題</a><a href="txt_page_anti_fraud.html">詐騙防範須知</a><a href="txt_page_disputes.html">買/賣雙方交易爭議處理機制</a></div>
+        </div>
+        <div class="foot_link">
+          <h5>下載</h5>
+          <div class="links"><a href="https://apps.apple.com/app/id1460243252" target="_blank">iOS</a><a href="https://play.google.com/store/apps/details?id=com.estech.espay" target="_blank">Android</a></div>
+        </div>
+        <div class="foot_link">
+          <h5>開發者中心</h5>
+          <div class="links"><a href="api.html">API</a></div>
+        </div>
+        <div class="foot_info"><span>壹壹柒柒科技股份有限公司</span>客服電話 : 02-8797-3300<br/>客服信箱 : service@1177pay.com.tw</div>
+      </div>
+      <center class="copyright">2018 Copyright 壹壹柒柒科技股份有限公司 All Rights Reserved</center>
+    </footer>
+  </body>
+  <script src="js/jquery-3.3.1.min.js?20190506"></script>
+  <script src="js/popper.min.js?20190506"></script>
+  <script src="js/bootstrap.min.js?20190506"></script>
+  <script src="js/main.js?20190506"></script>
+  <script src="plugin/wow/wow.min.js?20190506"></script>
+  <script>new WOW().init();</script>
+</html>

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<!--[if IE 8]>
+<html lang="en" class="lt-ie9">
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<!--<![endif]-->
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <meta http-equiv="Page-Enter" content="blendTrans(Duration=2.0)"/>
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png?20190731"/>
+    <link href="plugin/select2/select2.min.css?20190715" rel="stylesheet"/>
+    <link href="plugin/wow/animate.css?20190715" rel="stylesheet"/>
+    <link href="css/layout_v2.css?20190731" rel="stylesheet" id="linkCss"/>
+    <title>1177PAY - 服務申請</title>
+    <!-- Global site tag (gtag.js) - Google Analytics-->
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-147220497-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-147220497-1');
+    </script>
+  </head>
+  <body>
+    <header class="header_blue">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="logo"><a href="index.html"><img src="images/logo_w.png?20190731" alt=""/></a></div>
+      </nav>
+    </header>
+    <div class="pt-0" id="wrapper">
+      <section class="mainArea">
+        <div class="container mdArea mt-5 mt-lg-0">
+          <h2 class="info_title">商家資料</h2>
+          <ul class="stepBar">
+            <li class="active">
+              <div class="step_in">
+                <div class="step_ball"> <span>1</span></div>
+                <div class="step_txt">商家資料</div>
+              </div>
+            </li>
+            <li>
+              <div class="step_in">
+                <div class="step_ball"> <span>2</span></div>
+                <div class="step_txt">帳戶設定</div>
+              </div>
+            </li>
+            <li>
+              <div class="step_in">
+                <div class="step_ball"> <span>3</span></div>
+                <div class="step_txt">系統串接設定</div>
+              </div>
+            </li>
+            <li>
+              <div class="step_in">
+                <div class="step_ball"> <span>4</span></div>
+                <div class="step_txt">證件上傳</div>
+              </div>
+            </li>
+          </ul>
+          <div class="mainForm">
+            <div class="form-group row">
+              <label class="col-md-4 col-lg-3 col-form-label" for="colFormLabel">公司名稱</label>
+              <div class="col-md-8 col-lg-9">
+                <div class="form-group row mb-0">
+                  <div class="col-12 col-md-6">
+                    <input class="form-control" id="principal" size="30" maxlength="30" type="text" name="principal" placeholder="請輸入企業登記名稱"/>
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <div class="txt_note"> 即提領帳戶名稱，請正確填寫。</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--/ form-group row-->
+            <div class="form-group row">
+              <label class="col-md-4 col-lg-3 col-form-label" for="colFormLabel">統一編號</label>
+              <div class="col-md-8 col-lg-9">
+                <div class="form-group row mb-0">
+                  <div class="col-12 col-md-6">
+                    <input class="form-control" id="principalid" size="10" maxlength="10" type="text" name="principalid" placeholder="請輸入企業統一編號"/>
+                  </div>
+                  <div class="col-12 col-md-6"></div>
+                </div>
+              </div>
+            </div>
+            <!--/ form-group row-->
+            <div class="form-group row">
+              <label class="col-md-4 col-lg-3 col-form-label" for="colFormLabel">負責人姓名</label>
+              <div class="col-md-8 col-lg-9">
+                <div class="form-group row mb-0">
+                  <div class="col-12 col-md-6">
+                    <input class="form-control" id="principalid" size="10" maxlength="10" type="text" name="principalid" placeholder="請填寫負責人姓名"/>
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <div class="txt_note"> 請輸入與經濟部公司設立所登記之負責人姓名。</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--/ form-group row-->
+            <div class="form-group row">
+              <label class="col-md-4 col-lg-3 col-form-label" for="colFormLabel">負責人身分證字號</label>
+              <div class="col-md-8 col-lg-9">
+                <div class="form-group row mb-0">
+                  <div class="col-12 col-md-6">
+                    <input class="form-control" id="principalid" size="10" maxlength="10" type="text" name="principalid" placeholder="請輸入身分證字號"/>
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <div class="txt_note"> 請輸入與經濟部公司設立所登記之負責人身分證字號。</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--/ form-group row-->
+            <div class="form-group row">
+              <label class="col-md-4 col-lg-3 col-form-label" for="colFormLabel">Email</label>
+              <div class="col-md-8 col-lg-9">
+                <div class="form-group row mb-0">
+                  <div class="col-12 col-md-6">
+                    <input class="form-control" id="useremail" size="100" maxlength="100" type="text" name="useremail" placeholder="請輸入正確有效電子信箱"/>
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <div class="txt_note"> 電子郵件地址會是會員登入之識別帳號，為企業會員的最高權限人員所持有，請正確填寫。</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--/ form-group row-->
+            <div class="form-group row">
+              <label class="col-md-4 col-lg-3 col-form-label" for="colFormLabel">聯絡電話</label>
+              <div class="col-md-8 col-lg-9">
+                <div class="form-group row mb-0">
+                  <div class="col-12 col-md-6">
+                    <input class="form-control" id="tel" size="20" maxlength="20" type="text" name="tel" placeholder="請填寫有效聯絡電話"/>
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <div class="txt_note"> 請填寫市話或手機門號。</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--/ form-group row-->
+            <div class="form-group row">
+              <label class="col-md-4 col-lg-3 col-form-label" for="colFormLabel">營業地址</label>
+              <div class="col-md-8 col-lg-9">
+                <div class="form-group row mb-0">
+                  <div class="col-6 col-lg-3 mb-2">
+                    <select class="form-control" id="registeredaddress_city" name="registeredaddress_city">
+                      <option value="">縣市</option>
+                    </select>
+                  </div>
+                  <div class="col-6 col-lg-3 mb-2">
+                    <select class="form-control" id="registeredaddress_area" name="registeredaddress_area">
+                      <option value="">區域</option>
+                    </select>
+                  </div>
+                  <div class="col-md-12 col-lg-6 mb-2">
+                    <input class="form-control" id="registeredaddress_detail" size="100" maxlength="100" type="text" name="registeredaddress_detail" placeholder=""/>
+                  </div>
+                </div>
+                <!--/ form-group row-->
+              </div>
+            </div>
+            <!-- form-group row-->
+            <div class="form-group row">
+              <label class="col-md-4 col-lg-3 mt-lg-3 pt-lg-4 col-form-label" for="colFormLabel">帳單地址</label>
+              <div class="col-md-8 col-lg-9">
+                <div class="custom-control custom-checkbox mb-2">
+                  <input class="custom-control-input" id="billingaddress_same" type="checkbox" name="billingaddress_same" value="1"/>
+                  <label class="custom-control-label txt_sm" for="billingaddress_same">同營業地址</label>
+                </div>
+                <div class="form-group row mb-0">
+                  <div class="col-6 col-lg-3 mb-2">
+                    <select class="form-control" id="billingaddress_city" name="billingaddress_city">
+                      <option value="">縣市</option>
+                    </select>
+                  </div>
+                  <div class="col-6 col-lg-3 mb-2">
+                    <select class="form-control" id="billingaddress_area" name="billingaddress_area">
+                      <option value="">區域</option>
+                    </select>
+                  </div>
+                  <div class="col-md-12 col-lg-6 mb-2">
+                    <input class="form-control" id="billingaddress_detail" size="100" maxlength="100" type="text" name="billingaddress_detail" placeholder=""/>
+                  </div>
+                </div>
+                <!--/ form-group row-->
+              </div>
+            </div>
+            <!--/ form-group row-->
+            <div class="form-group row">
+              <label class="col-md-4 col-lg-3 col-form-label" for="colFormLabel">請選擇販售商品型態</label>
+              <div class="col-md-5 col-lg-7 row ml-2 ml-lg-1 pt-1">
+                <div class="custom-control custom-radio col mb-2">
+                  <input class="custom-control-input" id="pd_type1" type="radio" name="pd_type"/>
+                  <label class="custom-control-label txt_sm" for="pd_type1">實體商品</label>
+                </div>
+                <div class="custom-control custom-radio col mb-2">
+                  <input class="custom-control-input" id="pd_type2" type="radio" name="pd_type"/>
+                  <label class="custom-control-label txt_sm" for="pd_type2">虛擬商品</label>
+                </div>
+                <div class="custom-control custom-radio col mb-2">
+                  <input class="custom-control-input" id="pd_type3" type="radio" name="pd_type"/>
+                  <label class="custom-control-label txt_sm" for="pd_type3">遞延性服務</label>
+                </div>
+              </div>
+            </div>
+            <!-- form-group row-->
+            <div class="form-group row">
+              <label class="col-md-4 col-lg-3 col-form-label" for="colFormLabel">商店網址</label>
+              <div class="col-md-8 col-lg-9">
+                <input class="form-control" id="billingaddress_detail" size="100" maxlength="100" type="text" name="billingaddress_detail" placeholder="請輸入欲販售商品/服務的網址"/>
+                <div class="txt_note"> 請提供可辨識官網網址、賣場網址、或商品/服務曝光的個人社群網址。</div>
+              </div>
+            </div>
+            <!--/ form-group row-->
+          </div>
+          <!--/ section mainArea-->
+        </div>
+        <center>
+          <button class="btn btn-primary" type="button" onclick="location.href='register_payment_c2.html'">下一步</button>
+        </center>
+      </section>
+      <!--/ section mainArea-->
+    </div>
+    <footer>
+      <div class="footer_register"><span>壹壹柒柒科技股份有限公司</span><span>客服電話 : 02-8797-3300</span><span>客服信箱 : service@1177pay.com.tw</span></div>
+      <center class="copyright">2018 Copyright 壹壹柒柒科技股份有限公司 All Rights Reserved</center>
+    </footer>
+  </body>
+  <script src="js/jquery-3.3.1.min.js?20190506"></script>
+  <script src="js/popper.min.js?20190506"></script>
+  <script src="js/bootstrap.min.js?20190506"></script>
+  <script src="js/main.js?20190506"></script>
+  <script src="plugin/wow/wow.min.js?20190506"></script>
+  <script>new WOW().init();</script>
+  <script src="plugin/select2/jquery-3.3.1.min.js?20190506"></script>
+  <script src="plugin/select2/select2.min.js?20190506"></script>
+  <script src="plugin/select2/zh-TW.js?20190506"></script>
+  <script src="js/form.js?20190506"></script>
+</html>
