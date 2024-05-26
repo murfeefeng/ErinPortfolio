@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>Lottery</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+</head>
+
+<body class="">
+    <div id="goTopMenu">
+        <a href="" class="goTop">TOP</a>
+    </div>
+    <header>
+        <div class="wrapper">
+            <a href="index.html" class="logo">媽媽樂 投注系統</a>
+            <div id="navDropdown" class="nav_sm"><i class="fas fa-bars"></i></div>
+            <nav id="navList">
+                <ul>
+                    <li><a href="lottery.html">開始投注</a></li>
+                    <li><a href="query.html">個人投注</a></li>
+                    <li><a href="query_all.html">所有投注</a></li>
+                    <li><a href="winner.html">中獎紀錄</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <!-- Main Content op -->
+    <div id="mainArea">
+        <div class="money">
+            <span>累積彩金 : </span>
+            <ul>
+                <li>0</li>
+                <li class="dott">,</li>
+                <li>0</li>
+                <li>0</li>
+                <li>0</li>
+                <li class="dott">,</li>
+                <li>0</li>
+                <li>0</li>
+                <li>0</li>
+                <li class="dott">,</li>
+                <li>0</li>
+                <li>0</li>
+                <li>0</li>
+            </ul>
+        </div>
+        <form class="balls" id="balls">
+            <div class="infoBox">
+                <h2>投注號碼</h2>
+                <p>一組投注號碼為五個，請選擇您要的號碼，確認後下注</p>
+                <div class="numbers">
+                    <ul id="numBallList"></ul>
+                </div>
+            </div>
+            <div class="infoBox">
+                <h2>您選擇的號碼</h2>
+                <p class="warning">請確認選擇的號碼是否正確，</p>
+                <div class="numbers">
+                    <ul class="ballList" id="numBallCheck"></ul>
+                </div>
+            </div>
+            <!-- <center>
+          <input type="button" value="確認統計" class="btn btn-secondary" id="goTotal" />
+        </center> -->
+            <div id="totalInfoBox">
+                <div class="infoBox">
+                    <h2>投注統計</h2>
+                    <p class="warning">
+                        請確認您投注的總注數與總金額，下注後則無法更改喔!!
+                    </p>
+                    <div class="totalBox">
+                        <ul>
+                            <li>選號數</li>
+                            <li id="ballData"></li>
+                            <li>總注數</li>
+                            <li id="bitData"></li>
+                            <li>下注倍數</li>
+                            <li id="countData" class="count">
+                                <input type="button" id="numReduce" value="－" />
+                                <input type="text" value="1" id="numnum" />
+                                <input type="button" id="numAdd" value="＋" />
+                            </li>
+                        </ul>
+                        <ul class="totalCount">
+                            <li>下注總金額</li>
+                            <li id="totalData"></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <center>
+                    <input type="submit" value="確定投注" class="btn btn-secondary" id="betting" />
+                </center>
+            </div>
+        </form>
+    </div>
+    <!-- Main Content op -->
+    <footer>© copyright</footer>
+    <div class="bg">
+        <div class="bg_top"><img src="images/bg_bt.png" alt="" /></div>
+        <div class="bg_bt"><img src="images/bg_bt.png" alt="" /></div>
+    </div>
+</body>
+<script src="js/jquery-3.3.1.min.js?20190506"></script>
+<script src="js/popper.min.js?20190506"></script>
+<script src="js/main.bundle.js"></script>
+<script src="js/bootstrap.min.js?20190506"></script>
+
+
+<script type="text/javascript">
+    //print ball list
+    var numBall = "";
+    for (let i = 0; i < 39; i++) {
+        var num = "";
+        if (i < 9) {
+            num = "0" + (i + 1);
+        } else {
+            num = i + 1;
+        }
+        var numHtml =
+            '<li><input class = "btn-checkbox" type = "checkbox" id = "checkbox-btn' +
+            num +
+            '" name = "num' +
+            num +
+            '" value = "' +
+            num +
+            '"/> <label for = "checkbox-btn' +
+            num +
+            '"> ' +
+            num +
+            " </label></li>";
+        // const element = array[i];
+        // console.log(numHtml);
+        // return num;
+        $("#numBallList").append(numHtml);
+    }
+
+    //===select Ball
+
+    window.localStorage.setItem("numnumLS", "1");
+    window.localStorage.setItem("bitLS", "0");
+    $("#numBallList li input").on("change", function() {
+        var thisVal = $(this).val();
+        //===change checkbox attr & additem to check list
+        var numNewHtml = '<li class="ball' + thisVal + '">' + thisVal + "</li>";
+
+        if ($(this).is(":checked")) {
+            $(this).attr("checked", "checked");
+            $("#numBallCheck").append(numNewHtml);
+        } else {
+            $(this).attr("checked", "");
+            var numClassName = ".ball" + thisVal;
+            $("#numBallCheck " + numClassName + "").remove();
+        }
+        //==將數據加到下面統計區
+        var ballData = Number($("#numBallCheck li").length); //總球數
+
+        // console.log(ballData);
+
+        $("#ballData").text(ballData);
+        bittingBalls(ballData);
+        totalALL();
+    });
+
+
+    //統計結算
+    function totalALL() {
+        var bitData = window.localStorage.getItem("bitLS"); //總注數
+        var numData = window.localStorage.getItem("numnumLS"); //倍數
+        var totalData = 200 * Number(bitData) * Number(numData);
+        $("#totalData").text(toThousands(totalData));
+        // $("#totalData").text("200 X"+bitData+"X"+ numData);
+    }
+
+    //數字加千分位
+    function toThousands(num) {
+        var num = (num || 0).toString(),
+            result = '';
+        while (num.length > 3) {
+            result = ',' + num.slice(-3) + result;
+            num = num.slice(0, num.length - 3);
+        }
+        if (num) {
+            result = num + result;
+        }
+        return result;
+    }
+
+    //倍數加減
+    var num = Number($("#numnum").val());
+    var numStr;
+
+    // $("#totalData").text(200*Number(bitData)*Number(num));
+    $("#numReduce").click(function() {
+        if (num >= 2) {
+            num--;
+            numStr = String(num);
+            $("#numnum").val(numStr);
+            window.localStorage.setItem("numnumLS", numStr);
+            totalALL();
+        }
+    });
+    $("#numAdd").click(function() {
+        num++;
+        numStr = String(num);
+        $("#numnum").val(numStr);
+        window.localStorage.setItem("numnumLS", numStr);
+        totalALL();
+    });
+
+    // $("#totalInfoBox").hide();
+    // $("#goTotal").on("click", function () {
+    //   var ballData = Number($("#numBallCheck li").length);
+    //   $("#ballData").text(ballData);
+    //   bittingBalls(ballData);
+    //   if(ballData>=5){
+    //   $("#totalInfoBox").fadeIn(300);
+    //   }else{
+    //     alert("請選擇至少5個號碼");
+    //     $("#totalInfoBox").hide();
+    //   }
+    // });
+
+    function bittingBalls(item) {
+        switch (true) {
+            case item <= 4:
+                $("#bitData").text("0");
+                window.localStorage.setItem("bitLS", "0");
+                break;
+            case item == 5:
+                $("#bitData").text("1");
+                window.localStorage.setItem("bitLS", "1");
+                break;
+            case item == 6:
+                $("#bitData").text("6");
+                window.localStorage.setItem("bitLS", "6");
+                break;
+            case item == 7:
+                $("#bitData").text("21");
+                window.localStorage.setItem("bitLS", "21");
+                break;
+            case item == 8:
+                $("#bitData").text("56");
+                window.localStorage.setItem("bitLS", "56");
+                break;
+            case item == 9:
+                $("#bitData").text("126");
+                window.localStorage.setItem("bitLS", "126");
+                break;
+            case item == 10:
+                $("#bitData").text("252");
+                window.localStorage.setItem("bitLS", "252");
+                break;
+            case item == 11:
+                $("#bitData").text("462");
+                window.localStorage.setItem("bitLS", "462");
+                break;
+            case item == 12:
+                $("#bitData").text("792");
+                window.localStorage.setItem("bitLS", "792");
+                break;
+            case item == 13:
+                $("#bitData").text("1287");
+                window.localStorage.setItem("bitLS", "1287");
+                break;
+            case item == 14:
+                $("#bitData").text("2002");
+                window.localStorage.setItem("bitLS", "2002");
+                break;
+            case item == 15:
+                $("#bitData").text("3003");
+                window.localStorage.setItem("bitLS", "3003");
+                break;
+            case item == 16:
+                $("#bitData").text("4368");
+                window.localStorage.setItem("bitLS", "4368");
+                break;
+            case item >= 17:
+                swal("超過可選擇的號碼數量!請洽服務人員!");
+                $("#bitData").text("");
+                $("#totalData").text("");
+                window.localStorage.setItem("bitLS", "");
+                break;
+        }
+
+        // console.log(num);
+    }
+
+    //===POST balls
+    $("#betting").click(function() {
+
+        var ballSelect = $("#numBallCheck li");
+        var ballNums = [];
+        var numMM = window.localStorage.getItem("numnumLS");
+
+        for (let i = 0; i < ballSelect.length; i++) {
+
+            var getBallVal = ballSelect.eq(i).text();
+
+            ballNums.push(getBallVal);
+
+        }
+
+
+
+        if (ballSelect.length < 5) {
+
+            swal("請選擇至少5個號碼");
+
+        } else if (ballSelect.length > 16) {
+
+            swal("超過可選擇的號碼數量!");
+
+        } else {
+
+            $.ajax({
+                url: "https://539.94ero.com/api/bit",
+                type: "post",
+                data: {
+                    "ball": ballNums.toString(),
+                    "multiple": numMM.toString()
+                },
+                // data : {
+                //         "ball": "1111",
+                //         "multiple":"2"
+                //       },
+                dataType: "json",
+                success: function(data) {
+                    // swal(data.status);
+                    if (data.status == false) {
+                        swal(data.message, "", "warning");
+                    } else {
+
+                        swal(data.message, "", "success");
+
+                        $('.sweet-overlay').click(function(event) {
+                            event.stopPropagation();
+                        });
+                        $('button.confirm').click(function() {
+                            window.location.reload();
+                        });
+
+                    }
+                }
+
+            });
+        }
+    });
+</script>
+
+</html>
