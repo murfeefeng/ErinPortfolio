@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Lottery</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+</head>
+
+<body class="">
+    <div id="goTopMenu">
+        <a href="" class="goTop">TOP</a>
+    </div>
+    <header>
+        <div class="wrapper">
+            <a href="index.html" class="logo">媽媽樂 投注系統</a>
+            <div id="navDropdown" class="nav_sm"><i class="fas fa-bars"></i></div>
+            <nav id="navList">
+                <ul>
+                    <li><a href="lottery.html">開始投注</a></li>
+                    <li><a href="query.html">個人投注</a></li>
+                    <li><a href="query_all.html">所有投注</a></li>
+                    <li><a href="winner.html">中獎紀錄</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <!-- Main Content op -->
+    <div id="mainArea">
+        <div class="money">
+            <span>累積彩金 : </span>
+            <ul>
+                <li>0</li>
+                <li class="dott">,</li>
+                <li>0</li>
+                <li>0</li>
+                <li>0</li>
+                <li class="dott">,</li>
+                <li>0</li>
+                <li>0</li>
+                <li>0</li>
+                <li class="dott">,</li>
+                <li>0</li>
+                <li>0</li>
+                <li>0</li>
+            </ul>
+        </div>
+        <form class="login" id="login" method="POST" action="http://localhost:3000/member">
+            <div class="infoBox">
+                <h1>開始投注</h1>
+                <p>請先登入會員，再進行投注</p>
+
+                <input type="text" name="member_id" placeholder="帳號">
+                <input type="password" name="member_pw" placeholder="密碼">
+                <input type="button" value="登入" class="btn btn-secondary" id="loginBtn">
+            </div>
+        </form>
+        <div class="infoBox indexBox" id="bettingList" style="display: none;">
+            <div class="topTitle">
+                <h2>今日投注紀錄</h2>
+                <a href="query.html" class="btn btn-outline-secondary btn-md">查看更多</a>
+            </div>
+            <div id="indexTable">
+                <table id="infoTable" style="width:100%">
+                    <thead>
+                        <tr>                
+                            <th class="num">#</th>
+                            <th class="ball">投注號碼</th>
+                            <th class="money">投注金額</th>
+                            <th class="time">投注時間</th>
+                        </tr>
+                    </thead>
+                    <tbody id="infoTable_in">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- Main Content op -->
+    <footer>
+        © copyright
+    </footer>
+    <div class="bg">
+        <div class="bg_top"><img src="images/bg_bt.png" alt=""></div>
+        <div class="bg_bt"><img src="images/bg_bt.png" alt=""></div>
+    </div>
+</body>
+<script src="js/jquery-3.3.1.min.js?20190506"></script>
+<script src="js/popper.min.js?20190506"></script>
+<script src="js/bootstrap.min.js?20190506"></script>
+<!-- <script src="js/main.js?20190506"></script> -->
+
+<!-- dataTables -->
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="js/jquery.dataTables.min.js"></script>
+<script src="js/main.bundle.js"></script>
+<!-- webpack bundle-->
+<script type="text/javascript ">
+    //Login
+    $("#loginBtn").click(function() {
+        var mumberID = $('input[name="member_id"]').val();
+        var mumberPW = $('input[name="member_pw"]').val();
+
+        //======post
+        var settings = {
+            "url": "http://localhost:3000/member",
+            "method": "POST",
+            "timeout": 0,
+            "headers": {
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            "data": {
+                "name": mumberID,
+                "password": mumberPW
+            }
+        };
+
+        $.ajax(settings).done(function(response) {
+            console.log(response);
+        });
+
+
+        alert("登入成功!");
+        $('#mumberID_show').text('[' + mumberID + ']');
+        $('#bettingList').fadeIn(300);
+        $('#login').fadeOut(100);
+
+    });
+var settings = {
+        "url": "ajax/tableData.json",
+        "method": "GET",
+        "timeout": 0,
+    };
+
+    $.ajax(settings).done(function(response) {
+        //get data
+        response.forEach(item => {
+        var arrBall=item.ball.split(',');
+            var innerTable1 = `<tr>
+                        <td>`+item.id+`</td>
+                        <td class="ballPP">`+arrBall+`</td>
+                        <td>$`+item.money+`</td>
+                        <td>`+item.date+`<br>`+item.time+`</td></tr>`;
+                        
+            $('#infoTable_in').append(innerTable1);
+        });
+
+        //add span tag to ball numbers
+        for (let i = 0; i < $('.ballPP').length; i++) {
+            var arrBall=$('.ballPP').eq(i).text().split(",");
+            $('.ballPP').eq(i).html('');
+            
+            for (let j = 0; j < arrBall.length; j++) {
+                
+                var spanBall='<span>'+arrBall[j]+'</span>';
+                console.log(spanBall);
+                $('.ballPP').eq(i).append(spanBall);
+            }
+            
+        }
+        
+        //datatable    
+        $('#infoTable').DataTable({
+            "oLanguage": {
+                "sEmptyTable": "尚無資料",
+                "oPaginate": {
+                    "sPrevious": "<",
+                    "sNext": ">",
+                }
+            }
+        });
+        
+    });
+</script>
+
+</html>

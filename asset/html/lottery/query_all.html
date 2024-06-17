@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Lottery</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+</head>
+
+<body class="">
+    <div id="goTopMenu">
+        <a href="" class="goTop">TOP</a>
+    </div>
+    <header>
+        <div class="wrapper">
+            <a href="index.html" class="logo">媽媽樂 投注系統</a>
+            <div id="navDropdown" class="nav_sm"><i class="fas fa-bars"></i></div>
+            <nav id="navList">
+                <ul>
+                    <li><a href="lottery.html">開始投注</a></li>
+                <li><a href="query.html">個人投注</a></li>
+                    <li><a href="query_all.html">所有投注</a></li>
+                    <li><a href="winner.html">中獎紀錄</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <!-- Main Content op -->
+    <div id="mainArea">
+        <h1 class="mainTitle">所有投注</h1>
+        <div class="infoBox">
+            <div class="topTitle">
+                <h2>9月11日 第06期</h2>
+                <select class="form-control" id="exampleFormControlSelect1">
+                    <option>選擇查詢期數</option>
+                    <option>9月11日 第05期</option>
+                    <option>9月11日 第04期</option>
+                </select>
+                
+            </div>
+            <table id="infoTable" style="width:100%">
+                <thead> 
+                    <tr>
+                        <th class="num">#</th>
+                        <th class="ball">投注號碼</th>
+                        <th class="name">投注人</th>
+                        <th class="money">投注金額</th>
+                        <th class="time">投注時間</th>
+                    </tr>
+                </thead>
+                <tbody id="infoTable_in">
+                </tbody>
+            </table>
+        </div>
+        <center>
+            <input type="button" class="btn btn-secondary downLoadEX" value="下載excel"></center>
+    </div>
+    <!-- Main Content op -->
+    <footer>
+        © copyright
+    </footer>
+    <div class="bg">
+        <div class="bg_top"><img src="images/bg_bt.png" alt=""></div>
+        <div class="bg_bt"><img src="images/bg_bt.png" alt=""></div>
+    </div>
+</body>
+<script src="js/jquery-3.3.1.min.js?20190506"></script>
+<script src="js/popper.min.js?20190506"></script>
+<script src="js/bootstrap.min.js?20190506"></script>
+<!-- <script src="js/main.js?20190506"></script> -->
+
+<!-- dataTables -->
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="js/jquery.dataTables.min.js"></script>
+<!-- webpack bundle-->
+<script type="text/javascript ">
+    var settings = {
+        "url": "ajax/tableData.json",
+        "method": "GET",
+        "timeout": 0,
+    };
+
+    $.ajax(settings).done(function(response) {
+        
+        console.log(response);
+        //get data
+        response.forEach(item => {
+        var arrBall=item.ball;
+        // alert(item.ball);
+            var innerTable1 = `<tr>
+                        <td>`+item.id+`</td>
+                        <td class="ballPP">`+arrBall+`</td>
+                        <td>`+item.name+`</td>
+                        <td>$`+item.money+`</td>
+                        <td>`+item.date+`<br>`+item.time+`</td></tr>`;
+                        
+            $('#infoTable_in').append(innerTable1);
+        });
+
+        //add span tag to ball numbers
+        for (let i = 0; i < $('.ballPP').length; i++) {
+            var arrBall=$('.ballPP').eq(i).text().split(",");
+            $('.ballPP').eq(i).html('');
+            
+            for (let j = 0; j < arrBall.length; j++) {
+                
+                var spanBall='<span>'+arrBall[j]+'</span>';
+                console.log(spanBall);
+                $('.ballPP').eq(i).append(spanBall);
+            }
+            
+        }
+        
+        //datatable    
+       $('#infoTable').DataTable({
+            "oLanguage": {
+                "sEmptyTable": "尚無資料",
+                "oPaginate": {
+                    "sPrevious": "<",
+                    "sNext": ">",
+                }
+            }
+        });
+        // if($('.ballPP').length<=10){
+        //     $('#infoTable_paginate').hide();
+        // }else{
+        //     $('#infoTable_paginate').show(100);
+        // }
+    });
+</script>
+<script src="js/main.bundle.js"></script>
+
+</html>
