@@ -1,0 +1,111 @@
+
+
+.newsList {
+    display: flex;
+    margin: 40px 0;
+    padding-top: 40px;
+    border-top: 1px solid $gray-600;
+}
+
+.news_tit {
+    font-weight: bold;
+}
+
+.news_calendar {
+    text-align: center;
+    width: 70px;
+    height: 100px;
+    padding: 5px 15px;
+    border: 1px solid $gray-400;
+
+    span {
+        display: block;
+        line-height: 1.3;
+    }
+
+    .calendar_MM {}
+
+    .calendar_DD {
+        font-size: 28px;
+        font-weight: bold;
+        border-bottom: 1px solid $gray-400;
+        padding-bottom: .1em;
+        margin-bottom: .1em;
+    }
+
+    .calendar_YY {}
+}
+
+.news_info {
+    padding-left: 15px;
+
+    a {
+        text-decoration: underline !important;
+        color: $pink;
+    }
+
+    img {
+        max-width: 100%;
+    }
+}
+
+@include media-breakpoint-down(sm) {
+    .newsList {
+        flex-direction: column;
+        border: 0;
+    }
+
+    .news_calendar {
+        position: relative;
+        width: 100%;
+        height: auto;
+        text-align: left;
+        margin-bottom: 20px;
+
+        span {
+            display: inline-block;
+            line-height: 1;
+        }
+
+        .calendar_MM {
+            margin-left: 80px;
+
+            &:after {
+                content: ".";
+                display: inline-block;
+                margin: 0 .1em;
+            }
+        }
+
+        .calendar_DD {
+            position: absolute;
+            left: 0;
+            margin-left: 10px;
+            font-size: 50px;
+            border: 0;
+
+            &:after {
+                position: absolute;
+                top: 13%;
+                right: -13%;
+                content: "";
+                width: 1px;
+                height: 74%;
+                border-right: 1px solid $gray-400;
+                display: inline-block;
+            }
+        }
+
+        .news_tit {
+            width: 100%;
+            display: block !important;
+            margin-top: -5px;
+            padding-left: 80px;
+            line-height: 1;
+        }
+    }
+
+    .news_info {
+        padding-left: 0;
+    }
+}

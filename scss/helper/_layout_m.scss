@@ -1,0 +1,211 @@
+////////////// XL-PC ///////////////
+// @include media-breakpoint-up(xl) {
+    //     header {
+    //         border-bottom: 1px solid $gray-300;
+    //     }
+    // }
+
+////////////// PC down ///////////////
+@include media-breakpoint-down(lg) {
+    header {
+        max-width: 100%;
+        padding-top: .5rem;
+
+        .wrap {
+            position: relative;
+            width: 100%;
+            max-width: 100%;
+
+            a.logo {
+                position: absolute;
+                top: 0;
+                left: 0;
+                margin-top: 0;
+                margin-left: 1rem;
+                max-width: 140px;
+                text-align: left;
+                line-height: 1;
+
+                @include media-breakpoint-down(md) {
+                    // line-height: inherit;
+                    max-width: 65px;
+                }
+
+                @include media-breakpoint-down(sm) {
+                    line-height: inherit;
+                    max-width: 65px;
+                }
+
+                span {
+                    display: none;
+                }
+            }
+
+            .navItems {
+                margin-top: -5px;
+                margin-left: 0;
+            }
+
+            .navMain {
+                width: 100%;
+                padding: 0 .35rem .2em .35rem;
+                margin-top: 3rem;
+                margin-left: 0;
+                display: flex;
+                flex-wrap: nowrap;
+                border-top: 1px solid $gray-300;
+                border-bottom: 1px solid $gray-300;
+
+                .navMenuList {
+                    display: block;
+                    padding-top: 11px;
+                    flex-basis: 50px;
+                    text-align: center;
+                }
+
+                .navMain_bg {
+                    position: relative;
+                    overflow: hidden;
+                    flex-basis: 92%;
+                    height: 3rem;
+
+                    // max-width: 90vw;
+                    // border: 2px solid rgb(52, 169, 184);
+                    .navMain_scroll {
+                        position: absolute;
+                        width: 100%;
+                        height: 5rem;
+                        overflow-x: scroll;
+                        overflow-y: none;
+                        // border: 2px solid rgb(184, 52, 52);
+                    }
+
+                    ul {
+                        position: absolute;
+                        width: auto;
+
+                        li {
+                            @include media-breakpoint-down(lg) {
+                                padding: 12px 0;
+
+                                .hothot {
+                                    font-size: 10px;
+                                    top: -11px;
+                                    right: -26px;
+                                    padding: 2px 6px;
+                                }
+                            }
+
+                            @include media-breakpoint-down(md) {
+                                padding: 12px 0;
+                            }
+
+                            @include media-breakpoint-down(sm) {
+                                margin: 0.3em 0.1em;
+                                padding: 8px 0;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .navMain_m {
+                // display: block;
+                // flex-direction: column;
+                position: fixed;
+                top: 0;
+                z-index: 9999;
+                width: 100%;
+                margin-top: $header_height_m;
+                height: calc(100% - 95px);
+                background-color: $gray-100;
+
+                // &:after {
+                //     content: "";
+                //     position: absolute;
+                //     top: 0;
+                //     left: 0;
+                //     z-index: 9998;
+                //     width: 100%;
+                //     height: 100%;
+                //     background-color: $black;
+                //     opacity: .5;
+                //     display: block;
+                // }
+                .nav_top {
+                    padding: 5px 15px;
+                    border-bottom: 1px solid $white;
+
+                    .btnClose {
+                        top: 0;
+                        right: 0;
+                    }
+                }
+
+                .nav_list {
+                    padding: 15px;
+                    height: calc(100% - 43px - 70px);
+                    overflow: hidden;
+
+                    // border: 1px solid #f00;
+                    .nav_list_scroll {
+                        position: absolute;
+                        width: 100vw;
+                        height: calc(100% - 43px - 107px);
+                        overflow-y: scroll;
+
+                        // overflow-x: hidden;
+                        ul {
+                            position: absolute;
+                            width: 100%;
+                            display: block;
+                        }
+                    }
+
+                    &>a {
+                        font-size: 14px;
+                        display: block;
+                        padding: .5em 0;
+                    }
+
+                    .menu_in {
+                        margin: 1em 0 1.5em 0;
+
+                        &>a {
+                            display: block;
+                            font-size: 12px;
+                            margin-bottom: .8em;
+                        }
+                    }
+                }
+
+                .navMedia {
+                    // position: fixed;
+                    // bottom: 0;
+                    // z-index: 9999;
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-around;
+                    padding: .3em;
+                    border-top: 1px solid $white;
+
+                    a,
+                    u {
+                        font-size: 18px;
+                    }
+                }
+            }
+
+            .navTool {
+                position: absolute;
+                top: 0;
+                right: 1rem;
+                margin-top: .3rem;
+
+                li {
+                    margin: 0 0.3em;
+                }
+            }
+        }
+    }
+}
