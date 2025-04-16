@@ -7,52 +7,63 @@
     <title>ERIN✦PORTFOLIO</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="preload" href="./asset/css/main.css?20201012" as="style">
+    <link rel="preload" href="./asset/css/main.css" as="style">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link href="./asset/css/zh-cht/vendor/animate.css?20201012" rel="stylesheet" />
     <!-- <link href="https: //cdnjs.cloudflare.com/ajax/libs/loaders.css/0.1.2/loaders.min.css" rel="stylesheet" /> -->
     <link href="./asset/css/zh-cht/fonts/icomoon/icons.css?20201012" rel="stylesheet" />
     <link href="./asset/css/zh-cht/fonts/fontawesome/all.min.css?20201012" rel="stylesheet" />
-    <!-- <link href="./asset/css/zh-cht/vendor/slick.css" rel="stylesheet" />
-    <link href="./asset/css/zh-cht/vendor/slick-theme.css" rel="stylesheet" /> -->
+    <!-- <link href="./asset/css/zh-cht/vendor/slick.css" rel="stylesheet" /> -->
+    <!-- <link href="./asset/css/zh-cht/vendor/slick-theme.css" rel="stylesheet" /> -->
     <!-- <link href="./asset/css/zh-cht/vendor/magnific-popup.css?20201012" rel="stylesheet" /> -->
-    <script src="./assets/js/jquery-3.7.1.min.js"></script>
-    <script src="./asset/js/zh-cht/vendor/lenis.min.js?v=20231115"></script>
     <link href="./asset/css/main.css?v=20231115" rel="stylesheet" />
+    <!-- <script src="./assets/js/jquery-3.7.1.min.js"></script> -->
+    <script src="./asset/js/zh-cht/vendor/lenis.min.js?v=20231115"></script>
 
     <script src="./asset/js/zh-cht/vendor/jquery-3.3.1.min.js?v=20231115"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/loaders.css/0.1.2/loaders.css.js?v=20231115"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/loaders.css/0.1.2/loaders.css.js?v=20231115"></script> -->
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;200;300;400;500;600;700;800;900&family=Raleway:wght@100;200;300;400;500;600;700&display=swap');
     </style>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GDV8VG6CNB"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
 
-        gtag('config', 'G-GDV8VG6CNB');
-    </script>
-    <!-- Hotjar Tracking Code for Site 5026471 (name missing) -->
     <script>
-        (function (h, o, t, j, a, r) {
-            h.hj = h.hj || function () { (h.hj.q = h.hj.q || []).push(arguments) };
-            h._hjSettings = { hjid: 5026471, hjsv: 6 };
-            a = o.getElementsByTagName('head')[0];
-            r = o.createElement('script'); r.async = 1;
-            r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
-            a.appendChild(r);
-        })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
+        document.addEventListener("DOMContentLoaded", function () {
+            const images = document.images;
+            let loadedCount = 0;
+            const totalImages = images.length;
+
+            if (totalImages === 0) {
+                finishLoading();
+            }
+
+            for (let i = 0; i < totalImages; i++) {
+                if (images[i].complete) {
+                    loadedCount++;
+                    if (loadedCount === totalImages) finishLoading();
+                } else {
+                    images[i].addEventListener("load", () => {
+                        loadedCount++;
+                        if (loadedCount === totalImages) finishLoading();
+                    });
+                }
+            }
+
+            function finishLoading() {
+                document.getElementById("loadingScreen").style.display = "none";
+                // document.getElementById("mainContent").style.display = "block";
+            }
+        });
     </script>
+
 </head>
 
 <body class="indexBG">
-    <!-- <span class="loader"></span> -->
-
-
+    <div id="loadingScreen">
+        <span class="loader">Loading</span>
+    </div>
     <!-- <div class="loader-inner ball-pulse"></div> -->
     <div id="goTopMenu" style="display: none;">
         <a title="" href="" class="goTop"><i class="icon"><u class="icon-i_gotop"></u></i></a>
@@ -62,7 +73,6 @@
             <h1 class="pageTIT"><span>ERIN <i>✦</i>PORTFOLIO</span><span>ERIN <i>✦</i>PORTFOLIO</span></h1>
             <nav class="navMain indexNav navClick">
                 <div class="indexTitle">
-
                     <ul>
                         <li class="nav01">
                             <a href=""><i>01</i><span>Web Design</span><b>網頁設計</b></a>
@@ -131,7 +141,7 @@
 
     </div>
 
-    <header style="display: none;">
+    <header style="display: none;" class="wow fadeIn" data-wow-duration="1s">
         <div class="wrap">
             <div class="logo_bg">
                 <a href="index.html " class="logo goTopLogo">E.F.</a>
@@ -141,7 +151,7 @@
                 <h1 id="mainTITLE"></h1>
                 <nav class="pageNav navClick">
                     <span class="btnClose">
-                        <i class="icon "><u class="icon-i_xx "></u></i>
+                        <i class="far fa-times"></i>
                     </span>
                     <ul>
                         <li class="nav01">
@@ -168,37 +178,42 @@
 
     <!-- Main Content op -->
     <div id="mainArea" class="pageIndex">
-        <section id="page01" class="areaPAGE">
+        <div class="pageBg page01 wow fadeIn" data-wow-duration="1s" style="display: none;"></div>
+        <div class="pageBg page02 wow fadeIn" data-wow-duration="1s" style="display: none;"></div>
+        <div class="pageBg page03 wow fadeIn" data-wow-duration="1s" style="display: none;"></div>
+        <div class="pageBg page04 wow fadeIn" data-wow-duration="1s" style="display: none;"></div>
+        <div class="pageBg page05 wow fadeIn" data-wow-duration="1s" style="display: none;"></div>
+        <section id="page01" class="areaPAGE wow fadeIn" data-wow-duration="1s">
             <div class="sliderCon" id="sliderCon">
                 <div class="pageName"><small>01_</small>WEB DESIGN</div>
                 <div class="pageSS"><span>#Website #Html #CSS #UI&UX <br> #Javascript #Responsive Web Design</span>
                 </div>
-                <div id="pageBOX01" class="sliderBN slider">
+                <div id="pageBOX01" class="sliderBN slider wow fadeInUp" data-wow-duration="1s">
                 </div>
             </div>
         </section>
-        <section id="page02" class="areaPAGE">
+        <section id="page02" class="areaPAGE wow fadeIn" data-wow-duration="1s">
             <div class="sliderCon" id="sliderCon">
                 <div class="pageName"><small>02_</small>LANDIND PAGE</div>
                 <div class="pageSS"><span>#Landing Page #Banner <br> #EDM #Icon</span></div>
-                <div id="pageBOX02" class="sliderBN slider">
+                <div id="pageBOX02" class="sliderBN slider wow fadeInUp" data-wow-duration="1s">
                 </div>
             </div>
         </section>
-        <section id="page03" class="areaPAGE">
+        <section id="page03" class="areaPAGE wow fadeIn" data-wow-duration="1s">
             <div class="sliderCon" id="sliderCon">
                 <div class="pageName"><small>03_</small>FRONT TO END</div>
                 <div class="pageSS"><span>#Front to End #Javascript #AJAX #JSON <br> #Responsive Web Design</span></div>
-                <div id="pageBOX03" class="sliderBN slider">
+                <div id="pageBOX03" class="sliderBN slider wow fadeInUp" data-wow-duration="1s">
                 </div>
             </div>
         </section>
-        <section id="page04" class="areaPAGE">
+        <section id="page04" class="areaPAGE wow fadeIn" data-wow-duration="1s">
             <div class="sliderCon" id="sliderCon">
                 <div class="pageName"><small>04_</small>GRAPHIC DESIGN</div>
                 <div class="pageSS"><span>#Logo Design #Books Desingn #Business Card <br> #wall Sticker #Package</span>
                 </div>
-                <div id="pageBOX04" class="sliderBN slider">
+                <div id="pageBOX04" class="sliderBN slider wow fadeInUp" data-wow-duration="1s">
                 </div>
             </div>
         </section>
@@ -209,163 +224,7 @@
                         <br>#Good Communication #Efficiency Driven</span>
                 </div>
                 <div id="pageBOX05" class="sliderBN slider">
-                    <!-- <h3>關於我</h3> -->
-                    <article class="areaAbout">
-                        <aside>
-                            <figure class="myPhoto">
-                                <img src="./asset/img/pp_pic.png" alt="">
-                                <figcaption>
-                                    <div class="qrcode">
-                                        <img src="./asset/img/line_qrcode.png" alt="">
-                                    </div>
-                                    <div class="pp_info">
-                                        <h4>馮 旻妃 | Erin Feng</h4>
-                                        <a href="tel:+886-983980697">+886 983980697</a>
-                                        <a href="mailto:erin.feng210210@gmail.com">erin.feng210210@gmail.com</a>
-                                    </div>
-                                </figcaption>
-                            </figure>
-                        </aside>
-                        <div class="about_detail">
-                            <p class="aboutText">
-                                因喜歡畫畫而踏入設計領域
-                                <br> 一路上跌跌撞撞成長
-                                <br> 從編排的基本概念到體會美學的魔法
-                                <br> 不願停下腳步 進而接觸到網頁<br> 從不懂什麼是table 到現在的 if / else<br> 人生是條漫長的路
-                                <br> 有幸踏上英國的旅程 收穫良多<br> 一年多的經歷體驗到世界之大
-                                <br> 學習之路更是無窮無盡
-                                <br> 不願畫上休止符 邁開腳步往前進<br> 望能學以致用 創造更多可能性<br>
-                            </p>
-                            <div class="infoBox info_skills">
-                                <h3>Skill Set</h3>
-                                <!-- item -->
-                                <figure>
-                                    <div><img src="./asset/img/icon_skill_1.png" alt=""></div>
 
-
-                                    <figcaption>
-                                        <h5>UI / UX Design</h5>
-                                        <p>根據需求設計出符合網頁之使用介面，並與PM合作協調規劃流程。</p>
-                                        <ul>
-                                            <li>✦ User Research</li>
-                                            <li>✦ Visual Design</li>
-                                            <li>✦ Wireframe & Mockup Tools</li>
-                                            <li>✦ Prototyping</li>
-                                            <li>✦ Responsive Design</li>
-                                        </ul>
-                                    </figcaption>
-                                </figure>
-                                <!-- item -->
-                                <figure>
-                                    <div><img src="./asset/img/icon_skill_2.png" alt=""></div>
-
-                                    <figcaption>
-                                        <h5>Front to End</h5>
-                                        <p>網站切版與介面互動效果，呈現出視覺與動態結合之RWD網頁。資料串接整合與計算。</p>
-                                        <ul>
-                                            <li>✦ Html5 / Scss</li>
-                                            <li>✦ Javascript / JQuery</li>
-                                            <li>✦ Github</li>
-                                            <li>✦ WebPack</li>
-                                            <li>✦ AJAX / JSON</li>
-                                        </ul>
-                                    </figcaption>
-                                </figure>
-                                <!-- item -->
-                                <figure>
-                                    <div><img src="./asset/img/icon_skill_3.png" alt=""></div>
-                                    <figcaption>
-                                        <h5>Graphic Design</h5>
-                                        <p>LOGO設計、廣告BANNER、輸出品設計，以及產品包裝設計。</p>
-                                        <ul>
-                                            <li>✦ Branding Design</li>
-                                            <li>✦ Marketing Design</li>
-                                            <li>✦ Package Design</li>
-                                        </ul>
-                                    </figcaption>
-                                </figure>
-                            </div>
-                            <div class="infoBox info_experience">
-                                <h3>Experience</h3>
-                                <!-- work item -->
-                                <div class="infoItem">
-                                    <div class="info_year">
-                                        <span>2024.04</span>
-                                        <i></i>
-                                        <span>2020.04</span>
-                                    </div>
-                                    <div class="info_work">
-                                        <h5>網頁前端設計</h5>
-                                        <h6>✦斐優國際股份有限公司</h6>
-                                        <ol>
-                                            <li>公司官網維護與優化</li>
-                                            <li>官網改版：UIUX設計與前端切版</li>
-                                            <li>跨部門溝通協調與進度掌控</li>
-                                            <li>前端效能調校</li>
-                                            <li>APP UIUX優化</li>
-                                        </ol>
-                                        <small>#Scss #Webpack #JavaScript #Jquery #GitHub #figma</small>
-                                    </div>
-                                </div>
-                                <!-- work item -->
-                                <div class="infoItem">
-                                    <div class="info_year">
-                                        <span>2018.08</span>
-                                        <i></i>
-                                        <span>2015.07</span>
-                                    </div>
-                                    <div class="info_work">
-                                        <h5>網頁視覺設計</h5>
-                                        <h6>✦買對股份有限公司</h6>
-                                        <ol>
-                                            <li>廣宣活動頁視覺與切版</li>
-                                            <li>前端系統資料初步整合</li>
-                                            <li>網頁互動特效製作呈現</li>
-                                        </ol>
-                                        <small>#Html5 #scss #webpack #JavaScript #Jquery</small>
-                                    </div>
-                                </div>
-                                <!-- work item -->
-                                <div class="infoItem">
-                                    <div class="info_year">
-                                        <span>2014.02</span>
-                                        <i></i>
-                                        <span>2013.09</span>
-                                    </div>
-                                    <div class="info_work">
-                                        <h5>Art Designer</h5>
-                                        <h6>✦Walplus Wall Stickers Ltd.</h6>
-                                        <ol>
-                                            <li>產品繪製設計</li>
-                                            <li>產品包裝設計</li>
-                                            <li>網站維護與開發</li>
-                                            <li>商品上架事宜</li>
-                                        </ol>
-                                        <small>#VisualDesign #Illustration #PackagingDesign #PrintProduction</small>
-                                    </div>
-                                </div>
-                                <!-- work item -->
-                                <div class="infoItem">
-                                    <div class="info_year">
-                                        <span>2012.10</span>
-                                        <i></i>
-                                        <span>2011.09</span>
-                                    </div>
-                                    <div class="info_work">
-                                        <h5>網頁多媒體美術設計</h5>
-                                        <h6>✦松崗科技</h6>
-                                        <ol>
-                                            <li>遊戲官網規劃與製作</li>
-                                            <li>活動網站製作</li>
-                                            <li>活動廣宣banner多媒體動畫與靜態圖片製作</li>
-                                            <li>活動廣宣相關輸出品製作</li>
-                                        </ol>
-                                        <small>#VisualDesign #Illustration #PackagingDesign #PrintProduction</small>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
                 </div>
             </div>
         </section>
@@ -377,17 +236,17 @@
     </footer>
 </body>
 
-<script src="./asset/js/zh-cht/vendor/jquery-2.2.0.min.js" type="text/javascript "></script>
-<script src="./asset/js/zh-cht/vendor/popper.min.js?v=20231115 "></script>
-<script src="./asset/js/zh-cht/vendor/bootstrap.min.js?v=20231115 "></script>
-<script src="./asset/js/zh-cht/vendor/jquery.min.js?v=20231115 "></script>
+<!-- <script src="./asset/js/zh-cht/vendor/jquery-2.2.0.min.js" type="text/javascript "></script> -->
+<script src="./asset/js/main.js?v=20231115"></script>
+<!-- <script src="./asset/js/zh-cht/vendor/popper.min.js?v=20231115 "></script> -->
+<!-- <script src="./asset/js/zh-cht/vendor/bootstrap.min.js?v=20231115 "></script> -->
+<!-- <script src="./asset/js/zh-cht/vendor/jquery.min.js?v=20231115 "></script> -->
 <script src="./asset/js/zh-cht/vendor/bootstrap.bundle.min.js "></script>
 <script src="./asset/js/zh-cht/vendor/wow.min.js?v=20231115 "></script>
-<script src="./asset/js/zh-cht/vendor/slick.js "></script>
+<!-- <script src="./asset/js/zh-cht/vendor/slick.js "></script> -->
 <script src="./asset/js/zh-cht/vendor/all.min.js "></script>
-<script src="./asset/js/zh-cht/vendor/jquery.bootstrap-touchspin.min.js "></script>
-<script src="./asset/js/zh-cht/vendor/jquery.magnific-popup.min.js "></script>
-<script src="./asset/js/main.js?v=20231115"></script>
+<!-- <script src="./asset/js/zh-cht/vendor/jquery.bootstrap-touchspin.min.js "></script> -->
+<!-- <script src="./asset/js/zh-cht/vendor/jquery.magnific-popup.min.js "></script> -->
 
 <script type="text/javascript ">
     new WOW().init();

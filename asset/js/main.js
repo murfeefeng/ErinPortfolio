@@ -1,46 +1,12 @@
-//Scroll top open header --------------
-// $(function() {
-//     $(window).scroll(function() {
-//         if ($(this).scrollTop() > 100) {
-//             $('header').fadeIn(500);
-//             // $('#mainTITLE').fadeIn(500);
-//             $('.indexBGALL').addClass('z_index_down');
-//         } else {
-//             $('header').fadeOut(50);
-//             // $('#mainTITLE').fadeOut(100);
-//             $('.indexBGALL').removeClass('z_index_down');
-//         }
-//     });
-// });
 
-
-
-// $("#contectme").on("click", function() {
-//     // alert("000");
-//     $(".pageBg").remove();
-//     // $(".areaPAGE").remove();
-//     $("#mainArea").prepend('<div class="pageBg page05"></div></div>');
-
-//     $('.pageNav').fadeOut(100);
-
-//     $("#mainTITLE").html('關於我<span>About Me</span>');
-//     $(".areaPAGE").fadeOut(100);
-//     $("#page05").fadeIn(200);
-//     $('html, body').animate({
-//         scrollTop: $("#mainArea").offset().top
-//     }, 300);
-//     return false
-// });
-
- //--------------------------------------------------
 var settings = {
     "url": "./asset/js/page.json",
     "method": "GET",
     "timeout": 0,
 };
-$.ajax(settings).done(function(response) {
-    $(".navClick ul li").on("click", function() {
-        var Page03HTML=`<figure><div class="sliderIMG"> <img src="asset/img/web/03-1177admin.png" alt=""> </div> <figcaption> <h2>系統後臺系統建置</h2> <p> <span>不便公開</span><span>會員資料表單建立</span><span>數據資料統計圖表化</span><span>資料建立與刪除</span><span>UI介面設計與美化</span> </p> <h4 class="mb-2">想了解更多??</h4> <a href="https://mail.google.com/mail/?view=cm&to=erin.feng210210@gmail.com" target="_blank" id="contectme" class="btn">Content Me</a> </figcaption> </figure>`;
+
+$.ajax(settings).done(function (response) {
+    var Page03HTML=`<figure><div class="sliderIMG"> <img src="asset/img/web/03-1177admin.png" alt=""> </div> <figcaption> <h2>系統後臺系統建置</h2> <p> <span>不便公開</span><span>會員資料表單建立</span><span>數據資料統計圖表化</span><span>資料建立與刪除</span><span>UI介面設計與美化</span> </p> <h4 class="mb-2">想了解更多??</h4> <a href="https://mail.google.com/mail/?view=cm&to=erin.feng210210@gmail.com" target="_blank" id="contectme" class="btn">Content Me</a> </figcaption> </figure>`;
 
         var Page05HTML=`
         <!-- <h3>關於我</h3> -->
@@ -70,7 +36,7 @@ $.ajax(settings).done(function(response) {
                                 <br> 學習之路更是無窮無盡
                                 <br> 不願畫上休止符 邁開腳步往前進<br> 望能學以致用 創造更多可能性<br>
                             </p>
-                            <div class="infoBox info_skills">
+                            <div class="infoBox info_skills wow fadeInUp" data-wow-duration="1s">
                                 <h3>Skill Set</h3>
                                 <!-- item -->
                                 <figure>
@@ -182,25 +148,9 @@ $.ajax(settings).done(function(response) {
                         </div>
                     </article>
         `;
-
-
-        
-        $('.indexBGALL').addClass('z_index_up');
-        $('.pageIndex').show().addClass('z_page_up');
-        $('header').fadeIn(500);
-
-            // $('#goTopMenu').fadeIn();
-            // $('footer').fadeIn();
-        //get data PAge01
-        if($(this).hasClass('nav01')){
-            $('#pageBOX01').html('');
-            $('#page01').siblings('section').find('.sliderBN').html('');
-            $('#page01 .sliderCon').scrollTop();
-            // $('#pageBOX01').offset(0);
-            // $('#page01 .sliderCon').offset().top(0);
-            console.log();
-            
-            response[0].page01.forEach(item => {
+    
+    //page01 Info
+    response[0].page01.forEach(item => {
                 var pageHTML01 = `<figure>
                                         <div class="sliderIMG">
                                             <img src="` + item.img + `" alt="">
@@ -213,15 +163,9 @@ $.ajax(settings).done(function(response) {
                                     </figure>`;
 
                 $('#pageBOX01').append(pageHTML01);
-            });
-        }
-
-        //get data PAge02
-        if($(this).hasClass('nav02')){
-            $('#pageBOX02').html('');
-            $('#page02').siblings('section').find('.sliderBN').html('');
-            $('#page02 .sliderCon').scrollTop();
-            response[1].page02.forEach(item => {
+    });
+    //page02 Info
+    response[1].page02.forEach(item => {
                 var pageHTML02 = `<figure>
                                         <div class="sliderIMG">
                                             <img src="` + item.img + `" alt="">
@@ -234,15 +178,10 @@ $.ajax(settings).done(function(response) {
                                     </figure>`;
 
                 $('#pageBOX02').append(pageHTML02);
-            });
-        }
+    });
 
-        //get data PAge03
-        if($(this).hasClass('nav03')){
-            $('#pageBOX03').html(Page03HTML);
-            $('#page03').siblings('section').find('.sliderBN').html('');
-            $('#page03 .sliderCon').scrollTop();
-            response[2].page03.forEach(item => {
+    //page03 Info
+ response[2].page03.forEach(item => {
                 var pageHTML03 = `<figure>
                                         <div class="sliderIMG">
                                             <img src="` + item.img + `" alt="">
@@ -256,15 +195,9 @@ $.ajax(settings).done(function(response) {
 
                 $('#pageBOX03').append(pageHTML03);
             });
-        }
-    
-    
-        //get data PAge04
-        if($(this).hasClass('nav04')){
-            $('#pageBOX04').html('');
-            $('#page04').siblings('section').find('.sliderBN').html('');
-            $('#page04 .sliderCon').scrollTop();
-            response[3].page04.forEach(page => {
+
+    //page04 Info
+    response[3].page04.forEach(page => {
                 // alert(page.pageTIT);
         
                 var pageTitle = ` <article>
@@ -288,14 +221,62 @@ $.ajax(settings).done(function(response) {
                 });
                 // console.log(page.logo.title);
         
-            });
+    });
+    
+    $('#pageBOX05').html(Page05HTML);
+    
+
+    $(".navClick ul li").on("click", function() {
+        $('.indexBGALL').addClass('z_index_up');
+        $('.pageIndex').show().addClass('z_page_up');
+        $('header').fadeIn(500);
+
+            // $('#goTopMenu').fadeIn();
+            // $('footer').fadeIn();
+        //get data PAge01
+        
+        if ($(this).hasClass('nav01')) {
+            // $('#page01').siblings('section').find('.sliderBN').html('');
+            $('.sliderBN').hide();
+            $('#pageBOX01').fadeIn();
+            $('#page01 .sliderCon').scrollTop();
+            
+        }
+
+        //get data PAge02
+        if($(this).hasClass('nav02')){
+            $('.sliderBN').hide();
+            $('#pageBOX02').fadeIn();
+            // $('#page02').siblings('section').find('.sliderBN').html('');
+            $('#page02 .sliderCon').scrollTop();
+            
+        }
+
+        //get data PAge03
+        if($(this).hasClass('nav03')){
+            $('.sliderBN').hide();
+            $('#pageBOX03').fadeIn();
+            // $('#page03').siblings('section').find('.sliderBN').html('');
+            $('#page03 .sliderCon').scrollTop();
+           
+        }
+    
+    
+        //get data PAge04
+        if($(this).hasClass('nav04')){
+            $('.sliderBN').hide();
+            $('#pageBOX04').fadeIn();
+            // $('#page04').siblings('section').find('.sliderBN').html('');
+            $('#page04 .sliderCon').scrollTop();
+            
         }
 
 
         //get data PAge05
         if($(this).hasClass('nav05')){
-            $('#pageBOX05').html(Page05HTML);
-            $('#page05').siblings('section').find('.sliderBN').html('');
+            $('.sliderBN').hide();
+            $('#pageBOX05').fadeIn();
+            // $('#page05').siblings('section').find('.sliderBN').html('');
             $('#page05 .sliderCon').scrollTop();
         }
 
@@ -304,11 +285,9 @@ $.ajax(settings).done(function(response) {
         var titEN = $(this).find('span').text();
         var titCN = $(this).find('b').text();
         var titlEHTML = titCN + '<span> #' + titEN + '</span>';
-        var pageBGHTML = `<div class="pageBg page0` + NN + `"></div>`;
     
-        $(".pageBg").remove();
-        // $(".areaPAGE").remove();
-        $("#mainArea").prepend(pageBGHTML);
+        $('.pageBg').hide();
+        $(".page0"+NN).fadeIn();
     
         $('.pageNav').fadeOut(100);
     
@@ -316,24 +295,11 @@ $.ajax(settings).done(function(response) {
         $(".areaPAGE").fadeOut(100).removeClass('active');
         $("#page0" + NN).fadeIn(200).addClass('active');
         initLenisOnCurrentPage();
-        // alert();
         $('html, body').animate({
             scrollTop: $("#mainArea").offset().top
         }, 300);
-        // $('#page0' + NN).find('.sliderBN').html(pageHTML01);
-        // if (NN == 4) {
-        //     $("header").addClass('page04Header');
-        // } else {
-        //     $("header").removeClass('page04Header');
-        // }
         return false
     });
-
-
-    
-
-
-
     //page info from array to list
     for (let i = 0; i < $('.pageinfoTxT').length; i++) {
         var arINFO = $('.pageinfoTxT').eq(i).text().split(",");
@@ -429,7 +395,7 @@ function initLenisOnCurrentPage() {
 
 $(function() {
     $('.goTopLogo').click(function() {
-        $('.sliderBN').html('');
+        // $('.sliderBN').html('');
         $('html,body').animate({
             scrollTop: 0
         }, 'easeOutBack');

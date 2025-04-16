@@ -14,6 +14,56 @@ $color_2_gradient: linear-gradient(35deg, rgba(#d48524, $btn_alpha), rgba(#f09b3
 $color_3_gradient: linear-gradient(35deg, rgba(#568017, $btn_alpha), rgba(#6fa320, $btn_alpha));
 $color_4_gradient: linear-gradient(35deg, rgba(#7e5d97, $btn_alpha), rgba(#af79db, $btn_alpha));
 $color_5_gradient: linear-gradient(35deg, rgba(#ce3362, $btn_alpha), rgba(#f96390, $btn_alpha));
+
+//loading
+#loadingScreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: #000000;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .loader {
+    font-size: 48px;
+    display: inline-block;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: #FFF;
+    letter-spacing: 2px;
+    position: relative;
+    box-sizing: border-box;
+  }
+  .loader::after {
+    content: 'Loading';
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #263238;
+    text-shadow: 0 0 2px #FFF, 0 0 1px #FFF, 0 0 1px #FFF;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
+    animation: animloader 6s linear infinite;
+  }
+  
+  @keyframes animloader {
+    0% {
+      height: 100%;
+    }
+    100% {
+      height: 0%;
+    }
+  }
+
+
+
 //keyframe
 
 @include keyframe (rrroate) {

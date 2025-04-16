@@ -44,7 +44,7 @@ body {
     display: flex;
     flex-direction: column;
     // background: $gray-100;
-    @include tran(0s, ease);
+    @include tran(.3s, ease-in-out);
 
     // border: 3px solid #f00;
 
