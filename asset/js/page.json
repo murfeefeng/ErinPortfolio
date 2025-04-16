@@ -52,16 +52,6 @@
                 ],
                 "img": "asset/img/web/01-matchbank.png",
                 "url": "asset/html/matchbank/index.html"
-            },
-            {
-                "title": "Sisdora形象官網",
-                "info": [
-                    "網站 UI & UX 規劃與設計",
-                    "形象官網",
-                    "操作介面互動效果"
-                ],
-                "img": "asset/img/web/01-sisdora.png",
-                "url": "asset/html/sisdora/index.html"
             }
         ]
     },
