@@ -58,7 +58,7 @@
 
     @include media-breakpoint-down(sm) {
         padding-top: 0;
-        height: calc(100vh - 60px);
+        height: calc(100dvh - 60px);
         // bottom: -64px;
     }
 
@@ -177,7 +177,7 @@
                 &>figure {
                     position: relative;
                     background-color: #f1eff1;
-                    border:1px solid #ddd7e6;
+                    border: 1px solid #ddd7e6;
                     width: 240px;
                     height: 240px;
                     margin: 0 auto;
@@ -258,8 +258,9 @@
 
         article {
             padding: 0 10%;
-            padding-left: calc( 10% + 80px);
-            @include media-breakpoint-down(lg){
+            padding-left: calc(10% + 80px);
+
+            @include media-breakpoint-down(lg) {
                 padding-left: 10%;
 
             }
@@ -393,7 +394,8 @@
         padding-left: calc(10% + 80px);
         // border: 1px solid #f00;
         color: $text_color;
-        @include media-breakpoint-down(lg){
+
+        @include media-breakpoint-down(lg) {
             padding-left: 10%;
 
         }
@@ -691,10 +693,12 @@ article.areaAbout {
     margin-top: 0 !important;
     padding: 0 10%;
     padding-left: calc(10% + 80px);
-    @include media-breakpoint-down(lg){
+
+    @include media-breakpoint-down(lg) {
         padding-left: 10%;
 
     }
+
     // border: 1px solid red;
     // @include media-breakpoint-down(lg){
     //     padding-top: 50px;
