@@ -11,7 +11,7 @@ $.ajax(settings).done(function (response) {
         var Page05HTML=`
         <!-- <h3>關於我</h3> -->
                     <article class="areaAbout">
-                        <aside>
+                        <aside class="wow fadeInUp" data-wow-duration="1s">
                             <figure class="myPhoto">
                                 <img src="./asset/img/pp_pic.png" alt="">
                                 <figcaption>
@@ -27,7 +27,7 @@ $.ajax(settings).done(function (response) {
                             </figure>
                         </aside>
                         <div class="about_detail">
-                            <p class="aboutText">
+                            <p class="aboutText wow fadeInUp" data-wow-duration="1s">
                                 因喜歡畫畫而踏入設計領域
                                 <br> 一路上跌跌撞撞成長
                                 <br> 從編排的基本概念到體會美學的魔法
@@ -36,13 +36,11 @@ $.ajax(settings).done(function (response) {
                                 <br> 學習之路更是無窮無盡
                                 <br> 不願畫上休止符 邁開腳步往前進<br> 望能學以致用 創造更多可能性<br>
                             </p>
-                            <div class="infoBox info_skills wow fadeInUp" data-wow-duration="1s">
-                                <h3>Skill Set</h3>
+                            <div class="infoBox info_skills">
+                                <h3 class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.5s">Skill Set</h3>
                                 <!-- item -->
-                                <figure>
+                                <figure class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="1s">
                                     <div><img src="./asset/img/icon_skill_1.png" alt=""></div>
-
-
                                     <figcaption>
                                         <h5>UI / UX Design</h5>
                                         <p>根據需求設計出符合網頁之使用介面，並與PM合作協調規劃流程。</p>
@@ -88,7 +86,7 @@ $.ajax(settings).done(function (response) {
                             <div class="infoBox info_experience">
                                 <h3>Experience</h3>
                                 <!-- work item -->
-                                <div class="infoItem">
+                                <div class="infoItem wow fadeInUp" data-wow-duration="1s">
                                     <div class="info_year">
                                         <span>2024.04</span>
                                         <i></i>
@@ -126,7 +124,7 @@ $.ajax(settings).done(function (response) {
                                     </div>
                                 </div>
                                 <!-- work item -->
-                                <div class="infoItem">
+                                <div class="infoItem wow fadeInUp" data-wow-duration="1s">
                                     <div class="info_year">
                                         <span>2014.02</span>
                                         <i></i>
@@ -151,7 +149,7 @@ $.ajax(settings).done(function (response) {
     
     //page01 Info
     response[0].page01.forEach(item => {
-                var pageHTML01 = `<figure>
+                var pageHTML01 = `<figure class="wow fadeInUp" data-wow-duration="1s">
                                         <div class="sliderIMG">
                                             <img src="` + item.img + `" alt="">
                                         </div>
@@ -166,7 +164,7 @@ $.ajax(settings).done(function (response) {
     });
     //page02 Info
     response[1].page02.forEach(item => {
-                var pageHTML02 = `<figure>
+                var pageHTML02 = `<figure class="wow fadeInUp" data-wow-duration="1s">
                                         <div class="sliderIMG">
                                             <img src="` + item.img + `" alt="">
                                         </div>
@@ -182,7 +180,7 @@ $.ajax(settings).done(function (response) {
 
     //page03 Info
  response[2].page03.forEach(item => {
-                var pageHTML03 = `<figure>
+                var pageHTML03 = `<figure class="wow fadeInUp" data-wow-duration="1s">
                                         <div class="sliderIMG">
                                             <img src="` + item.img + `" alt="">
                                         </div>
@@ -210,7 +208,7 @@ $.ajax(settings).done(function (response) {
         
                 page.items.forEach(item => {
                     var pageHTML04 = `<div class="col-12 col-sm-6 col-md-4">
-                                        <figure>
+                                        <figure class="wow fadeInUp" data-wow-duration="1s">
                                             <img src="` + item.img + `" alt="">
                                             <figcaption>` + item.title + ` </figcaption>
                                         </figure>
@@ -228,8 +226,9 @@ $.ajax(settings).done(function (response) {
 
     $(".navClick ul li").on("click", function() {
         $('.indexBGALL').addClass('z_index_up');
-        $('.pageIndex').show().addClass('z_page_up');
+        // $('.pageIndex').show().addClass('z_page_up');
         $('header').fadeIn(500);
+        
 
             // $('#goTopMenu').fadeIn();
             // $('footer').fadeIn();
@@ -295,9 +294,9 @@ $.ajax(settings).done(function (response) {
         $(".areaPAGE").fadeOut(100).removeClass('active');
         $("#page0" + NN).fadeIn(200).addClass('active');
         initLenisOnCurrentPage();
-        $('html, body').animate({
-            scrollTop: $("#mainArea").offset().top
-        }, 300);
+        $('.areaPAGE').animate({
+            scrollTop: 0
+        }, 500);
         return false
     });
     //page info from array to list
@@ -394,13 +393,11 @@ function initLenisOnCurrentPage() {
 //Scroll gotop 這個要寫在最後面 --------------
 
 $(function() {
-    $('.goTopLogo').click(function() {
-        // $('.sliderBN').html('');
-        $('html,body').animate({
-            scrollTop: 0
-        }, 'easeOutBack');
+    $('.goTopLogo').click(function () {
+        // console.log($('.areaPAGE').scrollTop());
+       
         $('.indexBGALL').removeClass('z_index_up');
-        $('.pageIndex').hide().removeClass('z_page_up');
+        // $('.pageIndex').hide().removeClass('z_page_up');
         $('header').fadeOut(100);
 
         
