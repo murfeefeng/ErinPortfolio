@@ -13,6 +13,28 @@
                 "url": "https://www.polylulu.com.tw/"
             },
             {
+                "title": "DATE網站設計",
+                "info": [
+                    "網站 UI & UX 規劃與設計",
+                    "資訊網站",
+                    "網站RWD切版製作",
+                    "操作介面互動效果"
+                ],
+                "img": "asset/img/web/01-dateweb.png",
+                "url": "asset/html/date/index.html"
+            },
+            {
+                "title": "數位電商基地官網",
+                "info": [
+                    "網站 UI & UX 規劃與設計",
+                    "資訊網站",
+                    "網站RWD切版製作",
+                    "操作介面互動效果"
+                ],
+                "img": "asset/img/web/01-gdweb.png",
+                "url": "asset/html/gd/index.html"
+            },
+            {
                 "title": "Aurora官網",
                 "info": [
                     "網站 UI & UX 規劃與設計",
@@ -194,6 +216,30 @@
     {
         "page03": [
             {
+                "title": "KIWIPIN官網建置",
+                "info": [
+                    "網站RWD切版製作",
+                    "操作介面互動效果",
+                    "網站前端程式",
+                    "資料串接",
+                    "多語系"
+                ],
+                "img": "asset/img/web/03-kiwipin.png",
+                "url": "asset/html/kiwipin/index.html"
+            },
+            {
+                "title": "支付頁建置",
+                "info": [
+                    "網站RWD切版製作",
+                    "操作介面互動效果",
+                    "網站前端程式",
+                    "資料串接",
+                    "多語系"
+                ],
+                "img": "asset/img/web/03-paypage.png",
+                "url": "asset/html/paypage/pay.html"
+            },
+            {
                 "title": "1177PAY 官網建置",
                 "info": [
                     "網站RWD切版製作",
@@ -252,6 +298,10 @@
                 "pageTIT": "PACKAGE",
                 "items": [
                     {
+                        "title": "手工餅乾包裝設計",
+                        "img": "asset/img/pic/graphic/sala_bag.jpg"
+                    },
+                    {
                         "title": "壁貼零售包裝",
                         "img": "asset/img/pic/wallSticker/package/wlplus_pack1.png"
                     },
@@ -276,6 +326,10 @@
             {
                 "pageTIT": "OTHERS",
                 "items": [
+                    {
+                        "title": "手工餅乾小卡",
+                        "img": "asset/img/pic/graphic/sala_card.jpg"
+                    },
                     {
                         "title": "佛光山套書",
                         "img": "asset/img/pic/graphic/fgs_book.jpg"
