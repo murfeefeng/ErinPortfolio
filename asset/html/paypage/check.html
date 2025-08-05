@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P99Pay-pagepage</title>
+    <!-- favicon -->
+    <link rel="icon" href="https://stage-api-page.p99pay.com/favicon.ico">
+    <link rel="icon" href="https://stage-api-page.p99pay.com/favicon.png">
+    <!-- css -->
+    <link rel="stylesheet" href="https://stage-api-page.p99pay.com/assets/css/reset.css">
+    <link rel="stylesheet" href="https://stage-api-page.p99pay.com/assets/css/bootstrap-grid.css">
+    <link rel="stylesheet" href="https://stage-api-page.p99pay.com/assets/css/main.css?v=20250801">
+    <!-- <link rel="stylesheet" href="../assets/css/main.css?v=20240611"> -->
+    <!-- js -->
+    <script src="https://stage-api-page.p99pay.com/assets/js/jquery-3.7.1.min.js"></script>
+    <script>
+        function initFunction(jsonObj) {
+            renderInfo(jsonObj);
+        }
+    </script>
+</head>
+
+<body>
+    <main class="payment_check">
+        <ul class="stepBar">
+            <li class="step active">
+                <span>1</span>
+                <b>付款方式</b>
+            </li>
+            <li>
+                <i></i>
+            </li>
+            <li class="step active">
+                <span>2</span>
+                <b>交易確認</b>
+            </li>
+            <li class="active">
+                <i></i>
+            </li>
+            <li class="step">
+                <span>3</span>
+                <b>前往儲值</b>
+            </li>
+        </ul>
+        <div class="wrap">
+            <form role="form" id="form" method="post" action="" target="_self" onsubmit="return check_submit();"
+                class="pageInfoBox">
+                <div class="result_info">
+                    <div class="item">
+                        <div class="title">商品名稱</div>
+                        <div class="content">null</div>
+                    </div>
+                    <div class="item">
+                        <div class="title">儲值金額</div>
+                        <div class="content">null</div>
+                    </div>
+                    <div class="item">
+                        <div class="title">幣別</div>
+                        <div class="content">null</div>
+                    </div>
+                </div>
+                <!-- <input type="hidden" name="jsonData" id="jsonData"> -->
+                <div class="confirm">
+                    <button id="paymentOK" type="button" class="btn PAYMENT_SELECT"
+                        onclick="return check_submit();">前往儲值</button>
+                </div>
+            </form>
+        </div>
+
+    </main>
+    <footer>
+        <i class=" logo"><img src="https://stage-api-page.p99pay.com/assets/img/KIWI.svg" alt=""></i>
+        <h5><i><img src="https://stage-api-page.p99pay.com/assets/img/icon_address.svg" alt=""></i>FLAT/RM
+            1204 Yu
+            Sung
+            Boon Building, No
+            107-111 Des Voeux Road, Central, Hong Kong</h5>
+        <div class="copyright">Copyright Ⓒ 2025 Perfect Ninety Nine International Co. Ltd
+        </div>
+    </footer>
+
+    <!-- <script src="./assets/js/wow.min.js"></script> -->
+    <script src="https://stage-api-page.p99pay.com/assets/js/translate.js"></script>
+    <!-- loading -->
+    <script src="https://stage-api-page.p99pay.com/assets/js/loadingoverlay.min.js"></script>
+    <script>
+        function renderInfo(json) {
+            // const jsonData = JSON.parse(JSON.stringify(json));
+            // $('#jsonData').val(JSON.stringify(jsonData));
+            // console.log($('#jsonData').val());
+            Object.keys(json).forEach(function (k) {
+                var eleName = '#' + k;
+                if ($(eleName).length <= 0) {
+                    appendElement_Input('#form', k, json[k]);
+                } else {
+                    $(eleName).val(json[k]);
+                }
+            });
+            function appendElement_Input(ele, name, value) {
+                var textHtml = '<input type="text" style="display: none" name="' + name + '"';
+                textHtml += ' value="' + value + '"';
+                textHtml += '/>';
+                $(ele).append(textHtml);
+            }
+
+
+            const resultLIST = {
+                "商品名稱": json.PRODUCT_NAME,
+                "儲值金額": json.AMOUNT,
+                "幣別": json.CUID,
+            }
+            // console.log(dataSUCCESS);
+            resultINFO(resultLIST);
+
+            //印資料
+            function resultINFO(data) {
+                $(".result_info").empty();
+
+                Object.entries(data).forEach(([key, value]) => {
+                    // const TimeTXT = formatTime(value);
+                    const htmlINFO = `
+                        <div class="item">
+                        <div class="title">${key}</div>
+                        <div class="content">${value}</div>
+                        </div>`;
+
+                    $(".result_info").append(htmlINFO);
+
+                });
+            }
+
+
+            // initTranslation(json)//翻譯
+        }
+
+        function check_submit() {
+            //鎖住畫面
+            $.LoadingOverlay("show", {
+                image: "",  // 不用預設圖片
+                custom: $("<div>", { class: "custom-spinner" })[0],
+                background: "rgba(255,255,255,0.8)"
+            });
+
+
+            document.getElementById('form').submit();
+
+            //測試用
+            // setTimeout(function () {
+            //     document.getElementById('form').submit();
+            // }, 2000);
+
+            // return false;
+        }
+
+
+
+    </script>
+    <script>
+        // initFunction({
+        //     "Type": "SelectPAID",
+        //     "data": "eyJNU0dfVFlQRSI6IjAxMDAiLCJQQ09ERSI6IjMwMDAwMCIsIkNJRCI6IkMwMDAwMTAwMDAwMDEiLCJDT0lEIjoiQ1AyMDI1MDUyMzE4MjA0MCIsIkNVSUQiOiJVU0QiLCJBTU9VTlQiOiIxIiwiUkVUVVJOX1VSTCI6Imh0dHA6XC9cLzE0LjIyNS4zLjEzMVwvdGVzdFwvcmV0dXJuX3VybC5waHAiLCJPUkRFUl9UWVBFIjoiRSIsIlBST0RVQ1RfTkFNRSI6IlRlc3QgUyAxIFVTRCIsIlBST0RVQ1RfSUQiOiJVU0RfMSIsIlVTRVJfQUNDVElEIjoiVVNFUl8xMjM0NTYiLCJFUlFDIjoiZ3BHR1FzRjRuWEpxXC9wRE0zSzBHdmh5TUFkUT0ifQ==",
+        //     "COID": "C000010000001CP20250523182040",
+        //     "PRODUCT": "KIWI PIN (100 points)",
+        //     "AMOUNTList": [
+        //         {
+        //             "AMOUNT": 30,
+        //             "CUID": "CNY"
+        //         }
+        //     ],
+        //     // "LanguageDefault": "en_US",
+        //     // "LanguageList": {
+        //     //     "en_US": "English",
+        //     //     "zh_TW": "中文",
+        //     //     "th_TH": "ภาษาไทย",
+        //     // },
+        //     // "StringID": {
+        //     //     "en_US": {
+        //     //         "PAYMENT_INFO_PRODUCT": "Product Name",
+        //     //         "PAYMENT_INFO_AMOUNT": "Top-up Amount",
+        //     //         "PAYMENT_INFO_CUID": "Currency",
+        //     //         "PAYMENT_SELECT": "Go to Top-up"
+        //     //     },
+        //     //     "zh_TW": {
+        //     //         "PAYMENT_INFO_PRODUCT": "商品名稱",
+        //     //         "PAYMENT_INFO_AMOUNT": "儲值金額",
+        //     //         "PAYMENT_INFO_CUID": "幣別",
+        //     //         "PAYMENT_SELECT": "前往儲值"
+        //     //     },
+        //     //     "th_TH": {
+        //     //         "PAYMENT_INFO_PRODUCT": "ชื่อสินค้า",
+        //     //         "PAYMENT_INFO_AMOUNT": "จำนวนเงินที่เติม",
+        //     //         "PAYMENT_INFO_CUID": "สกุลเงิน",
+        //     //         "PAYMENT_SELECT": "ไปยังหน้าชำระเงิน"
+        //     //     }
+        //     // },
+        //     "Theme": {
+        //         "BG_COLOR_PRIMARY": "",
+        //         "BG_COLOR_SECOND": "",
+        //         "BG_IMG_URL_PC": "",
+        //         "BG_IMG_URL_M": ""
+        //     }
+        // });
+
+        // initFunction({ "Tpye": "GetKIWICheck", "data": "eyJNU0dfVFlQRSI6IjAxMDAiLCJQQ09ERSI6IjMwMDAwMCIsIkNJRCI6IkMwMDAwMTAwMDAwMDEiLCJDT0lEIjoiQ1AyMDI1MDczMTE1MzMyMiIsIkNVSUQiOiJUV0QiLCJBTU9VTlQiOiIxNTAwLjAwIiwiUkVUVVJOX1VSTCI6Imh0dHA6XC9cLzE0LjIyNS4zLjEzMVwvdGVzdFwvcmV0dXJuX3VybC5waHAiLCJPUkRFUl9UWVBFIjoiRSIsIlBST0RVQ1RfTkFNRSI6IlRlc3QgUyAxNTAwLjAwIFRXRCIsIlBST0RVQ1RfSUQiOiJUV0RfMTUwMC4wMCIsIlVTRVJfQUNDVElEIjoiVVNFUl8xMjM0NTYiLCJFUlFDIjoiQW9qR2JSemtORWdDNDBLSEh3Szh3RHF0OW1rPSJ9", "COID": "C000010000001CP20250731153322", "SPAID": "WLTEZL03", "PRODUCT_NAME": "KIWI PIN ( Test S 1500.00 TWD )", "AMOUNT": "375", "CUID": "HKD", "LanguageDefault": "zh_TW", "LanguageList": { "en_US": "English", "th_TH": "\u0e20\u0e32\u0e29\u0e32\u0e44\u0e17\u0e22", "zh_TW": "\u4e2d\u6587" }, "StringID": { "en_US": { "RECEIPT_CONFIRM": "Confirm submission", "RECEIPT_ERROR_MESSAGE_FORMAT": "* Incorrect format", "RECEIPT_ERROR_MESSAGE_HAVEERROR": "There is an error in your input, please check the fields", "RECEIPT_ERROR_MESSAGE_NEED": "* This field is required", "RECEIPT_INFO": "Invoice Information", "RECEIPT_INFO_COMPANY": "Company", "RECEIPT_INFO_DONATE": "Donate", "RECEIPT_INFO_PERSONA": "Personal", "RECEIPT_INFO_SELECT": "Select invoice type:", "RECEIPT_REMEMBER": "Remember this invoice information for faster checkout next time", "RECEIPT_TYPE_CDCCODE": "Citizen Digital Certificate", "RECEIPT_TYPE_CDCCODE_HINT": "AB12345678901234", "RECEIPT_TYPE_DONATE": "Donate Invoice", "RECEIPT_TYPE_DONATE_HINT": "Select a donation unit", "RECEIPT_TYPE_DONATE_SEARCH": "Donation code search", "RECEIPT_TYPE_DONATECOD": "Designated recipient organization or group", "RECEIPT_TYPE_DONATECODE_HINT": "Please enter the donation code", "RECEIPT_TYPE_EMAIL": "Electronic Invoice", "RECEIPT_TYPE_EMAIL_HINT": "Please enter your email address", "RECEIPT_TYPE_PHONECO": "Carrier Barcode", "RECEIPT_TYPE_PHONECODE_HINT": "Must start with '\/' followed by alphanumeric characters or + - symbols, total of 8 digits", "RECEIPT_TYPE_TRIPLET": "Corporate Electronic Invoice", "RECEIPT_TYPE_TRIPLET_EMAIL": "Email address", "RECEIPT_TYPE_TRIPLET_EMAIL_HINT": "Please enter your email address", "RECEIPT_TYPE_TRIPLET_TITLE": "Company name or personal name", "RECEIPT_TYPE_TRIPLET_TITLE_HINT": "Please enter the company name\/personal name", "RECEIPT_TYPE_TRIPLET_UBN": "Unified Business Number", "RECEIPT_TYPE_TRIPLET_UBN_HINT": "Please enter the UBN, it cannot be changed after submission" }, "th_TH": { "RECEIPT_CONFIRM": "\u0e22\u0e37\u0e19\u0e22\u0e31\u0e19\u0e01\u0e32\u0e23\u0e2a\u0e48\u0e07", "RECEIPT_ERROR_MESSAGE_FORMAT": "* \u0e23\u0e39\u0e1b\u0e41\u0e1a\u0e1a\u0e44\u0e21\u0e48\u0e16\u0e39\u0e01\u0e15\u0e49\u0e2d\u0e07", "RECEIPT_ERROR_MESSAGE_HAVEERROR": "\u0e02\u0e49\u0e2d\u0e21\u0e39\u0e25\u0e17\u0e35\u0e48\u0e1b\u0e49\u0e2d\u0e19\u0e44\u0e21\u0e48\u0e16\u0e39\u0e01\u0e15\u0e49\u0e2d\u0e07 \u0e01\u0e23\u0e38\u0e13\u0e32\u0e15\u0e23\u0e27\u0e08\u0e2a\u0e2d\u0e1a\u0e0a\u0e48\u0e2d\u0e07\u0e17\u0e35\u0e48\u0e01\u0e23\u0e2d\u0e01", "RECEIPT_ERROR_MESSAGE_NEED": "* \u0e08\u0e33\u0e40\u0e1b\u0e47\u0e19\u0e15\u0e49\u0e2d\u0e07\u0e01\u0e23\u0e2d\u0e01", "RECEIPT_INFO": "\u0e02\u0e49\u0e2d\u0e21\u0e39\u0e25\u0e43\u0e1a\u0e01\u0e33\u0e01\u0e31\u0e1a\u0e20\u0e32\u0e29\u0e35", "RECEIPT_INFO_COMPANY": "\u0e1a\u0e23\u0e34\u0e29\u0e31\u0e17", "RECEIPT_INFO_DONATE": "\u0e1a\u0e23\u0e34\u0e08\u0e32\u0e04", "RECEIPT_INFO_PERSONA": "\u0e1a\u0e38\u0e04\u0e04\u0e25\u0e17\u0e31\u0e48\u0e27\u0e44\u0e1b", "RECEIPT_INFO_SELECT": "\u0e40\u0e25\u0e37\u0e2d\u0e01\u0e1b\u0e23\u0e30\u0e40\u0e20\u0e17\u0e43\u0e1a\u0e01\u0e33\u0e01\u0e31\u0e1a\u0e20\u0e32\u0e29\u0e35:", "RECEIPT_REMEMBER": "\u0e08\u0e14\u0e08\u0e33\u0e02\u0e49\u0e2d\u0e21\u0e39\u0e25\u0e43\u0e1a\u0e01\u0e33\u0e01\u0e31\u0e1a\u0e20\u0e32\u0e29\u0e35\u0e19\u0e35\u0e49 \u0e40\u0e1e\u0e37\u0e48\u0e2d\u0e04\u0e27\u0e32\u0e21\u0e2a\u0e30\u0e14\u0e27\u0e01\u0e43\u0e19\u0e01\u0e32\u0e23\u0e0a\u0e33\u0e23\u0e30\u0e40\u0e07\u0e34\u0e19\u0e04\u0e23\u0e31\u0e49\u0e07\u0e16\u0e31\u0e14\u0e44\u0e1b", "RECEIPT_TYPE_CDCCODE": "\u0e43\u0e1a\u0e23\u0e31\u0e1a\u0e23\u0e2d\u0e07\u0e1b\u0e23\u0e30\u0e0a\u0e32\u0e0a\u0e19", "RECEIPT_TYPE_CDCCODE_HINT": "AB12345678901234", "RECEIPT_TYPE_DONATE": "\u0e43\u0e1a\u0e01\u0e33\u0e01\u0e31\u0e1a\u0e20\u0e32\u0e29\u0e35\u0e40\u0e1e\u0e37\u0e48\u0e2d\u0e1a\u0e23\u0e34\u0e08\u0e32\u0e04", "RECEIPT_TYPE_DONATE_HINT": "\u0e2b\u0e19\u0e48\u0e27\u0e22\u0e07\u0e32\u0e19\u0e2b\u0e23\u0e37\u0e2d\u0e2d\u0e07\u0e04\u0e4c\u0e01\u0e23\u0e17\u0e35\u0e48\u0e15\u0e49\u0e2d\u0e07\u0e01\u0e32\u0e23\u0e1a\u0e23\u0e34\u0e08\u0e32\u0e04", "RECEIPT_TYPE_DONATE_SEARCH": "\u0e01\u0e23\u0e38\u0e13\u0e32\u0e01\u0e23\u0e2d\u0e01\u0e23\u0e2b\u0e31\u0e2a\u0e1a\u0e23\u0e34\u0e08\u0e32\u0e04", "RECEIPT_TYPE_DONATECOD": "\u0e40\u0e25\u0e37\u0e2d\u0e01\u0e2b\u0e19\u0e48\u0e27\u0e22\u0e07\u0e32\u0e19\u0e23\u0e31\u0e1a\u0e1a\u0e23\u0e34\u0e08\u0e32\u0e04", "RECEIPT_TYPE_DONATECODE_HINT": "\u0e04\u0e49\u0e19\u0e2b\u0e32\u0e23\u0e2b\u0e31\u0e2a\u0e1a\u0e23\u0e34\u0e08\u0e32\u0e04", "RECEIPT_TYPE_EMAIL": "\u0e43\u0e1a\u0e01\u0e33\u0e01\u0e31\u0e1a\u0e20\u0e32\u0e29\u0e35\u0e2d\u0e34\u0e40\u0e25\u0e47\u0e01\u0e17\u0e23\u0e2d\u0e19\u0e34\u0e01\u0e2a\u0e4c", "RECEIPT_TYPE_EMAIL_HINT": "\u0e01\u0e23\u0e38\u0e13\u0e32\u0e01\u0e23\u0e2d\u0e01\u0e2d\u0e35\u0e40\u0e21\u0e25\u0e02\u0e2d\u0e07\u0e04\u0e38\u0e13", "RECEIPT_TYPE_PHONECO": "\u0e1a\u0e32\u0e23\u0e4c\u0e42\u0e04\u0e49\u0e14\u0e02\u0e2d\u0e07\u0e1c\u0e39\u0e49\u0e16\u0e37\u0e2d", "RECEIPT_TYPE_PHONECODE_HINT": "\u0e15\u0e49\u0e2d\u0e07\u0e02\u0e36\u0e49\u0e19\u0e15\u0e49\u0e19\u0e14\u0e49\u0e27\u0e22 '\/' \u0e15\u0e32\u0e21\u0e14\u0e49\u0e27\u0e22\u0e15\u0e31\u0e27\u0e2d\u0e31\u0e01\u0e29\u0e23\u0e2b\u0e23\u0e37\u0e2d\u0e15\u0e31\u0e27\u0e40\u0e25\u0e02 \u0e2b\u0e23\u0e37\u0e2d\u0e2a\u0e31\u0e0d\u0e25\u0e31\u0e01\u0e29\u0e13\u0e4c + - \u0e23\u0e27\u0e21\u0e40\u0e1b\u0e47\u0e19 8 \u0e15\u0e31\u0e27", "RECEIPT_TYPE_TRIPLET": "\u0e43\u0e1a\u0e01\u0e33\u0e01\u0e31\u0e1a\u0e20\u0e32\u0e29\u0e35\u0e2a\u0e33\u0e2b\u0e23\u0e31\u0e1a\u0e1a\u0e23\u0e34\u0e29\u0e31\u0e17", "RECEIPT_TYPE_TRIPLET_EMAIL": "\u0e2d\u0e35\u0e40\u0e21\u0e25", "RECEIPT_TYPE_TRIPLET_EMAIL_HINT": "\u0e01\u0e23\u0e38\u0e13\u0e32\u0e01\u0e23\u0e2d\u0e01\u0e2d\u0e35\u0e40\u0e21\u0e25", "RECEIPT_TYPE_TRIPLET_TITLE": "\u0e0a\u0e37\u0e48\u0e2d\u0e1a\u0e23\u0e34\u0e29\u0e31\u0e17\u0e2b\u0e23\u0e37\u0e2d\u0e0a\u0e37\u0e48\u0e2d\u0e1a\u0e38\u0e04\u0e04\u0e25", "RECEIPT_TYPE_TRIPLET_TITLE_HINT": "\u0e01\u0e23\u0e38\u0e13\u0e32\u0e01\u0e23\u0e2d\u0e01\u0e0a\u0e37\u0e48\u0e2d\u0e1a\u0e23\u0e34\u0e29\u0e31\u0e17\u0e2b\u0e23\u0e37\u0e2d\u0e0a\u0e37\u0e48\u0e2d\u0e1a\u0e38\u0e04\u0e04\u0e25", "RECEIPT_TYPE_TRIPLET_UBN": "\u0e2b\u0e21\u0e32\u0e22\u0e40\u0e25\u0e02\u0e1b\u0e23\u0e30\u0e08\u0e33\u0e15\u0e31\u0e27\u0e1c\u0e39\u0e49\u0e40\u0e2a\u0e35\u0e22\u0e20\u0e32\u0e29\u0e35", "RECEIPT_TYPE_TRIPLET_UBN_HINT": "\u0e01\u0e23\u0e38\u0e13\u0e32\u0e01\u0e23\u0e2d\u0e01\u0e2b\u0e21\u0e32\u0e22\u0e40\u0e25\u0e02\u0e1b\u0e23\u0e30\u0e08\u0e33\u0e15\u0e31\u0e27\u0e1c\u0e39\u0e49\u0e40\u0e2a\u0e35\u0e22\u0e20\u0e32\u0e29\u0e35 \u0e44\u0e21\u0e48\u0e2a\u0e32\u0e21\u0e32\u0e23\u0e16\u0e41\u0e01\u0e49\u0e44\u0e02\u0e44\u0e14\u0e49\u0e2b\u0e25\u0e31\u0e07\u0e08\u0e32\u0e01\u0e2a\u0e48\u0e07" }, "zh_TW": { "RECEIPT_CONFIRM": "\u78ba\u8a8d\u9001\u51fa", "RECEIPT_ERROR_MESSAGE_FORMAT": "* \u683c\u5f0f\u4e0d\u6b63\u78ba", "RECEIPT_ERROR_MESSAGE_HAVEERROR": "\u8f38\u5165\u6709\u8aa4\uff0c\u8acb\u78ba\u8a8d\u586b\u5beb\u6b04\u4f4d", "RECEIPT_ERROR_MESSAGE_NEED": "*\u6b64\u70ba\u5fc5\u586b", "RECEIPT_INFO": "\u767c\u7968\u8cc7\u8a0a", "RECEIPT_INFO_COMPANY": "\u516c\u53f8", "RECEIPT_INFO_DONATE": "\u6350\u8d08", "RECEIPT_INFO_PERSONA": "\u500b\u4eba", "RECEIPT_INFO_SELECT": "\u9078\u64c7\u767c\u7968\u985e\u578b\uff1a", "RECEIPT_REMEMBER": "\u8a18\u4f4f\u672c\u6b21\u767c\u7968\u76f8\u95dc\u7d00\u9304\uff0c\u65b9\u4fbf\u65e5\u5f8c\u5feb\u901f\u7d50\u5e33", "RECEIPT_TYPE_CDCCODE": "\u81ea\u7136\u4eba\u6191\u8b49", "RECEIPT_TYPE_CDCCODE_HINT": "AB12345678901234", "RECEIPT_TYPE_DONATE": "\u6350\u8d08\u767c\u7968", "RECEIPT_TYPE_DONATE_HINT": "\u9078\u64c7\u6350\u8d08\u55ae\u4f4d", "RECEIPT_TYPE_DONATE_SEARCH": "\u6350\u8d08\u78bc\u67e5\u8a62", "RECEIPT_TYPE_DONATECOD": "\u6307\u5b9a\u53d7\u8d08\u6a5f\u95dc\u6216\u5718\u9ad4", "RECEIPT_TYPE_DONATECODE_HINT": "\u8acb\u8f38\u5165\u6350\u8d08\u78bc", "RECEIPT_TYPE_EMAIL": "\u96fb\u5b50\u767c\u7968", "RECEIPT_TYPE_EMAIL_HINT": "\u8acb\u8f38\u5165\u96fb\u5b50\u90f5\u4ef6\u4fe1\u7bb1", "RECEIPT_TYPE_PHONECO": "\u8f09\u5177\u689d\u78bc", "RECEIPT_TYPE_PHONECODE_HINT": "\u9808\u5305\u542b\u201d\/\u201d\u70ba\u958b\u982d\uff0c\u52a0\u4e0a\u82f1\u6578\u5b57\u6216+-\u865f\uff0c\u5171\u516b\u78bc", "RECEIPT_TYPE_TRIPLET": "\u516c\u53f8\u884c\u865f\u96fb\u5b50\u767c\u7968", "RECEIPT_TYPE_TRIPLET_EMAIL": "EMail\u4fe1\u7bb1", "RECEIPT_TYPE_TRIPLET_EMAIL_HINT": "\u8acb\u8f38\u5165\u96fb\u5b50\u90f5\u4ef6\u4fe1\u7bb1", "RECEIPT_TYPE_TRIPLET_TITLE": "\u516c\u53f8\u62ac\u982d\u6216\u59d3\u540d", "RECEIPT_TYPE_TRIPLET_TITLE_HINT": "\u8acb\u8f38\u5165\u516c\u53f8\u62ac\u982d\/\u59d3\u540d", "RECEIPT_TYPE_TRIPLET_UBN": "\u7d71\u4e00\u7de8\u865f", "RECEIPT_TYPE_TRIPLET_UBN_HINT": "\u8acb\u8f38\u5165\u7d71\u4e00\u7de8\u865f\uff0c\u9001\u51fa\u5f8c\u7121\u6cd5\u4fee\u6539" } }, "Theme": { "BG_COLOR_PRIMARY": "", "BG_COLOR_SECOND": "", "BG_IMG_URL_PC": "", "BG_IMG_URL_M": "" } });
+    </script>
+</body>
+
+</html>

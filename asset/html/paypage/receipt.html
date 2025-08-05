@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P99Pay-receipt</title>
+    <!-- favicon -->
+    <link rel="icon" href="https://stage-api-page.p99pay.com/favicon.ico">
+    <link rel="icon" href="https://stage-api-page.p99pay.com/favicon.png">
+    <!-- css -->
+    <link rel="stylesheet" href="https://stage-api-page.p99pay.com/assets/css/reset.css">
+    <link rel="stylesheet" href="https://stage-api-page.p99pay.com/assets/css/bootstrap-grid.css">
+    <link rel="stylesheet" href="https://stage-api-page.p99pay.com/assets/css/select2.min.css" />
+    <link rel="stylesheet" href="https://stage-api-page.p99pay.com/assets/css/main.css?v=20240611">
+    <!-- js -->
+    <script src="https://stage-api-page.p99pay.com/assets/js/jquery-3.7.1.min.js"></script>
+
+    <script>
+        function initFunction(jsonObj) {
+            renderInfo(jsonObj);
+        }
+    </script>
+</head>
+
+<body class="payBody">
+    <div class="receipt bg02">
+        <div class="container">
+            <h1 class="RECEIPT_INFO_SELECT">請選擇發票類型：</h1>
+            <div class="tabs">
+                <div class="tab1" rel="tab1">
+                    <span class="imgbox">
+                        <img src="https://stage-api-page.p99pay.com/assets/img/t_persona.svg" alt="">
+                    </span>
+                    <h3 class="RECEIPT_INFO_PERSONA">
+                        個人</h3>
+                </div>
+                <div class="tab2" rel="tab2">
+                    <span class="imgbox">
+                        <img src="https://stage-api-page.p99pay.com/assets/img/t_donate.svg" alt="">
+                    </span>
+                    <h3 class="RECEIPT_INFO_DONATE">捐贈</h3>
+                </div>
+                <div class="tab3" rel="tab3">
+                    <span class="imgbox">
+                        <img src="https://stage-api-page.p99pay.com/assets/img/t_company.svg" alt="">
+                    </span>
+                    <h3 class="RECEIPT_INFO_COMPANY">公司</h3>
+                </div>
+            </div>
+            <div class="tab_container">
+                <form role="form" id="form" action="" method="post" target="_self" class="form-payment"
+                    onsubmit="return check_submit();">
+                    <!-- tab1 -->
+                    <div id="tab1" class="tab_content">
+                        <div class="right">
+                            <!-- start -->
+                            <div class="list mt-0">
+                                <div class="d-flex align-items-center">
+                                    <input type="radio" name="SReceiptType" id="RT002" value="RT002" />
+                                    <label for="RT002">
+                                        <span class="RECEIPT_TYPE_EMAIL">電子發票</span>
+                                    </label>
+                                </div>
+                                <div class="textbox">
+                                    <input type="email" name="SReceiptEMail" id="SReceiptEMail"
+                                        class="RECEIPT_TYPE_EMAIL_HINT" placeholder="請輸入電子信箱"
+                                        onkeyup="valid('SReceiptEMail', this.value)" readonly>
+                                    <div id="email" class="RECEIPT_ERROR_MESSAGE_FORMAT error">* 格式不正確</div>
+                                    <div id="email-require" class="RECEIPT_ERROR_MESSAGE_NEED error">* 此為必填</div>
+                                </div>
+                            </div>
+                            <!-- end -->
+                            <div class="list">
+                                <div class="d-flex align-items-center">
+                                    <input type="radio" name="SReceiptType" id="RT003" value="RT003" />
+                                    <label for="RT003">
+                                        <span class="RECEIPT_TYPE_PHONECO">手機條碼</span>
+                                    </label>
+                                </div>
+                                <div class="textbox">
+                                    <input type="text" name="SReceiptPhoneCode" id="SReceiptPhoneCode"
+                                        class="RECEIPT_TYPE_PHONECODE_HINT" placeholder="須包含”/”為開頭，加上英數字，共八碼"
+                                        onkeyup="valid('SReceiptPhoneCode', this.value)" readonly>
+                                    <div id="phone" class="RECEIPT_ERROR_MESSAGE_FORMAT error">* 格式不正確</div>
+                                    <div id="phone-require" class="RECEIPT_ERROR_MESSAGE_NEED error">* 此為必填</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- tab2 -->
+                    <div id="tab2" class="tab_content">
+                        <div class="right">
+                            <!-- start -->
+                            <div class="list mt-0">
+                                <div class="d-flex align-items-center">
+                                    <input type="radio" name="SReceiptType" id="RT001" value="RT001" />
+                                    <label for="RT001">
+                                        <span class="RECEIPT_TYPE_DONATE">捐贈發票</span>
+                                    </label>
+                                </div>
+                                <div class="textbox selectBox">
+                                    <select name="SReceiptDonate" id="SReceiptDonate" class="ReceiptDonateList select2"
+                                        readonly disabled>
+                                        <option class="RECEIPT_TYPE_DONATE_HINT" value="" selected disabled hidden>
+                                            選擇捐贈單位</option>
+                                    </select>
+                                    <div id="require" class="RECEIPT_ERROR_MESSAGE_NEED error">* 此為必填</div>
+                                </div>
+                            </div>
+                            <!-- end -->
+                            <div class="list">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="d-flex align-items-center">
+                                        <input type="radio" name="SReceiptType" id="RT006" value="RT006" />
+                                        <label for="RT006">
+                                            <div class="RECEIPT_TYPE_DONATECOD">指定受贈機關或團體</div>
+                                        </label>
+                                    </div>
+                                    <div>
+                                        <a href="https://www.einvoice.nat.gov.tw/portal/btc/btc603w/search"
+                                            class="RECEIPT_TYPE_DONATE_SEARCH" target="_blank">捐贈碼查詢</a>
+                                    </div>
+                                </div>
+                                <div class="textbox">
+                                    <input type="text" name="SReceiptDonateCode" id="SReceiptDonateCode"
+                                        class="RECEIPT_TYPE_DONATECODE_HINT" placeholder="請輸入捐贈碼"
+                                        onkeyup="valid('SReceiptDonateCode', this.value)" readonly>
+                                    <div id="donate" class="RECEIPT_ERROR_MESSAGE_FORMAT error">* 格式不正確</div>
+                                    <div id="donate-require" class="RECEIPT_ERROR_MESSAGE_NEED error">* 此為必填</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- tab3 -->
+                    <div id="tab3" class="tab_content">
+                        <div class="right">
+                            <!-- start -->
+                            <div class="list mt-0">
+                                <div class="textbox_tit d-flex align-items-center">
+                                    <input type="radio" name="SReceiptType" id="RT005" value="RT005" />
+                                    <label for="RT005">
+                                        <div class="RECEIPT_TYPE_TRIPLET">三聯式發票</div>
+                                    </label>
+                                </div>
+                                <div class="textbox">
+                                    <label for="SReceiptTitle">
+                                        <div class="RECEIPT_TYPE_TRIPLET_TITLE">
+                                            公司抬頭或姓名
+                                        </div>
+                                    </label>
+                                    <input type="text" name="SReceiptTitle" id="SReceiptTitle"
+                                        class="RECEIPT_TYPE_TRIPLET_TITLE_HINT" placeholder="請輸入公司抬頭/姓名"
+                                        onkeyup="valid('SReceiptTitle', this.value)" readonly>
+                                    <div id="title-require" class="RECEIPT_ERROR_MESSAGE_NEED error">* 此為必填</div>
+                                </div>
+                                <div class="textbox">
+                                    <label for="SReceiptUBN">
+                                        <div class="RECEIPT_TYPE_TRIPLET_UBN">
+                                            統一編號
+                                        </div>
+                                    </label>
+                                    <input type="text" name="SReceiptUBN" id="SReceiptUBN"
+                                        class="RECEIPT_TYPE_TRIPLET_UBN_HINT" placeholder="請輸入統一編號，送出後無法修改"
+                                        onkeyup="valid('SReceiptUBN', this.value)" readonly>
+                                    <div id="ubn" class="RECEIPT_ERROR_MESSAGE_FORMAT error">* 格式不正確</div>
+                                    <div id="ubn-require" class="RECEIPT_ERROR_MESSAGE_NEED error">* 此為必填</div>
+                                </div>
+                                <div class="textbox">
+                                    <label for="RT005_SReceiptEMail">
+                                        <div class="RECEIPT_TYPE_TRIPLET_EMAIL">
+                                            電子發票
+                                        </div>
+                                    </label>
+                                    <input type="email" name="RT005_SReceiptEMail" id="RT005_SReceiptEMail"
+                                        class="RECEIPT_TYPE_TRIPLET_EMAIL_HINT" placeholder="請輸入電子信箱"
+                                        onkeyup="valid('RT005_SReceiptEMail', this.value)" readonly>
+                                    <div id="email2" class="RECEIPT_ERROR_MESSAGE_FORMAT error">* 格式不正確</div>
+                                    <div id="email2-require" class="RECEIPT_ERROR_MESSAGE_NEED error">* 此為必填</div>
+                                </div>
+                            </div>
+                            <!-- end -->
+                        </div>
+                    </div>
+                    <div>
+                        <div class="remember custom-checkbox">
+                            <input type="checkbox" name="SReceiptRemember" id="SReceiptRemember">
+                            <label for="SReceiptRemember">
+                                <span class="RECEIPT_REMEMBER">記住本次發票相關紀錄，方便日後快速結帳</span>
+                            </label>
+                        </div>
+                        <div class="confirm mt-3">
+                            <button type="button" id="submitBtn" class="button" onclick="return check_submit();"
+                                disabled>
+                                <span class="RECEIPT_CONFIRM">確認送出</span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://stage-api-page.p99pay.com/assets/js/select2.min.js"></script>
+    <script src="https://stage-api-page.p99pay.com/assets/js/translate.js"></script>
+    <!-- loading -->
+    <script src="https://stage-api-page.p99pay.com/assets/js/loadingoverlay.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.select2').select2({
+                width: 'resolve',
+                dropdownParent: $('.selectBox')
+            });;
+        });
+
+        let emailError = true
+        let email2Error = true
+        let phoneError = true
+        let cdcError = true
+        let donateCodeError = true
+        let donateError = true
+        let ubnError = true
+        let titleError = true
+        let selectedValue = ''
+        let city = '台北市'
+        let data = {}
+
+        const validators = {
+            'SReceiptEMail': {
+                regex: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                errorSelector: '#email',
+                requireSelector: '#email-require',
+                errorFlag: emailError,
+            },
+            'RT005_SReceiptEMail': {
+                regex: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                errorSelector: '#email2',
+                requireSelector: '#email2-require',
+                errorFlag: email2Error,
+            },
+            'SReceiptPhoneCode': {
+                regex: /^\/[0-9a-zA-Z\+\-]{7}$/,
+                errorSelector: '#phone',
+                requireSelector: '#phone-require',
+                errorFlag: phoneError,
+            },
+            'SReceiptDonateCode': {
+                regex: /^\d{3,7}$/,
+                errorSelector: '#donate',
+                requireSelector: '#donate-require',
+                errorFlag: donateCodeError,
+            },
+            'SReceiptDonate': {
+                requireSelector: '#require',
+                errorFlag: donateError,
+            },
+            'SReceiptUBN': {
+                regex: /^[0-9]{8}$/,
+                errorSelector: '#ubn',
+                requireSelector: '#ubn-require',
+                errorFlag: ubnError,
+            },
+            'SReceiptTitle': {
+                requireSelector: '#title-require',
+                errorFlag: titleError,
+            },
+        };
+        const elementsToSet = [
+            'SReceiptUBN',
+            'SReceiptTitle',
+            'SReceiptPhoneCode',
+            'SReceiptEMail',
+            'RT005_SReceiptEMail',
+            'SReceiptDonateCode',
+            'SReceiptDonate',
+        ];
+
+        let validator = {
+            errorFlag: true
+        }
+
+        // var Language = '';
+        $(document).ready(function () {
+            //捐贈
+            if (data.LastReceiptList.ReceiptType === 'RT001' && data.LastReceiptList.ReceiptDonateCode !== '') {
+                data.LastReceiptList.ReceiptType = 'RT006'
+                $('input[name="SReceiptType"]:checked').val('RT006');
+            }
+
+            elementsToSet.forEach(async function (elementId) {
+                let value = data.LastReceiptList[elementId.replace('S', '')];
+                $('#' + elementId).val(value);
+                //公司
+                if (data.LastReceiptList.ReceiptType === 'RT005') {
+                    $('#RT005_SReceiptEMail').val(data.LastReceiptList.ReceiptEMail)
+                    $('#SReceiptEMail').val('')
+                    if (elementId === 'RT005_SReceiptEMail') {
+                        value = data.LastReceiptList.ReceiptEMail
+                    }
+                    if (elementId === 'SReceiptEMail') {
+                        value = ''
+                    }
+                }
+                await disableFields(data.LastReceiptList.ReceiptType)
+                await valid(elementId, value);
+            });
+            $(`input[name='SReceiptType'][value='${data.LastReceiptList.ReceiptType}']`).prop('checked', true);
+            $('#SReceiptRemember').prop('checked', data.LastReceiptList.ReceiptRemember === '1');
+            $('#SReceiptDonate').val(data.LastReceiptList.ReceiptDonate)
+
+            if (data.ReceiptRemember_SHOW !== '1') {
+                $('.remember').hide();
+            }
+
+
+            //tab 顯示判斷
+            const tab1 = ['RT002', 'RT003']
+            const tab2 = ['RT001', 'RT006']
+            const tab3 = ['RT005']
+
+            $(".tab_content").hide();
+
+            // 沒選過的判斷
+            const isReceiptListEmpty = Object.values(data.LastReceiptList).every(val => val === '' || val === null || val === undefined);
+            // 沒選過的預設畫面
+            if (isReceiptListEmpty) {
+
+                $(".tab_content:eq(0)").show();
+                $(".tabs div:eq(0)").addClass("active");
+                $(`input[name='SReceiptType'][value='RT002']`).prop('checked', true);
+                $('#SReceiptEMail').removeAttr('readonly');
+            }
+
+            if (tab3.includes(data.LastReceiptList.ReceiptType)) {
+                $(".tab_content:eq(2)").show();
+                $(".tabs div:eq(2)").addClass("active");
+            } else if (tab2.includes(data.LastReceiptList.ReceiptType)) {
+                $(".tab_content:eq(1)").show();
+                $(".tabs div:eq(1)").addClass("active");
+            } else {
+                $(".tab_content:eq(0)").show();
+                $(".tabs div:eq(0)").addClass("active");
+            }
+
+            $("body").on('click', 'div.tabs div', function () {
+                $(".tab_content").hide();
+                var activeTab = $(this).attr("rel"); $("#" + activeTab).fadeIn();
+                $("div.tabs div").removeClass("active"); $(this).addClass("active");
+                $("#" + activeTab + " .list:first-child").find('input[type=radio]').prop('checked', true);
+                $("#" + activeTab + " .list:first-child").find('select').removeAttr('disabled');
+                $("#" + activeTab + " .list:first-child").find('input').removeAttr('readonly');
+            });
+        });
+
+        // Function to hide error messages and reset error flags
+        function resetErrors() {
+            $('.error').hide();
+            emailError = false;
+            email2Error = false;
+            phoneError = false;
+            cdcError = false;
+            donateCodeError = false;
+            donateError = false;
+            ubnError = false;
+            titleError = false;
+        }
+
+        // Configuration object for receipt types
+        const receiptTypeConfig = {
+            'RT001': { disabledFields: ['#SReceiptEMail', '#RT005_SReceiptEMail', '#SReceiptPhoneCode', '#SReceiptDonateCode', '#SReceiptTitle', '#SReceiptUBN', '#SReceiptAddress', '#SReceiptAddressCity2Code', '#SReceiptAddressCityCode'] },
+            'RT002': { disabledFields: ['#SReceiptPhoneCode', '#RT005_SReceiptEMail', '#SReceiptDonate', '#SReceiptDonateCode', '#SReceiptTitle', '#SReceiptUBN', '#SReceiptAddress', '#SReceiptAddressCity2Code', '#SReceiptAddressCityCode'] },
+            'RT003': { disabledFields: ['#SReceiptEMail', '#RT005_SReceiptEMail', '#SReceiptDonate', '#SReceiptDonateCode', '#SReceiptTitle', '#SReceiptUBN', '#SReceiptAddress', '#SReceiptAddressCity2Code', '#SReceiptAddressCityCode'] },
+            'RT004': { disabledFields: ['#SReceiptEMail', '#RT005_SReceiptEMail', '#SReceiptPhoneCode', '#SReceiptDonate', '#SReceiptDonateCode', '#SReceiptTitle', '#SReceiptUBN', '#SReceiptAddress', '#SReceiptAddressCity2Code', '#SReceiptAddressCityCode'] },
+            'RT005': { disabledFields: ['#SReceiptDonateCode', '#SReceiptEMail', '#SReceiptPhoneCode', '#SReceiptDonate'] },
+            'RT006': { disabledFields: ['#SReceiptEMail', '#RT005_SReceiptEMail', '#SReceiptPhoneCode', '#SReceiptDonate', '#SReceiptTitle', '#SReceiptUBN', '#SReceiptAddress', '#SReceiptAddressCity2Code', '#SReceiptAddressCityCode'] },
+        };
+
+        // Function to disable fields based on selected receipt type
+        function disableFields(selectedValue) {
+            if (!selectedValue) {
+                return
+            }
+            // console.log('selectedValue', selectedValue)
+            const disabledFields = receiptTypeConfig[selectedValue].disabledFields;
+            // Enable all fields
+            $('input, select').prop('disabled', false);
+            $('input, select').prop('readonly', false);
+            // Disable specific fields based on receipt type
+            $(disabledFields.join(', ')).attr('readonly', true).val('');
+            if (selectedValue !== 'RT001') {
+                $('#SReceiptDonate').attr('disabled', true).val('');
+            }
+
+            // Reset validator
+            validator = {
+                errorFlag: true
+            };
+        }
+
+        function renderInfo(json) {
+
+            initTranslation(json)//翻譯
+
+            //抓色系
+            var root = document.documentElement;
+            var jsonCOLOR_primary = json.Theme.BG_COLOR_PRIMARY;
+            var jsonCOLOR_second = json.Theme.BG_COLOR_SECOND;
+            var jsonBG_pc = json.Theme.BG_IMG_URL_PC;
+            var jsonBG_m = json.Theme.BG_IMG_URL_M;
+
+            root.style.setProperty('--primary', jsonCOLOR_primary);
+            root.style.setProperty('--second', jsonCOLOR_second);
+            root.style.setProperty('--bg-image', 'url("' + jsonBG_pc + '")');
+            root.style.setProperty('--bg-image-mobile', 'url("' + jsonBG_m + '")');
+
+
+
+            Object.keys(json).forEach(function (k) {
+                var eleName = '#' + k;
+                if ($(eleName).length <= 0) {
+                    appendElement_Input('#form', k, json[k]);
+                } else {
+                    $(eleName).val(json[k]);
+                }
+            });
+
+            $('#SReceiptDonate').on('change', function () {
+                valid('SReceiptDonate', selectedValue)
+            });
+
+            $('#SReceiptPhoneCode').on('input', function () {
+                var inputValue = $(this).val();
+                $(this).val(inputValue.toUpperCase());
+            });
+
+            data = json
+
+            // init
+            $.map(json.ReceiptDonateList, function (value, key) {
+                $('.ReceiptDonateList').append(`
+                    <option value="${key}">${value}</option>
+                `)
+            });
+
+            $.map(json.ReceiptAddressList, function (value, key) {
+                $('#SReceiptAddressCity2Code').append(`
+                    <option value="${key}">${key}</option>
+                `)
+            });
+
+            // Event handler for receipt type change
+            $('input[name="SReceiptType"]').change(function () {
+                selectedValue = $(this).val();
+                resetErrors();
+                disableFields($(this).val());
+            });
+        }
+
+        function validateUnifiedNumber(unifiedNumber) {
+            if (unifiedNumber.length !== 8) {
+                return false; // 統一編號 8 位數
+            }
+            // 邏輯乘數
+            const multiplier = [1, 2, 1, 2, 1, 2, 4, 1];
+
+            // 累加乘積之和
+            let sum = 0;
+            for (let i = 0; i < multiplier.length; i++) {
+                let temp = parseInt(unifiedNumber[i]) * multiplier[i];
+
+                // 如果乘積大於等於 10，將十位數和個位數相加
+                if (temp >= 10) {
+                    sum += Math.floor(temp / 10) + (temp % 10);
+                } else {
+                    sum += temp;
+                }
+            }
+
+            // 累加 Z
+            let zSum = sum.toString().split('').reduce((acc, digit) => acc + parseInt(digit), 0);
+
+            // 判斷統一編號
+            if (unifiedNumber[6] !== '7') {
+                return sum % 5 === 0;
+            } else {
+                return zSum % 5 === 0;
+            }
+        }
+
+        //輸入、選取 事件
+        async function valid(type, value) {
+            const validatorType = validators[type];
+
+            if (value === '' || !value) {
+                return
+            }
+
+            if (validatorType) {
+                const isValid = !validatorType.regex || validatorType.regex.test(value);
+                const hasValue = value !== '';
+                const titleValue = $('#SReceiptTitle').val();
+                const ubnValue = $('#SReceiptUBN').val();
+                const RT005_SReceiptEMail = $('#RT005_SReceiptEMail').val();
+
+                if (type === 'SReceiptTitle' || type === 'SReceiptUBN' || type === 'RT005_SReceiptEMail' ? ubnValue === '' || titleValue === '' || RT005_SReceiptEMail === '' : !hasValue) {
+                    // console.log(1)
+                    validator.errorFlag = validatorType.errorFlag = true;
+                    $(validatorType.errorSelector).hide();
+                    $('#submitBtn').removeAttr('disabled');
+
+                    $(validatorType.requireSelector).toggle(!hasValue);
+                } else if (isValid) {
+                    // console.log(2)
+                    validator.errorFlag = validatorType.errorFlag = false;
+                    $(validatorType.errorSelector).hide();
+                    $('#submitBtn').removeAttr('disabled');
+
+                    $(validatorType.requireSelector).hide();
+                } else {
+                    // console.log(3)
+                    validator.errorFlag = validatorType.errorFlag = true;
+                    $(validatorType.errorSelector).toggle(!isValid);
+                    $(validatorType.requireSelector).hide();
+                }
+
+                // 統編特殊規則
+                if (type === 'SReceiptUBN') {
+                    const result1 = validateUnifiedNumber(value);
+                    const result2 = validateUnifiedNumber(value);
+
+                    // 判斷 result1 和 result2
+                    if (!result1 || !result2) {
+                        // console.log(1)
+                        validator.errorFlag = validatorType.errorFlag = true;
+                        $(validatorType.errorSelector).show();
+
+                    } else if (!isValid) {
+                        // console.log(2)
+                        validator.errorFlag = validatorType.errorFlag = true;
+                        $(validatorType.errorSelector).hide();
+                        $('#submitBtn').removeAttr('disabled');
+
+                        $(validatorType.requireSelector).show();
+                    } else {
+                        // console.log(3)
+                        validator.errorFlag = validatorType.errorFlag = false;
+                        $(validatorType.errorSelector).hide();
+                        $('#submitBtn').removeAttr('disabled');
+
+                        $(validatorType.requireSelector).hide();
+                    }
+                }
+
+                // 指定受贈機關或團體
+                if (type === 'SReceiptDonateCode' && value !== '' && !validator.errorFlag) {
+                    const requestData = {
+                        CMD: "CHECK_DONATECODE",
+                        COID: data.COID,
+                        DONATECODE: value
+                    };
+
+                    try {
+                        const response = await $.ajax({
+                            url: "https://api.p99pay.com/receipt",
+                            type: "POST",
+                            contentType: "application/json",
+                            data: JSON.stringify(requestData),
+                        });
+                        if (JSON.parse(response).STATE === 'Y') {
+                            validator.errorFlag = validatorType.errorFlag = false;
+                            $(validatorType.errorSelector).hide();
+                            $('#submitBtn').removeAttr('disabled');
+
+                        } else {
+                            validator.errorFlag = validatorType.errorFlag = true;
+                            $(validatorType.errorSelector).show();
+
+                        }
+                    } catch (error) {
+                        console.log(error)
+                    }
+                }
+
+                // 手機條碼
+                if (type === 'SReceiptPhoneCode' && value !== '' && !validator.errorFlag) {
+                    const requestData = {
+                        CMD: "CHECK_PHONECODE",
+                        COID: data.COID,
+                        PHONECODE: value
+                    };
+                    try {
+                        const response = await $.ajax({
+                            url: "https://api.p99pay.com/receipt",
+                            type: "POST",
+                            contentType: "application/json",
+                            data: JSON.stringify(requestData),
+                        });
+                        if (JSON.parse(response).STATE === 'Y') {
+                            validator.errorFlag = validatorType.errorFlag = false;
+                            $(validatorType.errorSelector).hide();
+                            $('#submitBtn').removeAttr('disabled');
+
+                        } else {
+                            validator.errorFlag = validatorType.errorFlag = true;
+                            // console.log(1, validator.errorFlag)
+                            $(validatorType.errorSelector).show();
+
+                        }
+                    } catch (error) {
+                        console.log(error)
+                    }
+                }
+            }
+        }
+
+        function appendElement_Input(ele, name, value) {
+            var textHtml = '<input type="text" style="display: none" name="' + name + '"';
+            textHtml += ' value="' + value + '"';
+            textHtml += '/>';
+            $(ele).append(textHtml);
+        }
+
+        function check_submit() {
+            // 將 checkbox 的值設定為 1 或 0
+            const isChecked = $('#SReceiptRemember').is(':checked');
+            $('#SReceiptRemember').val(isChecked ? '1' : '0');
+
+            // check error
+            if (validator.errorFlag === false) {
+
+                if ($('input[name="SReceiptType"]:checked').val() === 'RT006') {
+                    $('input[name="SReceiptType"]:checked').val('RT001');
+                }
+                if ($('input[name="SReceiptType"]:checked').val() === 'RT005') {
+                    $('#SReceiptEMail').val($('#RT005_SReceiptEMail').val())
+                    $('#RT005_SReceiptEMail').val('')
+                }
+                $('#submitBtn').removeAttr('disabled');// $('#submitBtn').removeAttr('disabled');
+
+                $.LoadingOverlay("show", {
+                    image: "",  // 不用預設圖片
+                    custom: $("<div>", { class: "custom-spinner" })[0],
+                    background: "rgba(255,255,255,0.8)"
+                });
+
+                // send submit
+                document.getElementById('form').submit();
+                // console.log('form');
+
+
+            } else {
+                alert(data.StringID[Language]['RECEIPT_ERROR_MESSAGE_HAVEERROR']);
+                return;
+            }
+        }
+    </script>
+    <script>
+        //新用戶
+        // initFunction({
+        //     "COID": "C000010000001CP20250421150312",
+        //     "Tpye": "GetReceiptInfo",
+        //     "data": "eyJNU0dfVFlQRSI6IjAxMDAiLCJQQ09ERSI6IjMwMDAwMCIsIkNJRCI6IkMwMDAwMTAwMDAwMDEiLCJDT0lEIjoiQ1AyMDI1MDQyMTE1MDMxMiIsIkNVSUQiOiJVU0QiLCJBTU9VTlQiOiIxMCIsIlJFVFVSTl9VUkwiOiJodHRwOlwvXC8xNC4yMjUuMy4xMzFcL3Rlc3RcL3JldHVybl91cmwucGhwIiwiT1JERVJfVFlQRSI6IkUiLCJQUk9EVUNUX05BTUUiOiJUZXN0J1MgMTAgVVNEIiwiUFJPRFVDVF9JRCI6IlVTRF8xMCIsIlVTRVJfQUNDVElEIjoiVVNFUl8xMjMiLCJFUlFDIjoib1M3S0g1TEpEQUlRN2M0YXpuZmVvWG80XC9RQT0ifQ==",
+        //     "SPAID": "COPGAM09",
+        //     "Theme": {
+        //         "BG_IMG_URL_M": "",
+        //         "BG_IMG_URL_PC": "",
+        //         "BG_COLOR_SECOND": "",
+        //         "BG_COLOR_PRIMARY": ""
+        //     },
+        //     "StringID": {
+        //         "en_US": {
+        //             "RECEIPT_CONFIRM": "Confirm submission",
+        //             "RECEIPT_ERROR_MESSAGE_FORMAT": "* Incorrect format",
+        //             "RECEIPT_ERROR_MESSAGE_HAVEERROR": "There is an error in your input, please check the fields",
+        //             "RECEIPT_ERROR_MESSAGE_NEED": "* This field is required",
+        //             "RECEIPT_INFO": "Invoice Information",
+        //             "RECEIPT_INFO_COMPANY": "Company",
+        //             "RECEIPT_INFO_DONATE": "Donate",
+        //             "RECEIPT_INFO_PERSONA": "Personal",
+        //             "RECEIPT_INFO_SELECT": "Select invoice type:",
+        //             "RECEIPT_REMEMBER": "Remember this invoice information for faster checkout next time",
+        //             "RECEIPT_TYPE_CDCCODE": "Citizen Digital Certificate",
+        //             "RECEIPT_TYPE_CDCCODE_HINT": "AB12345678901234",
+        //             "RECEIPT_TYPE_DONATE": "Donate Invoice",
+        //             "RECEIPT_TYPE_DONATE_HINT": "Select a donation unit",
+        //             "RECEIPT_TYPE_DONATE_SEARCH": "Donation code search",
+        //             "RECEIPT_TYPE_DONATECOD": "Designated recipient organization or group",
+        //             "RECEIPT_TYPE_DONATECODE_HINT": "Please enter the donation code",
+        //             "RECEIPT_TYPE_EMAIL": "Electronic Invoice",
+        //             "RECEIPT_TYPE_EMAIL_HINT": "Please enter your email address",
+        //             "RECEIPT_TYPE_PHONECO": "Carrier Barcode",
+        //             "RECEIPT_TYPE_PHONECODE_HINT": "Must start with '/' followed by alphanumeric characters or + - symbols, total of 8 digits",
+        //             "RECEIPT_TYPE_TRIPLET": "Corporate Electronic Invoice",
+        //             "RECEIPT_TYPE_TRIPLET_EMAIL": "Email address",
+        //             "RECEIPT_TYPE_TRIPLET_EMAIL_HINT": "Please enter your email address",
+        //             "RECEIPT_TYPE_TRIPLET_TITLE": "Company name or personal name",
+        //             "RECEIPT_TYPE_TRIPLET_TITLE_HINT": "Please enter the company name/personal name",
+        //             "RECEIPT_TYPE_TRIPLET_UBN": "Unified Business Number",
+        //             "RECEIPT_TYPE_TRIPLET_UBN_HINT": "Please enter the UBN, it cannot be changed after submission"
+        //         },
+        //         "zh_TW": {
+        //             "RECEIPT_INFO": "發票資訊",
+        //             "RECEIPT_CONFIRM": "確認送出",
+        //             "RECEIPT_REMEMBER": "記住本次發票相關紀錄，方便日後快速結帳",
+        //             "RECEIPT_TYPE_EMAIL": "電子發票",
+        //             "RECEIPT_INFO_DONATE": "捐贈",
+        //             "RECEIPT_INFO_SELECT": "選擇發票類型：",
+        //             "RECEIPT_TYPE_DONATE": "捐贈發票",
+        //             "RECEIPT_INFO_COMPANY": "公司",
+        //             "RECEIPT_INFO_PERSONA": "個人",
+        //             "RECEIPT_TYPE_CDCCODE": "自然人憑證",
+        //             "RECEIPT_TYPE_PHONECO": "載具條碼",
+        //             "RECEIPT_TYPE_TRIPLET": "公司行號電子發票",
+        //             "RECEIPT_TYPE_DONATECOD": "指定受贈機關或團體",
+        //             "RECEIPT_TYPE_EMAIL_HINT": "請輸入電子郵件信箱",
+        //             "RECEIPT_TYPE_DONATE_HINT": "選擇捐贈單位",
+        //             "RECEIPT_TYPE_TRIPLET_UBN": "統一編號",
+        //             "RECEIPT_TYPE_CDCCODE_HINT": "AB12345678901234",
+        //             "RECEIPT_ERROR_MESSAGE_NEED": " *此為必填",
+        //             "RECEIPT_TYPE_DONATE_SEARCH": "捐贈碼查詢",
+        //             "RECEIPT_TYPE_TRIPLET_EMAIL": "EMail信箱",
+        //             "RECEIPT_TYPE_TRIPLET_TITLE": "公司抬頭或姓名",
+        //             "RECEIPT_TYPE_PHONECODE_HINT": "須包含”/”為開頭，加上英數字或+-號，共八碼",
+        //             "RECEIPT_ERROR_MESSAGE_FORMAT": "* 格式不正確",
+        //             "RECEIPT_TYPE_DONATECODE_HINT": "請輸入捐贈碼",
+        //             "RECEIPT_TYPE_TRIPLET_UBN_HINT": "請輸入統一編號，送出後無法修改",
+        //             "RECEIPT_ERROR_MESSAGE_HAVEERROR": "輸入有誤，請確認填寫欄位",
+        //             "RECEIPT_TYPE_TRIPLET_EMAIL_HINT": "請輸入電子郵件信箱",
+        //             "RECEIPT_TYPE_TRIPLET_TITLE_HINT": "請輸入公司抬頭/姓名"
+        //         }
+        //     },
+        //     "LanguageList": {
+        //         "en_US": "English",
+        //         "zh_TW": "繁中",
+        //     },
+        //     "LastReceiptList": {
+        //         "ReceiptUBN": "",
+        //         "ReceiptType": "",
+        //         "ReceiptEMail": "",
+        //         "ReceiptTitle": "",
+        //         "ReceiptDonate": "",
+        //         "ReceiptRemember": "",
+        //         "ReceiptPhoneCode": "",
+        //         "ReceiptDonateCode": ""
+        //     },
+        //     "ReceiptTypeList": {
+        //         "RT001": "捐贈發票",
+        //         "RT002": "電子發票",
+        //         "RT003": "載具條碼",
+        //         "RT004": "自然人憑證條碼",
+        //         "RT005": "公司行號電子發票"
+        //     },
+        //     "ReceiptDonateList": {
+        //         "RD001": "社團法人台灣一起夢想公益協會"
+        //     },
+        //     "ReceiptRemember_SHOW": "1"
+        // });
+        //有選過
+        // initFunction({
+        //     "Tpye": "GetReceiptInfo",
+        //     "data": "eyJNU0dfVFlQRSI6IjAxMDAiLCJQQ09ERSI6IjMwMDAwMCIsIkNJRCI6IkMwMDAwMTAwMDAwMDEiLCJDT0lEIjoiQ1AyMDI0MDYxMzE1MjkyNiIsIkNVSUQiOiJUV0QiLCJBTU9VTlQiOiIyMDAwIiwiUkVUVVJOX1VSTCI6Imh0dHA6XC9cLzE0LjIyNS4zLjEzMVwvdGVzdFwvcmV0dXJuX3VybC5waHAiLCJPUkRFUl9UWVBFIjoiRSIsIlBST0RVQ1RfTkFNRSI6IjIwIiwiUFJPRFVDVF9JRCI6IjE3MjUiLCJVU0VSX0FDQ1RJRCI6IjYwMDAyMEFCQ0RFRkdISUoiLCJFUlFDIjoicG82VXR5eW5sc25sVGRLRk9BZ0FLYlhod0EwPSJ9",
+        //     "COID": "C000010000001CP20240613152926000010000001CP20240613152926",
+        //     "SPAID": "COPKWP01",
+        //     "ReceiptRemember_SHOW": "1",
+        //     "LastReceiptList": {
+        //         "ReceiptType": "RT002",
+        //         "ReceiptDonate": "",
+        //         "ReceiptDonateCode": "",
+        //         "ReceiptEMail": "mail@gmail.com",
+        //         "ReceiptPhoneCode": "",
+        //         "ReceiptTitle": "",
+        //         "ReceiptUBN": "",
+        //         "ReceiptRemember": "1"
+        //     },
+        //     "ReceiptTypeList": {
+        //         "RT001": "捐贈發票",
+        //         "RT002": "電子發票",
+        //         "RT003": "載具條碼",
+        //         "RT004": "自然人憑證條碼",
+        //         "RT005": "公司行號電子發票"
+        //     },
+        //     "ReceiptDonateList": {
+        //         "RD001": "社團法人台灣一起夢想公益協會"
+        //     },
+        //     "LanguageDefault": "en_US",
+        //     "LanguageList": {
+        //         "en_US": "English",
+        //         "zh_TW": "中文",
+        //         "th_TH": "ภาษาไทย",
+        //     },
+        //     "StringID": {
+        //         "en_US": {
+        //             "RECEIPT_CONFIRM": "Confirm submission",
+        //             "RECEIPT_ERROR_MESSAGE_FORMAT": "* Incorrect format",
+        //             "RECEIPT_ERROR_MESSAGE_HAVEERROR": "There is an error in your input, please check the fields",
+        //             "RECEIPT_ERROR_MESSAGE_NEED": "* This field is required",
+        //             "RECEIPT_INFO": "Invoice Information",
+        //             "RECEIPT_INFO_COMPANY": "Company",
+        //             "RECEIPT_INFO_DONATE": "Donate",
+        //             "RECEIPT_INFO_PERSONA": "Personal",
+        //             "RECEIPT_INFO_SELECT": "Select invoice type:",
+        //             "RECEIPT_REMEMBER": "Remember this invoice information for faster checkout next time",
+        //             "RECEIPT_TYPE_CDCCODE": "Citizen Digital Certificate",
+        //             "RECEIPT_TYPE_CDCCODE_HINT": "AB12345678901234",
+        //             "RECEIPT_TYPE_DONATE": "Donate Invoice",
+        //             "RECEIPT_TYPE_DONATECOD": "Designated recipient organization or group",
+        //             "RECEIPT_TYPE_DONATECODE_HINT": "Please enter the donation code",
+        //             "RECEIPT_TYPE_DONATE_HINT": "Select a donation unit",
+        //             "RECEIPT_TYPE_DONATE_SEARCH": "Donation code search",
+        //             "RECEIPT_TYPE_EMAIL": "Electronic Invoice",
+        //             "RECEIPT_TYPE_EMAIL_HINT": "Please enter your email address",
+        //             "RECEIPT_TYPE_PHONECO": "Carrier Barcode",
+        //             "RECEIPT_TYPE_PHONECODE_HINT": "Must start with '/' followed by alphanumeric characters or + - symbols, total of 8 digits",
+        //             "RECEIPT_TYPE_TRIPLET": "Corporate Electronic Invoice",
+        //             "RECEIPT_TYPE_TRIPLET_EMAIL": "Email address",
+        //             "RECEIPT_TYPE_TRIPLET_EMAIL_HINT": "Please enter your email address",
+        //             "RECEIPT_TYPE_TRIPLET_TITLE": "Company name or personal name",
+        //             "RECEIPT_TYPE_TRIPLET_TITLE_HINT": "Please enter the company name/personal name",
+        //             "RECEIPT_TYPE_TRIPLET_UBN": "Unified Business Number",
+        //             "RECEIPT_TYPE_TRIPLET_UBN_HINT": "Please enter the UBN, it cannot be changed after submission"
+        //         },
+        //         "zh_TW": {
+        //             "RECEIPT_CONFIRM": "確認送出",
+        //             "RECEIPT_ERROR_MESSAGE_FORMAT": "* 格式不正確",
+        //             "RECEIPT_ERROR_MESSAGE_HAVEERROR": "輸入有誤，請確認填寫欄位",
+        //             "RECEIPT_ERROR_MESSAGE_NEED": "*此為必填",
+        //             "RECEIPT_INFO": "發票資訊",
+        //             "RECEIPT_INFO_COMPANY": "公司",
+        //             "RECEIPT_INFO_DONATE": "捐贈",
+        //             "RECEIPT_INFO_PERSONA": "個人",
+        //             "RECEIPT_INFO_SELECT": "選擇發票類型：",
+        //             "RECEIPT_REMEMBER": "記住本次發票相關紀錄，方便日後快速結帳",
+        //             "RECEIPT_TYPE_CDCCODE": "自然人憑證",
+        //             "RECEIPT_TYPE_CDCCODE_HINT": "AB12345678901234",
+        //             "RECEIPT_TYPE_DONATE": "捐贈發票",
+        //             "RECEIPT_TYPE_DONATECOD": "指定受贈機關或團體",
+        //             "RECEIPT_TYPE_DONATECODE_HINT": "請輸入捐贈碼",
+        //             "RECEIPT_TYPE_DONATE_HINT": "選擇捐贈單位",
+        //             "RECEIPT_TYPE_DONATE_SEARCH": "捐贈碼查詢",
+        //             "RECEIPT_TYPE_EMAIL": "電子發票",
+        //             "RECEIPT_TYPE_EMAIL_HINT": "請輸入電子郵件信箱",
+        //             "RECEIPT_TYPE_PHONECO": "載具條碼",
+        //             "RECEIPT_TYPE_PHONECODE_HINT": "須包含”/”為開頭，加上英數字或+-號，共八碼",
+        //             "RECEIPT_TYPE_TRIPLET": "公司行號電子發票",
+        //             "RECEIPT_TYPE_TRIPLET_EMAIL": "EMail信箱",
+        //             "RECEIPT_TYPE_TRIPLET_EMAIL_HINT": "請輸入電子郵件信箱",
+        //             "RECEIPT_TYPE_TRIPLET_TITLE": "公司抬頭或姓名",
+        //             "RECEIPT_TYPE_TRIPLET_TITLE_HINT": "請輸入公司抬頭/姓名",
+        //             "RECEIPT_TYPE_TRIPLET_UBN": "統一編號",
+        //             "RECEIPT_TYPE_TRIPLET_UBN_HINT": "請輸入統一編號，送出後無法修改"
+        //         },
+        //         "th_TH": {
+        //             "RECEIPT_CONFIRM": "ยืนยันการส่ง",
+        //             "RECEIPT_ERROR_MESSAGE_FORMAT": "* รูปแบบไม่ถูกต้อง",
+        //             "RECEIPT_ERROR_MESSAGE_HAVEERROR": "ข้อมูลที่ป้อนไม่ถูกต้อง กรุณาตรวจสอบช่องที่กรอก",
+        //             "RECEIPT_ERROR_MESSAGE_NEED": "* จำเป็นต้องกรอก",
+        //             "RECEIPT_INFO": "ข้อมูลใบกำกับภาษี",
+        //             "RECEIPT_INFO_COMPANY": "บริษัท",
+        //             "RECEIPT_INFO_DONATE": "บริจาค",
+        //             "RECEIPT_INFO_PERSONA": "บุคคลทั่วไป",
+        //             "RECEIPT_INFO_SELECT": "เลือกประเภทใบกำกับภาษี:",
+        //             "RECEIPT_REMEMBER": "จดจำข้อมูลใบกำกับภาษีนี้ เพื่อความสะดวกในการชำระเงินครั้งถัดไป",
+        //             "RECEIPT_TYPE_CDCCODE": "ใบรับรองประชาชน",
+        //             "RECEIPT_TYPE_CDCCODE_HINT": "AB12345678901234",
+        //             "RECEIPT_TYPE_DONATE": "ใบกำกับภาษีเพื่อบริจาค",
+        //             "RECEIPT_TYPE_DONATECOD": "เลือกหน่วยงานรับบริจาค",
+        //             "RECEIPT_TYPE_DONATECODE_HINT": "ค้นหารหัสบริจาค",
+        //             "RECEIPT_TYPE_DONATE_HINT": "หน่วยงานหรือองค์กรที่ต้องการบริจาค",
+        //             "RECEIPT_TYPE_DONATE_SEARCH": "กรุณากรอกรหัสบริจาค",
+        //             "RECEIPT_TYPE_EMAIL": "ใบกำกับภาษีอิเล็กทรอนิกส์",
+        //             "RECEIPT_TYPE_EMAIL_HINT": "กรุณากรอกอีเมลของคุณ",
+        //             "RECEIPT_TYPE_PHONECO": "บาร์โค้ดของผู้ถือ",
+        //             "RECEIPT_TYPE_PHONECODE_HINT": "ต้องขึ้นต้นด้วย '/' ตามด้วยตัวอักษรหรือตัวเลข หรือสัญลักษณ์ + - รวมเป็น 8 ตัว",
+        //             "RECEIPT_TYPE_TRIPLET": "ใบกำกับภาษีสำหรับบริษัท",
+        //             "RECEIPT_TYPE_TRIPLET_EMAIL": "อีเมล",
+        //             "RECEIPT_TYPE_TRIPLET_EMAIL_HINT": "กรุณากรอกอีเมล",
+        //             "RECEIPT_TYPE_TRIPLET_TITLE": "ชื่อบริษัทหรือชื่อบุคคล",
+        //             "RECEIPT_TYPE_TRIPLET_TITLE_HINT": "กรุณากรอกชื่อบริษัทหรือชื่อบุคคล",
+        //             "RECEIPT_TYPE_TRIPLET_UBN": "หมายเลขประจำตัวผู้เสียภาษี",
+        //             "RECEIPT_TYPE_TRIPLET_UBN_HINT": "กรุณากรอกหมายเลขประจำตัวผู้เสียภาษี ไม่สามารถแก้ไขได้หลังจากส่ง"
+        //         }
+        //     },
+        //     "Theme": {
+        //         "BG_COLOR_PRIMARY": "",
+        //         "BG_COLOR_SECOND": "",
+        //         "BG_IMG_URL_PC": "",
+        //         "BG_IMG_URL_M": ""
+        //     }
+        // });
+    </script>
+
+</body>
+
+</html>

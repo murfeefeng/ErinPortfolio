@@ -1,4 +1,3 @@
-
 var settings = {
     "url": "./asset/js/page.json",
     "method": "GET",
@@ -6,9 +5,9 @@ var settings = {
 };
 
 $.ajax(settings).done(function (response) {
-    var Page03HTML=`<figure><div class="sliderIMG"> <img src="asset/img/web/03-1177admin.png" alt=""> </div> <figcaption> <h2>系統後臺系統建置</h2> <p> <span>不便公開</span><span>會員資料表單建立</span><span>數據資料統計圖表化</span><span>資料建立與刪除</span><span>UI介面設計與美化</span> </p> <h4 class="mb-2">想了解更多??</h4> <a href="https://mail.google.com/mail/?view=cm&to=erin.feng210210@gmail.com" target="_blank" id="contectme" class="btn">Content Me</a> </figcaption> </figure>`;
+    var Page03HTML = `<figure><div class="sliderIMG"> <img src="asset/img/web/03-1177admin.png" alt=""> </div> <figcaption> <h2>系統後臺系統建置</h2> <p> <span>不便公開</span><span>會員資料表單建立</span><span>數據資料統計圖表化</span><span>資料建立與刪除</span><span>UI介面設計與美化</span> </p> <h4 class="mb-2">想了解更多??</h4> <a href="https://mail.google.com/mail/?view=cm&to=erin.feng210210@gmail.com" target="_blank" id="contectme" class="btn">Content Me</a> </figcaption> </figure>`;
 
-        var Page05HTML=`
+    var Page05HTML = `
         <!-- <h3>關於我</h3> -->
                     <article class="areaAbout">
                         <aside class="wow fadeInUp" data-wow-duration="1s">
@@ -146,10 +145,10 @@ $.ajax(settings).done(function (response) {
                         </div>
                     </article>
         `;
-    
+
     //page01 Info
     response[0].page01.forEach(item => {
-                var pageHTML01 = `<figure class="wow fadeInUp" data-wow-duration="1s">
+        var pageHTML01 = `<figure class="wow fadeInUp" data-wow-duration="1s">
                                         <div class="sliderIMG">
                                             <img src="` + item.img + `" alt="">
                                         </div>
@@ -160,11 +159,11 @@ $.ajax(settings).done(function (response) {
                                         </figcaption>
                                     </figure>`;
 
-                $('#pageBOX01').append(pageHTML01);
+        $('#pageBOX01').append(pageHTML01);
     });
     //page02 Info
     response[1].page02.forEach(item => {
-                var pageHTML02 = `<figure class="wow fadeInUp" data-wow-duration="1s">
+        var pageHTML02 = `<figure class="wow fadeInUp" data-wow-duration="1s">
                                         <div class="sliderIMG">
                                             <img src="` + item.img + `" alt="">
                                         </div>
@@ -175,12 +174,12 @@ $.ajax(settings).done(function (response) {
                                         </figcaption>
                                     </figure>`;
 
-                $('#pageBOX02').append(pageHTML02);
+        $('#pageBOX02').append(pageHTML02);
     });
 
     //page03 Info
- response[2].page03.forEach(item => {
-                var pageHTML03 = `<figure class="wow fadeInUp" data-wow-duration="1s">
+    response[2].page03.forEach(item => {
+        var pageHTML03 = `<figure class="wow fadeInUp" data-wow-duration="1s">
                                         <div class="sliderIMG">
                                             <img src="` + item.img + `" alt="">
                                         </div>
@@ -191,88 +190,88 @@ $.ajax(settings).done(function (response) {
                                         </figcaption>
                                     </figure>`;
 
-                $('#pageBOX03').append(pageHTML03);
-            });
+        $('#pageBOX03').append(pageHTML03);
+    });
 
     //page04 Info
     response[3].page04.forEach(page => {
-                // alert(page.pageTIT);
-        
-                var pageTitle = ` <article>
+        // alert(page.pageTIT);
+
+        var pageTitle = ` <article>
                 <h3>` + page.pageTIT + `</h3>
                 <div id="page` + page.pageTIT + `" class="row">
                 
                 </div>
             </article>`;
-                $('#pageBOX04').append(pageTitle);
-        
-                page.items.forEach(item => {
-                    var pageHTML04 = `<div class="col-12 col-sm-6 col-md-4">
+        $('#pageBOX04').append(pageTitle);
+
+        page.items.forEach(item => {
+            var pageHTML04 = `<div class="col-12 col-sm-6 col-md-4">
                                         <figure class="wow fadeInUp" data-wow-duration="1s">
                                             <img src="` + item.img + `" alt="">
                                             <figcaption>` + item.title + ` </figcaption>
                                         </figure>
                                         <h5>` + item.title + `</h5>
                                     </div>`;
-                    $('#page' + page.pageTIT).append(pageHTML04);
-        
-                });
-                // console.log(page.logo.title);
-        
-    });
-    
-    $('#pageBOX05').html(Page05HTML);
-    
+            $('#page' + page.pageTIT).append(pageHTML04);
 
-    $(".navClick ul li").on("click", function() {
+        });
+        // console.log(page.logo.title);
+
+    });
+
+    $('#pageBOX05').html(Page05HTML);
+
+
+    $(".navClick ul li").on("click", function () {
         $('.indexBGALL').addClass('z_index_up');
         // $('.pageIndex').show().addClass('z_page_up');
         $('header').fadeIn(500);
-        
 
-            // $('#goTopMenu').fadeIn();
-            // $('footer').fadeIn();
+
+        // $('#goTopMenu').fadeIn();
+        // $('footer').fadeIn();
         //get data PAge01
-        
+
         if ($(this).hasClass('nav01')) {
             // $('#page01').siblings('section').find('.sliderBN').html('');
             $('.sliderBN').hide();
             $('#pageBOX01').fadeIn();
             $('#page01 .sliderCon').scrollTop();
-            
+
         }
 
         //get data PAge02
-        if($(this).hasClass('nav02')){
+        if ($(this).hasClass('nav02')) {
             $('.sliderBN').hide();
             $('#pageBOX02').fadeIn();
             // $('#page02').siblings('section').find('.sliderBN').html('');
             $('#page02 .sliderCon').scrollTop();
-            
+
         }
 
         //get data PAge03
-        if($(this).hasClass('nav03')){
+        if ($(this).hasClass('nav03')) {
             $('.sliderBN').hide();
             $('#pageBOX03').fadeIn();
             // $('#page03').siblings('section').find('.sliderBN').html('');
             $('#page03 .sliderCon').scrollTop();
-           
+
         }
-    
-    
+
+
         //get data PAge04
-        if($(this).hasClass('nav04')){
+        if ($(this).hasClass('nav04')) {
             $('.sliderBN').hide();
             $('#pageBOX04').fadeIn();
             // $('#page04').siblings('section').find('.sliderBN').html('');
             $('#page04 .sliderCon').scrollTop();
-            
+
         }
 
 
         //get data PAge05
-        if($(this).hasClass('nav05')){
+        if ($(this).hasClass('nav05')) {
             $('.sliderBN').hide();
             $('#pageBOX05').fadeIn();
             // $('#page05').siblings('section').find('.sliderBN').html('');
@@ -284,12 +283,12 @@ $.ajax(settings).done(function (response) {
         var titEN = $(this).find('span').text();
         var titCN = $(this).find('b').text();
         var titlEHTML = titCN + '<span> #' + titEN + '</span>';
-    
+
         $('.pageBg').hide();
-        $(".page0"+NN).fadeIn();
-    
+        $(".page0" + NN).fadeIn();
+
         $('.pageNav').fadeOut(100);
-    
+
         $("#mainTITLE").html(titlEHTML);
         $(".areaPAGE").fadeOut(100).removeClass('active');
         $("#page0" + NN).fadeIn(200).addClass('active');
@@ -340,12 +339,32 @@ $.ajax(settings).done(function (response) {
 
 
 //MENU (for phone)--------------
-$('.navMenuList').click(function() {
-    $('.pageNav').fadeIn(500);
-    $('.btn_login').fadeIn(300);
-    return false;
+function bindNavMenuEvents() {
+    if ($(window).width() > 767) {
+        // 大於 767：用 mouseenter 開啟
+        $('.navMenuList').off().on('mouseenter', function () {
+            $('.pageNav').stop(true, true).fadeIn(500);
+            $('.btn_login').stop(true, true).fadeIn(300);
+        })
+    } else {
+        // 小於等於 767：點擊才開啟
+        $('.navMenuList').off().on('click', function () {
+            $('.pageNav').stop(true, true).fadeIn(500);
+            $('.btn_login').stop(true, true).fadeIn(300);
+            return false;
+        });
+    }
+}
+
+// 初次綁定
+bindNavMenuEvents();
+
+// 當視窗大小改變時重新綁定事件
+$(window).on('resize', function () {
+    bindNavMenuEvents();
 });
-$('.btnClose').click(function() {
+
+$('.btnClose').click(function () {
     $('.pageNav').fadeOut(100);
     return false;
 });
@@ -392,19 +411,20 @@ function initLenisOnCurrentPage() {
 
 //Scroll gotop 這個要寫在最後面 --------------
 
-$(function() {
+$(function () {
     $('.goTopLogo').click(function () {
         // console.log($('.areaPAGE').scrollTop());
-       
+
         $('.indexBGALL').removeClass('z_index_up');
         // $('.pageIndex').hide().removeClass('z_page_up');
         $('header').fadeOut(100);
 
-        
+
         $(".areaPAGE").hide(100);
+        $(".pageBg").hide(100);
         return false;
     });
-    
+
     /* 偵測卷軸滑動時，往下滑超過400px就讓GoTop按鈕出現 */
     $('.areaPAGE').scroll(function () {
         // console.log($(this).scrollTop());
@@ -418,14 +438,10 @@ $(function() {
     });
     $('.goTop').click(function () {
         // console.log('toptop');
-        
+
         $('.areaPAGE').animate({
             scrollTop: 0
         }, 500);
         return false;
     });
 });
-
-
-
-

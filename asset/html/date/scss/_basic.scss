@@ -1,0 +1,301 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+body {
+    font-family: 'Inter', 'Microsoft JhengHei', 'PingFang TC', sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+    scroll-behavior: smooth;
+    /* 啟用平滑滾動 */
+}
+
+body {
+    font-family: "Roboto", "Noto Sans TC", sans-serif;
+    font-size: 1rem;
+}
+
+// body * {
+//     font-family: 'Montserrat', sans-serif;
+// }
+
+// body :lang(zh) {
+//     font-family: 'Freeman','Noto Sans TC', 'Microsoft JhengHei', 'PingFang TC', sans-serif;
+// }
+
+//basic
+body {
+    position: relative;
+    // background-color: #f00;
+    font-size: 16px;
+    font-weight: 400;
+    // background-color: $dark;
+
+    @include breakpoint('md', 'max') {
+        font-size: 14px;
+    }
+}
+
+
+
+
+article.inner_content {
+    color: black;
+    // letter-spacing: 0.05em;
+    margin-bottom: .35em;
+
+    h4 {
+        margin-bottom: .35em;
+    }
+
+    h6 {
+        position: relative;
+        padding-left: 1.5em;
+
+        &:before {
+            position: absolute;
+            top: -.05em;
+            left: -.2em;
+            content: "・";
+            font-weight: bold;
+            font-size: 2em;
+            line-height: 1;
+        }
+    }
+
+    table {
+        margin-top: .5rem;
+        margin-left: 1.5em;
+
+        tr {
+
+            th:first-child,
+            td:first-child {
+                width: 4em;
+            }
+        }
+
+        th,
+        td {
+
+            p {
+                display: inline;
+            }
+        }
+
+        th {
+            text-align: left;
+            padding-bottom: .5em;
+
+            p {
+                display: inline;
+                padding-bottom: .2em;
+                border-bottom: 1px solid black;
+            }
+        }
+    }
+
+    .inner_txt {
+        margin-left: 1.5em;
+    }
+}
+
+label {
+    color: $logo_grey;
+    font-size: 18px;
+
+    @include breakpoint('sm', 'max') {
+        font-size: 16px;
+    }
+}
+
+input,
+select {
+    font-size: 18px;
+    font-weight: 400;
+    width: -webkit-fill-available;
+    width: -moz-available;
+    color: $text_grey2;
+    letter-spacing: 0;
+
+    /*firefox*/
+    padding: 1.2em;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    margin-top: 14px;
+    background-color: $light_grey4;
+    margin-right: 0;
+    border: 1px solid $text_grey2;
+
+    &.input_error:focus-visible {
+        appearance: none;
+    }
+
+    &.input_error,
+    &.input_error:focus,
+    &.input_error:focus-visible {
+        outline: none;
+        border: 1px solid $error !important;
+    }
+
+    &::placeholder {
+        color: $text_grey2;
+    }
+
+    @include m___m {
+        font-size: 12px;
+    }
+}
+
+
+input[readonly],
+input:disabled {
+    color: $text_grey2 !important;
+    -webkit-text-fill-color: $text_grey2 !important;
+    background-color: $light_grey3;
+    border: 0;
+
+    @include m___m {
+        opacity: 1;
+    }
+}
+
+.wrong_msg {
+    font-size: 16px;
+    font-weight: 300;
+    padding: 0.5rem 0 0;
+    color: var(--error);
+    display: flex;
+    align-items: center;
+
+    img {
+        width: 1rem;
+        margin-right: 0.3rem;
+    }
+
+    i {
+        padding-top: .2em;
+    }
+
+    @include m___m {
+        font-size: 14px;
+    }
+}
+
+.textMD {
+    font-size: 18px;
+
+    @include breakpoint('sm', 'max') {
+        font-size: 16px;
+    }
+}
+
+.btn_start {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: fit-content;
+    padding: 1em 2em;
+    border-radius: $b-60;
+    text-decoration: none;
+    color: $blue;
+    font-weight: bold;
+    background-image: $ll_golden;
+    overflow: hidden;
+    border: 2px solid $golden;
+
+    @include tran(0.5s, ease);
+
+    b {
+        width: 80%;
+        flex-grow: 1;
+        text-align: center;
+    }
+
+    span {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 20px;
+        height: 20px;
+        // margin-left: 1em;
+        padding: 7px;
+        border-radius: 50%;
+        border: 2px solid $blue;
+    }
+
+    img {
+        display: block;
+        // margin-left: 1em;
+        // width: 30px;// height: 30px;
+        width: 80%;
+
+        // opacity: .65;
+        // transform: rotate(-30deg);
+        // transform: translateY(-1px);
+        // @include tran(0.5s, ease);
+        @include breakpoint('sm', 'max') {
+            animation: downdown 0.7s ease-in-out infinite;
+
+        }
+    }
+
+    // }
+
+    &:hover {
+        background-image: $ll_gold_hover;
+        filter: brightness(1.1);
+        // color: $white;
+
+        img {
+            // transform: translateY(3px);
+            animation: downdown 0.5s ease-in-out infinite;
+        }
+
+        &::before {
+            opacity: 1;
+            transition: opacity 0.5s ease;
+        }
+    }
+
+    @include breakpoint('sm', 'max') {
+        span {
+            font-size: 14px;
+        }
+
+        i {
+            img {
+                width: 25px;
+                height: 25px;
+            }
+
+            padding: 5px;
+        }
+    }
+}
+
+.card_pic {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 1px solid $golden;
+    border-radius: 50%;
+    // width: 100%; // 或者設定固定寬度，如 200px
+    position: relative;
+
+    &::before {
+        content: "";
+        display: block;
+        padding-top: 100%; // 讓高度永遠等於寬度，形成正圓
+    }
+
+    img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover; // 確保圖片不變形
+    }
+}

@@ -120,10 +120,28 @@ $.ajax(settings).done(function (response) {
 // }
 //MENU (for phone)--------------
 
-$('.navMenuList').click(function () {
-  $('.pageNav').fadeIn(500);
-  $('.btn_login').fadeIn(300);
-  return false;
+function bindNavMenuEvents() {
+  if ($(window).width() > 767) {
+    // 大於 767：用 mouseenter 開啟
+    $('.navMenuList').off().on('mouseenter', function () {
+      $('.pageNav').stop(true, true).fadeIn(500);
+      $('.btn_login').stop(true, true).fadeIn(300);
+    });
+  } else {
+    // 小於等於 767：點擊才開啟
+    $('.navMenuList').off().on('click', function () {
+      $('.pageNav').stop(true, true).fadeIn(500);
+      $('.btn_login').stop(true, true).fadeIn(300);
+      return false;
+    });
+  }
+} // 初次綁定
+
+
+bindNavMenuEvents(); // 當視窗大小改變時重新綁定事件
+
+$(window).on('resize', function () {
+  bindNavMenuEvents();
 });
 $('.btnClose').click(function () {
   $('.pageNav').fadeOut(100);
@@ -176,6 +194,7 @@ $(function () {
 
     $('header').fadeOut(100);
     $(".areaPAGE").hide(100);
+    $(".pageBg").hide(100);
     return false;
   });
   /* 偵測卷軸滑動時，往下滑超過400px就讓GoTop按鈕出現 */

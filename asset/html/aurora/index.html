@@ -8,25 +8,45 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="./assets/css/bootstrap.css">
     <!-- other CSS -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+        integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
-<body>
-    <div class="container landing">
-        <a class="navbar-brand" href="index_1.html"><img src="images/logo.png" alt="" class="img-fluid"></a>
-        <video width="100%" controls>
-            <source src="images/landing.mp4" type="video/mp4">
+<body class="body_index">
+    <div class="landing">
+        <video id="myVideo" autoplay muted playsinline width="100%">
+            <source src="./images/landing.mp4" type="video/mp4">
             <source src="landing.ogg" type="video/ogg"> Your browser does not support HTML5 video.
         </video>
-        <a href="index_1.html" class="link_sp float-right">SKIP＞</a>
+        <button id="muteButton"><i class="fa-solid fa-volume-xmark"></i></button>
+        <a href="index_1.html" class="link_sp float-right"> SKIP＞ </a>
     </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script>
+    const video = document.getElementById('myVideo');
+        const muteButton = document.getElementById('muteButton');
+
+        muteButton.addEventListener('click', () => {
+            // ⚠️ 注意：瀏覽器政策會阻擋未與使用者互動就播放有聲影片
+            if (video.muted) {
+                video.muted = false;
+                muteButton.innerHTML = '<i class="fa-solid fa-volume-high"></i>';
+            } else {
+                video.muted = true;
+                muteButton.innerHTML = '<i class="fa-solid fa-volume-xmark"></i>';
+            }
+        });
+        video.addEventListener('ended', () => {
+                window.location.href = 'index_1.html';
+            });
+</script>
 </body>
 
 </html>

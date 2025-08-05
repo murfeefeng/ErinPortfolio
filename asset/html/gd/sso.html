@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>數位電商基地 | Taiwantrade.com 後台管理系統</title>
+    <link rel="icon" href="https://date.gtcode.app/gdSystemHub/resources/common/img/fav.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="https://date.gtcode.app/gdSystemHub/resources/common/img/fav.ico"
+        type="image/x-icon" />
+</head>
+
+<body class="bg-gradient-primary">
+
+    <!-- Custom fonts for this template-->
+    <link href="https://date.gtcode.app/gdSystemHub/resources/admin/vendor/fontawesome-free/css/all.min.css"
+        rel="stylesheet" type="text/css">
+
+    <!-- Custom styles for this template-->
+    <link href="https://date.gtcode.app/gdSystemHub/resources/admin/css/sb-admin-2.css" rel="stylesheet"
+        type="text/css">
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="https://date.gtcode.app/gdSystemHub/resources/common/js/jquery/jquery-3.7.1.min.js"></script>
+    <script
+        src="https://date.gtcode.app/gdSystemHub/resources/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script
+        src="https://date.gtcode.app/gdSystemHub/resources/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="https://date.gtcode.app/gdSystemHub/resources/admin/js/sb-admin-2.min.js"></script>
+
+    <script src="https://date.gtcode.app/gdSystemHub/resources/common/js/jquery.lettering.min.js?ver=2"></script>
+    <link rel="stylesheet" href="https://date.gtcode.app/gdSystemHub/resources/admin/css/adminstyle.css?ver=3" />
+
+    <!-- KendoIU CSS -->
+    <link rel="stylesheet"
+        href="https://date.gtcode.app/gdSystemHub/resources/common/css/kendo/default-main.css?ver=2" />
+    <link rel="stylesheet"
+        href="https://date.gtcode.app/gdSystemHub/resources/common/css/kendo/default-purple.css?ver=2" />
+    <!--<link rel="stylesheet" th:href="@{/resources/common/css/kendo/kendo.bootstrap.mobile.min.css?ver=2}" />-->
+    <!-- KendoIU CSS END -->
+
+    <!-- KendoIU JS -->
+    <script type="text/javascript"
+        src="https://date.gtcode.app/gdSystemHub/resources/common/js/kendo/kendo.all.min.js?ver=2"></script>
+    <script type="text/javascript"
+        src="https://date.gtcode.app/gdSystemHub/resources/common/js/kendo/messages/kendo.messages.zh-TW.min.js?ver=2"></script>
+    <script type="text/javascript"
+        src="https://date.gtcode.app/gdSystemHub/resources/common/js/kendo/cultures/kendo.culture.zh-TW.min.js?ver=2"></script>
+    <!--<script type="text/javascript" th:src="@{/resources/common/js/kendo/kendo-ui-license.js?ver=2}"></script>-->
+    <!-- KendoIU JS END -->
+
+    <!-- include BlockUI -->
+    <script type="text/javascript"
+        src="https://date.gtcode.app/gdSystemHub/resources/common/js/jquery.blockUI.min.js?ver=2"></script>
+
+    <!-- jquery-cookie -->
+    <script type="text/javascript"
+        src="https://date.gtcode.app/gdSystemHub/resources/common/js/jquery.cookie.min.js?ver=2"></script>
+
+    <!-- bootstrap-icons.css CSS -->
+    <link rel="stylesheet"
+        href="https://date.gtcode.app/gdSystemHub/resources/common/css/bootstrap-icons/font/bootstrap-icons.css?ver=2" />
+    <!-- bootstrap-icons.css CSS END -->
+
+    <script type="text/javascript"
+        src="https://date.gtcode.app/gdSystemHub/resources/common/js/client-params-mag.js?ver=2"></script>
+    <script type="text/javascript"
+        src="https://date.gtcode.app/gdSystemHub/resources/common/js/client-pages-utils.js?ver=2"></script>
+    <script type="text/javascript"
+        src="https://date.gtcode.app/gdSystemHub/resources/common/js/get-resp-util.js?ver=2"></script>
+    <script type="text/javascript"
+        src="https://date.gtcode.app/gdSystemHub/resources/common/js/sweetAlert/sweetalert2.all.min.js?ver=2"></script>
+    <script type="text/javascript"
+        src="https://date.gtcode.app/gdSystemHub/resources/common/js/dateFormat.js?ver=2"></script>
+
+    <!-- jqueryCronQuartzMaster JS -->
+    <script type="text/javascript"
+        src="https://date.gtcode.app/gdSystemHub/resources/common/js/jqueryCronQuartzMaster/jquery-cron-quartz.js?ver=2"></script>
+    <script type="text/javascript"
+        src="https://date.gtcode.app/gdSystemHub/resources/common/js/jqueryCronQuartzMaster/jquery-cron-quartz-zh_CN.js?ver=2"></script>
+    <!-- jqueryCronQuartzMaster JS END -->
+
+    <!-- jqueryCronQuartzMaster CSS -->
+    <link rel="stylesheet"
+        href="https://date.gtcode.app/gdSystemHub/resources/common/css/jqueryCronQuartzMaster/jquery-cron-quartz.css?ver=2" />
+    <!-- jqueryCronQuartzMaster CSS END -->
+
+
+    <div class="container">
+        <!-- Outer Row -->
+        <div class="row justify-content-center align-items-center">
+            <div class="col-xl-10 col-lg-12 col-md-9">
+                <div class="card o-hidden border-0 shadow-lg my-5">
+                    <div class="card-body p-0">
+                        <!-- Nested Row within Card Body -->
+                        <div class="row">
+                            <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+                            <div class="col-lg-6">
+                                <div class="p-5">
+                                    <div class="text-center">
+                                        <h1 class="h4 text-gray-900 mb-4">數位電商基地 | Taiwantrade.com</h1>
+                                    </div>
+                                    <!-- 根據後端參數決定是否顯示帳號密碼登入 -->
+                                    <div id="ssoLoginSection">
+                                        <a href="https://date.gtcode.app/gdSystemHub/sso/login"
+                                            class="btn btn-success btn-user btn-block">
+                                            用 TAITRA 帳號登入
+                                        </a>
+                                        <div class="text-center mt-3">
+                                            <small class="text-muted">※ 適用於協會內部同仁使用 TAITRA 帳號登入。</small>
+                                        </div>
+                                    </div>
+
+                                    <!-- 只有當 showAdminLogin 為 true 時才渲染帳號密碼登入表單 -->
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            cancelCookies();
+            var p1 = 'p';
+            var p2 = 'sswo';
+            $("#ppsd").prop("type", p1 + "a" + p2 + "rd");
+
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            const message = urlParams.get('message');
+            const error = urlParams.get('error');
+
+            if (message) {
+                try {
+                    // 解碼URL編碼的中文字符
+                    const decodedMessage = decodeURIComponent(message);
+                    showErrorToast(decodedMessage);
+                } catch (e) {
+                    console.error('解碼錯誤訊息失敗:', e);
+                    showErrorToast(message);
+                }
+            } else if (error) {
+                // 處理英文錯誤代碼
+                let errorMessage = '';
+                switch (error) {
+                    case 'sso_login_failed':
+                        errorMessage = 'SSO登入失敗，請重試';
+                        break;
+                    case 'sso_disabled':
+                        errorMessage = 'SSO登入未啟用，請使用標準登入';
+                        break;
+                    case 'sso_no_ticket':
+                        errorMessage = 'SSO登入失敗，未收到有效票據';
+                        break;
+                    default:
+                        errorMessage = '登入失敗，請重試';
+                }
+                showErrorToast(errorMessage);
+            }
+
+            $("#ppsd").keypress(function (e) {
+                var code = (e.keyCode ? e.keyCode : e.which);
+                if (code == 13) {
+                    loginBut();
+                }
+            });
+        });
+
+        function cancelCookies() {
+            localStorage.clear();
+        }
+
+        function loginBut() {
+            doDataLoading();
+            $('#dataForm').submit();
+        }
+
+
+        var global = {};
+
+        // 驗證授權是否過期
+        let expiry = /**/ "";
+        let warnPeriod = /**/ "";
+
+        $(function () {
+            if (expiry) {
+                showWarningToast("授權已過期，您的網站功能已被限制使用");
+                $(`.scpar-btn-system:not(.scpar-exclude-expiry)`).each(function () {
+                    let onclickFuncName = $(this).prop('onclick');
+                    if (!onclickFuncName.toString().includes("search")) {
+                        $(this).prop('disabled', true);
+                    }
+                });
+            } else if (warnPeriod) {
+                // showWarningToast("您的授權即將於61天內過期，您的網站功能即將被限制使用");
+            }
+        });
+
+        function doDataLoading() {
+            $.blockUI({
+                message: '<h1> 資料處理中</h1>',
+                baseZ: 19891014,
+                css: {
+                    border: 'none',
+                    padding: '15px',
+                    backgroundColor: '#000',
+                    '-webkit-border-radius': '10px',
+                    '-moz-border-radius': '10px',
+                    opacity: .5,
+                    color: '#fff'
+                }
+            });
+        }
+
+        function unDataLoading() {
+            $.unblockUI();
+        }
+
+        $.ajaxSetup({
+            beforeSend: function (xhr) {
+                let token = getClientParams('token', null);
+                if (token && token != null && token != 'null') {
+                    xhr.setRequestHeader("Authorization", "Bearer " + token);
+                }
+            }
+        });
+
+        // 驗證授權是否過期,針對查詢回來資料存在按鈕時限制操作
+        $(document).ajaxComplete(function () {
+            if (expiry) {
+                $(`.scpar-btn-system:not(.scpar-exclude-expiry), .scpar-btn-detail:not(.scpar-exclude-expiry)`).each(function () {
+                    let onclickFuncName = $(this).prop('onclick');
+                    if (!onclickFuncName.toString().includes("search")) {
+                        $(this).prop('disabled', true);
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

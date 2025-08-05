@@ -1,0 +1,262 @@
+//keyframe
+@include keyframe (rrroate) {
+    //轉180度一圈
+    0% {
+        @include rotate (0);
+    }
+    100% {
+        @include rotate (180);
+    }
+}
+
+@include keyframe (logoshow) {
+    //轉180度一圈
+    0% {
+        opacity: 0;
+        margin-top: -5px;
+    }
+    100% {
+        opacity: 1;
+        margin-top: 0;
+    }
+}
+
+
+
+@include keyframe (fadeIn) {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@include keyframe (fadeIn70) {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: .7;
+    }
+}
+
+
+@include keyframe (fadeOut) {
+    0% {
+        opacity: 1;
+        z-index: 999;
+    }
+    100% {
+        opacity: 0;
+        z-index: -1;
+        visibility: hidden;
+        
+    }
+}
+// @keyframes fadeOutEnd {
+//     to {
+//         visibility: hidden;
+//     }
+// }
+//物件由右往左滑進 >>>
+@include keyframe (slideLeft) {
+    0% {
+        left: -200px;
+    }
+    100% {
+        left: 0;
+    }
+}
+
+.slideLeft {
+    @include animation (0, .5s, slideLeft, forwards, unset, 1);
+}
+
+//物件由左往右滑進 <<<<
+@include keyframe (slideright) {
+    0% {
+        width: 0;
+        right: -200px;
+    }
+    100% {
+        right: 0;
+    }
+}
+
+//header hide
+@include keyframe (headerHide) {
+    0% {
+        opacity: 1;
+        top: 0;
+    }
+    100% {
+        opacity: 0;
+        top: -200px;
+    }
+}
+
+//breadcrumb_bg up - M
+@include keyframe (bcUp) {
+    0% {
+        opacity: 1;
+        top: 109px;
+    }
+    100% {
+        opacity: 0;
+        top: -40px;
+    }
+}
+
+//物件轉90度
+@include keyframe (rotate90) {
+    0% {
+        @include rotate (-90);
+    }
+    100% {
+        @include rotate (0);
+    }
+}
+
+
+
+@include keyframe (moveball_1) {
+    0% {
+        // opacity: .4;
+        transform: rotate(0);
+
+        margin-top: 0px;
+        margin-left: 0px;
+    }
+    50%{
+        // opacity: .7;
+        transform: rotate(45deg);
+
+    }
+    100% {
+        // opacity: .4;
+        transform: rotate(0);
+        margin-top: 0px;
+        margin-left: 0px;
+    }
+}
+@include keyframe (moveball_2) {
+    0% {
+        opacity: .3;
+        transform: rotate(0) scale(1);
+    }
+    50%{
+        opacity: .2;
+        transform: rotate(180deg) scale(.7);
+
+    }
+    100% {
+        opacity: .3;
+        transform: rotate(360deg) scale(1);
+    }
+}
+@include keyframe (moveball_3) {
+    0% {
+        top: 10%;
+        left: -16%;
+        opacity: .2;
+    }
+    50% {
+        top: 9%;
+        left: -15%;
+        opacity: .5;
+    }
+    100% {
+        top: 10%;
+        left: -16%;
+        opacity: .2;
+    }
+}
+@include keyframe (moveball_4) {
+    0% {
+        right: -10%;
+        bottom:10%;
+        opacity: .2;
+    }
+    50% {
+        right: -11%;
+        bottom:9%;
+        opacity: .5;
+    }
+    100% {
+        right: -10%;
+        bottom:10%;
+        opacity: .2;
+    }
+}
+
+// .arrow_downR {
+//     @include animation (0, .5s, rotate90, forwards, unset, 1);
+// }
+.fade-out {
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+    opacity: 0;
+    visibility: hidden;
+}
+
+button:focus,
+button:active,
+button:hover {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+
+
+
+/* 定義跑馬燈動畫 */
+@keyframes marquee {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+@keyframes marquee_md {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+/* 設定跑馬燈容器的樣式 */
+.marquee {
+    // position: absolute;
+    width: 100%;              /* 設定容器寬度 */
+    overflow: hidden;         /* 隱藏超出的文字 */
+    white-space: nowrap;      /* 防止文字換行 */
+    box-sizing: border-box;   /* 保持寬度的計算方式 */
+    // background-color: #f0f0f0; /* 可選：設置背景顏色 */
+    font-size: 70px;
+    font-weight: bold;
+    // color: $primary;
+    // color: transparent;
+}
+
+/* 文字跑馬燈效果的樣式 */
+.marquee{
+    display: flex;
+
+}
+.marquee >div {
+    // display: inline-block;
+    // padding-left: 0;       /* 起始位置為容器外部 */
+    animation: marquee 50s linear infinite;
+    text-transform:uppercase;
+    background-color: transparent;
+}
+.marquee_md{
+    position: absolute;
+    &>div {
+        animation: marquee_md 70s linear infinite;
+    }
+}
+

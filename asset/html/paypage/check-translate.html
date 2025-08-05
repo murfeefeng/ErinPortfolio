@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P99Pay-pagepage</title>
+    <!-- favicon -->
+    <link rel="icon" href="https://stage-api-page.p99pay.com/favicon.ico">
+    <link rel="icon" href="https://stage-api-page.p99pay.com/favicon.png">
+    <!-- css -->
+    <link rel="stylesheet" href="https://stage-api-page.p99pay.com/assets/css/reset.css">
+    <link rel="stylesheet" href="https://stage-api-page.p99pay.com/assets/css/bootstrap-grid.css">
+    <link rel="stylesheet" href="https://stage-api-page.p99pay.com/assets/css/main.css?v=20250523">
+    <!-- <link rel="stylesheet" href="../assets/css/main.css?v=20240611"> -->
+    <!-- js -->
+    <script src="https://stage-api-page.p99pay.com/assets/js/jquery-3.7.1.min.js"></script>
+
+    <script>
+        function initFunction(jsonObj) {
+            renderInfo(jsonObj);
+        }
+    </script>
+</head>
+
+<body>
+    <main class="payment_check">
+        <ul class="stepBar">
+            <li class="step active">
+                <span>1</span>
+                <b class="STEP_TEXT_1">付款方式</b>
+            </li>
+            <li>
+                <i></i>
+            </li>
+            <li class="step active">
+                <span>2</span>
+                <b class="STEP_TEXT_2">交易確認</b>
+            </li>
+            <li class="active">
+                <i></i>
+            </li>
+            <li class="step">
+                <span>3</span>
+                <b class="STEP_TEXT_3">前往儲值</b>
+            </li>
+        </ul>
+        <div class="wrap">
+            <div class="pageInfoBox">
+                <div class="result_info">
+                    <div class="item">
+                        <div class="title">商品名稱</div>
+                        <div class="content">KIWI PIN (商品名稱)</div>
+                    </div>
+                    <div class="item">
+                        <div class="title">儲值金額</div>
+                        <div class="content">30</div>
+                    </div>
+                    <div class="item">
+                        <div class="title">幣別</div>
+                        <div class="content">CNY</div>
+                    </div>
+                </div>
+                <div class="confirm">
+                    <button id="paymentOK" type="submit" class="btn PAYMENT_SELECT"
+                        onclick="return check_submit();">前往儲值</button>
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+    <footer>
+        <i class="logo"><img src="https://stage-api-page.p99pay.com/assets/img/KIWI.svg" alt=""></i>
+        <h5><i><img src="https://stage-api-page.p99pay.com/assets/img/icon_address.svg" alt=""></i>FLAT/RM 1204 Yu Sung
+            Boon Building, No
+            107-111 Des Voeux Road, Central, Hong Kong</h5>
+        <div class="copyright">Copyright Ⓒ 2025 Perfect Ninety Nine International Co. Ltd
+        </div>
+    </footer>
+
+    <!-- <script src="./assets/js/wow.min.js"></script> -->
+    <script src="https://stage-api-page.p99pay.com/assets/js/translate.js"></script>
+    <script>
+
+        function renderInfo(json) {
+
+            const resultLIST = {
+                "PAYMENT_INFO_PRODUCT": json.PRODUCT_NAME,
+                "PAYMENT_INFO_AMOUNT": json.AMOUNT,
+                "PAYMENT_INFO_CUID": json.CUID,
+            }
+            // console.log(dataSUCCESS);
+            resultINFO(resultLIST);
+
+            //印資料
+            function resultINFO(data) {
+                $(".result_info").empty();
+
+                Object.entries(data).forEach(([key, value]) => {
+                    // const TimeTXT = formatTime(value);
+                    const htmlINFO = `
+                        <div class="item">
+                        <div class="title ${key}"></div>
+                        <div class="content">${value}</div>
+                        </div>`;
+
+                    $(".result_info").append(htmlINFO);
+
+                });
+            }
+
+            initTranslation(json)//翻譯
+        }
+        function check_submit() {
+            document.getElementById('form').submit();
+
+            //return true;
+        }
+
+
+    </script>
+    <script>
+        initFunction({
+            "Type": "SelectPAID",
+            "data": "eyJNU0dfVFlQRSI6IjAxMDAiLCJQQ09ERSI6IjMwMDAwMCIsIkNJRCI6IkMwMDAwMTAwMDAwMDEiLCJDT0lEIjoiQ1AyMDI1MDUyMzE4MjA0MCIsIkNVSUQiOiJVU0QiLCJBTU9VTlQiOiIxIiwiUkVUVVJOX1VSTCI6Imh0dHA6XC9cLzE0LjIyNS4zLjEzMVwvdGVzdFwvcmV0dXJuX3VybC5waHAiLCJPUkRFUl9UWVBFIjoiRSIsIlBST0RVQ1RfTkFNRSI6IlRlc3QgUyAxIFVTRCIsIlBST0RVQ1RfSUQiOiJVU0RfMSIsIlVTRVJfQUNDVElEIjoiVVNFUl8xMjM0NTYiLCJFUlFDIjoiZ3BHR1FzRjRuWEpxXC9wRE0zSzBHdmh5TUFkUT0ifQ==",
+            "COID": "C000010000001CP20250523182040",
+            "PRODUCT": "KIWI PIN (100 points)",
+            "AMOUNTList": [
+                {
+                    "AMOUNT": 30,
+                    "CUID": "CNY"
+                }
+            ],
+            "LanguageDefault": "en_US",
+            "LanguageList": {
+                "en_US": "English",
+                "zh_TW": "中文",
+                "th_TH": "ภาษาไทย",
+            },
+            "StringID": {
+                "en_US": {
+                    "STEP_TEXT_1": "Payment",
+                    "STEP_TEXT_2": "Confirm",
+                    "STEP_TEXT_3": "Top-up",
+                    "PAYMENT_INFO_PRODUCT": "Product Name",
+                    "PAYMENT_INFO_AMOUNT": "Top-up Amount",
+                    "PAYMENT_INFO_CUID": "Currency",
+                    "PAYMENT_SELECT": "Go to Top-up"
+                },
+                "zh_TW": {
+                    "STEP_TEXT_1": "付款方式",
+                    "STEP_TEXT_2": "交易確認",
+                    "STEP_TEXT_3": "前往儲值",
+                    "PAYMENT_INFO_PRODUCT": "商品名稱",
+                    "PAYMENT_INFO_AMOUNT": "儲值金額",
+                    "PAYMENT_INFO_CUID": "幣別",
+                    "PAYMENT_SELECT": "前往儲值"
+                },
+                "th_TH": {
+                    "STEP_TEXT_1": "วิธีการชำระเงิน",
+                    "STEP_TEXT_2": "ยืนยันธุรกรรม",
+                    "STEP_TEXT_3": "ไปที่การเติมเงิน",
+                    "PAYMENT_INFO_PRODUCT": "ชื่อสินค้า",
+                    "PAYMENT_INFO_AMOUNT": "จำนวนเงินที่เติม",
+                    "PAYMENT_INFO_CUID": "สกุลเงิน",
+                    "PAYMENT_SELECT": "ไปยังหน้าชำระเงิน"
+                }
+            },
+            "Theme": {
+                "BG_COLOR_PRIMARY": "",
+                "BG_COLOR_SECOND": "",
+                "BG_IMG_URL_PC": "",
+                "BG_IMG_URL_M": ""
+            }
+        });
+    </script>
+</body>
+
+</html>

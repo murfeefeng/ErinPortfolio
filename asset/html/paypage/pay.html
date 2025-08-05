@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P99Pay-pagepage</title>
+    <!-- favicon -->
+    <link rel="icon" href="https://stage-api-page.p99pay.com/favicon.ico">
+    <link rel="icon" href="https://stage-api-page.p99pay.com/favicon.png">
+    <!-- css -->
+    <link rel="stylesheet" href="https://stage-api-page.p99pay.com/assets/css/reset.css">
+    <link rel="stylesheet" href="https://stage-api-page.p99pay.com/assets/css/bootstrap-grid.css">
+    <link rel="stylesheet" href="https://stage-api-page.p99pay.com/assets/css/main.css?v=20250805">
+    <!-- <link rel="stylesheet" href="../assets/css/main.css?v=20240611"> -->
+    <!-- js -->
+    <script src="https://stage-api-page.p99pay.com/assets/js/jquery-3.7.1.min.js"></script>
+
+    <script>
+        function initFunction(jsonObj) {
+            renderInfo(jsonObj);
+        }
+    </script>
+</head>
+
+<body class="payBody">
+    <div class="bg">
+        <div class="container">
+            <div class="pay">
+                <div class="pay_left">
+                    <div id="langSelect" class="languageBox">
+                        <img src="https://stage-api-page.p99pay.com/assets/img/icon_language.svg" alt="" srcset="">
+                        <span class="lang_text">語言</span>
+                        <ul id="langListItem" class="langListItem">
+                        </ul>
+                    </div>
+                    <div class="info">
+                        <div id="payPrice" class="textbox cardPrice">
+                            <img src="https://stage-api-page.p99pay.com/assets/img/icon_money.svg" alt="">
+                            <span id="payPriceTop" class="pay_price">100</span> <b id="payCUIDTop">USD</b>
+                        </div>
+                        <div id="PayInfo" class="textbox PayInfo"></div>
+                    </div>
+                </div>
+                <div class="pay_right">
+                    <div class="info">
+                        <div class="title">
+                            <h2 id="selectTIT"></h2>
+                        </div>
+                        <div id="TabBar" class="tab_bar">
+                                <div id="PAID_TAB" class="type tabs">
+                                </div>
+                        </div>
+                        <div class="list tab_container">
+                            <!-- tab -->
+                            <form role="form" id="form" action="" method="post" target="_self" class="form-payment">
+                                <div id="scrollBG" class="scrollBG">
+
+                                </div>
+                                <div class="confirm">
+                                    <button id="paymentOK" type="submit" class="btn"
+                                        onclick="return check_submit();"></button>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- loading -->
+    <script src="https://stage-api-page.p99pay.com/assets/js/loadingoverlay.min.js"></script>
+    <script>
+        let currentJson = null;
+        let currentLangDefault = null;
+        let currentLang = null;
+        let PAIDLIST = [];
+        let LastSEL = '';
+        let AMOUNTList = [];
+        let newLastSEL = false;
+        let langList = {};
+
+        function renderInfo(json) {
+            // 儲存資料
+            currentJson = json;
+            PAIDLIST = json.PAIDList;
+            LastSEL = json.LastSelect;
+            AMOUNTList = json.AMOUNTList;
+            langList = json.LanguageList;
+
+            //判斷當前語言
+            let userLang = getCookie('userLang');
+            if (userLang) {
+                currentLangDefault = langSystem(userLang, json);
+            } else {
+                userLang = navigator.language || navigator.userLanguage;
+                currentLangDefault = langSystem(userLang, json);
+                setCookie(currentLangDefault);
+            }
+            currentLang = json.StringID[currentLangDefault];
+            // console.log(currentLang);
+
+            // 色系
+            setTheme(json.Theme);
+
+            // 渲染翻譯畫面
+            renderLangList(langList, currentLangDefault);
+            printPage(json, currentLang, currentLangDefault);
+
+            // 切換語言
+            changeLang(langList);
+        }
+
+        //判斷無支援的語言就用英文
+        function langSystem(ss, json) {
+            let langDefault = 'en_US';
+            let ssLang = ss.replace('-', '_');
+            let languageKeys = Object.keys(json.LanguageList);
+            if (languageKeys.some(key => key.startsWith(ssLang))) {
+                langDefault = languageKeys.find(key => key.startsWith(ssLang));
+            }
+            return langDefault;
+        }
+
+        // 設定色系
+        function setTheme(theme) {
+            var root = document.documentElement;
+            root.style.setProperty('--primary', theme.BG_COLOR_PRIMARY);
+            root.style.setProperty('--second', theme.BG_COLOR_SECOND);
+            root.style.setProperty('--bg-image', 'url("' + theme.BG_IMG_URL_PC + '")');
+            root.style.setProperty('--bg-image-mobile', 'url("' + theme.BG_IMG_URL_M + '")');
+
+            if (theme.BG_IMG_URL_PC !== "" || theme.BG_IMG_URL_M !== "") {
+                $('body').addClass('addBG');
+            } else {
+                $('body').removeClass('addBG');
+            }
+        }
+
+        // 語言選單
+        function renderLangList(langList, langDefault) {
+            // 顯示當前語言名稱
+            if (langList.hasOwnProperty(langDefault)) {
+                $('.lang_text').text(langList[langDefault]);
+            } else {
+                $('.lang_text').text('選擇語言');
+            }
+
+            // 語言列表
+            $('#langListItem').empty(); //先清空
+            $.each(langList, function (key, value) {
+                const listItem = $('<li></li>').attr('data-lang', key).text(value);
+                $('#langListItem').append(listItem);
+            });
+        }
+
+        // 切換語言
+        if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+            $('.languageBox').on('click', function (e) {
+                e.stopPropagation();
+                $(this).toggleClass('active');
+            });
+
+            $(document).on('click', function () {
+                $('.languageBox').removeClass('active');
+            });
+        }
+        function changeLang(langList) {
+            $('#langListItem').off('click').on('click', 'li', function () {
+                const selectLang = $(this).data('lang');
+                currentLangDefault = selectLang;
+                deleteCookie('userLang');
+                setCookie(currentLangDefault);
+
+                // 清空舊畫面
+                $('#PAID_TAB').empty();
+                $('#PayInfo').empty();
+                $('.scrollBG').empty();
+                $('.tab_content').empty();
+
+                // 更新語言字串與畫面
+                currentLang = currentJson.StringID[currentLangDefault];
+                // console.log(currentJson);
+
+                renderLangList(langList, currentLangDefault);
+                printPage(currentJson, currentLang, currentLangDefault);
+                checkTabBarScrollable();
+
+
+            });
+        }
+
+        // 渲染翻譯內容
+        function printPage(json, lang, langDefault) {
+            newLastSEL = false; //先重置
+
+            // 左邊資訊
+            var infoLIST_tit = {
+                "coid": lang.PAYMENT_INFO_COID,
+                "product": lang.PAYMENT_INFO_PRODUCT,
+                "currency": lang.PAYMENT_INFO_CUID,
+                "amount": lang.PAYMENT_INFO_AMOUNT
+            };
+
+            // 左側資訊抬頭
+            $('#PayInfo').empty();//先清空
+            $.each(infoLIST_tit, function (key, value) {
+                var infoHTML = `<div class="${key}">
+                            <div class="list_left">
+                                <h4>${value}</h4>
+                            </div>
+                            <div class="list_right">
+                                <h3 id="${key}"></h3>
+                            </div>
+                        </div>`;
+                $('#PayInfo').append(infoHTML);
+            });
+
+            $('#coid').text(json.COID);
+            $('#product').text(json.PRODUCT);
+
+            // tab名稱
+            var tabLIST_tit_all = Object.keys(lang)
+                .filter(key => key.startsWith("PA_GROUP_"))
+                .reduce((acc, key) => {
+                    var newKey = key.replace("PA_GROUP_", "");
+                    acc[newKey] = lang[key];
+                    return acc;
+                }, {});
+
+            var tabLIST_tit = {};
+            var seenGroups = new Set();
+
+            // console.log(tabLIST_tit);
+
+            json.PAIDList.forEach(function (item) {
+                var group = item.Group;
+                if (!seenGroups.has(group) && tabLIST_tit_all[group]) {
+                    tabLIST_tit[group] = tabLIST_tit_all[group];
+                    seenGroups.add(group);
+                }
+            });
+
+            // 印tab
+            $('#PAID_TAB').empty();//先清空
+            $.each(tabLIST_tit, function (key, value) {
+                var tabHTML = `<div id="tab_${key}" class="type_box showTAB" rel="${key}">
+                            <div class="imgbox">
+                                <img src="https://stage-api-page.p99pay.com/assets/img/t_${key}.svg" alt="">
+                            </div>
+                            <p>${value}</p>
+                        </div>`;
+                $('#PAID_TAB').append(tabHTML);
+            });
+
+            // 印支付list
+            $('.scrollBG').empty();//先清空
+            $.each(tabLIST_tit, function (key) {
+                var contentHTML = `<div id="${key}" class="tab_content showPAID"></div>`;
+                $('.scrollBG').append(contentHTML);
+            });
+
+            // 標題文字
+            $('#infoTIT').text(lang.PAYMENT_INFO);
+            $('#selectTIT').text(lang.PAYMENT_SELECT);
+            $('#paymentOK').html(lang.PAYMENT_CONFIRM + '<img src="https://stage-api-page.p99pay.com/assets/img/arrow.svg" alt="">');
+
+            // 清空並渲染支付列表
+            $.each(PAIDLIST, function (index, item) {
+                var group = item.Group;
+                var targetDiv = $("#" + group);
+
+                if (targetDiv.length > 0) {
+                    var paidLIST = `<div class="list_box">
+                                <div>
+                                    <input type="radio" name="SPAID" id="${item.PAID}" data-paid="${item.PAID}" data-cuid="${item.CUID}" data-group="${item.Group}" />
+                                    <label for="${item.PAID}">${item.FullName}</label>
+                                </div>
+                                <div class="listpic">
+                                    <img src="${item.ICON_URL}" alt="" />
+                                </div>
+                            </div>`;
+                    targetDiv.append(paidLIST);
+                }
+
+                if (LastSEL === item.PAID) {
+                    newLastSEL = true;
+                }
+            });
+
+            // tab 點擊切換事件
+            $("div.tabs div").off('click').on('click', function () {
+                $(".tab_content").hide();
+                var activeTab = $(this).attr("rel");
+                $("#" + activeTab).fadeIn();
+                $("div.tabs div").removeClass("active");
+                $(this).addClass("active");
+            });
+
+            // 判斷預設選取支付
+            if (newLastSEL === true) {
+                var lastSEL_CUID = $("#" + LastSEL).data('cuid');
+                var lastSEL_TAB = $("#" + LastSEL).data('group');
+                $("#" + LastSEL).prop("checked", true).parents('.list_box').prependTo("#" + lastSEL_TAB);
+
+                paidSELECT(lastSEL_CUID, lastSEL_TAB);
+                submitSPAID(LastSEL);
+
+                if (PAIDLIST.length < 6) {
+                    $('#TabBar').hide();
+                    $('.tab_content').show();
+                    $('.pay_right').addClass('noTabList');
+                    $('.list_box').last().css("border-bottom", "0");
+                } else {
+                    $('.list_box:last-child').css("border-bottom", "0");
+                }
+            } else {
+                $('.showTAB:first').addClass("active");
+                $(".tab_content").hide();
+                $(".tab_content.showPAID:first").show();
+
+                var defaultCUID = $('.list_box:first').find('input').attr("checked", true)
+                    ? $('.list_box:first').find('input').data('cuid')
+                    : $('.list_box:first').find('input').data('cuid'); // 避免undefined
+
+                checkAMOUNT(defaultCUID);
+
+                var createSPAID = $('.list_box:first').find('input[name="SPAID"]').data('paid');
+                submitSPAID(createSPAID);
+
+                if (PAIDLIST.length < 6) {
+                    $('#TabBar').hide();
+                    $('.tab_content').show();
+                    $('.pay_right').addClass('noTabList');
+                    $('.list_box').last().css("border-bottom", "0");
+                } else {
+                    $('.list_box:last-child').css("border-bottom", "0");
+                }
+            }
+
+            // 點擊支付方式
+            $('.list_box').off('click').on('click', function () {
+                var sel_radio = $(this).find('input[name="SPAID"]').prop('checked', true);
+                var selectedPaid = sel_radio.data('paid');
+                var selectedcuid = sel_radio.data('cuid');
+
+                checkAMOUNT(selectedcuid);
+                submitSPAID(selectedPaid);
+            });
+        }
+
+        // 選擇支付後對應幣別
+        function paidSELECT(CUID, TAB) {
+            $(".tab_content").hide();
+            $('#' + TAB).show().prependTo(".tab_container form");
+            $("div.tabs div").removeClass("active");
+            $('#tab_' + TAB).insertBefore(".type_box:first").addClass("active");
+
+            checkAMOUNT(CUID);
+        }
+
+        // 根據幣別顯示金額
+        function checkAMOUNT(CUID) {
+            var targetAmount = AMOUNTList.find(item => item.CUID === CUID);
+            var targetAMOUNT = 0;
+            if (targetAmount) {
+                targetAMOUNT = parseFloat(targetAmount.AMOUNT);
+            }
+            $('#currency').text(CUID);
+            $('#payCUIDTop').text(CUID);
+            $("#amount").text(targetAMOUNT);
+            $("#payPriceTop").text(targetAMOUNT);
+        }
+
+        // 送出
+        function submitSPAID(SPAID) {
+            $('.submittxt').remove();
+
+            var newData = {
+                "Type": currentJson.Type,
+                "data": currentJson.data,
+                "COID": currentJson.COID,
+                "SPAID": SPAID
+            };
+
+            Object.keys(newData).forEach(function (k) {
+                var eleName = '#' + k;
+                if ($(eleName).length <= 0) {
+                    appendElement_Input('#form', k, newData[k]);
+                } else {
+                    $(eleName).val(newData[k]);
+                }
+            });
+        }
+
+        // 新增隱藏input欄位
+        function appendElement_Input(ele, name, value) {
+            var textHtml = `<input type="text" name="${name}" value="${value}" class="submittxt" style="display:none;" />`;
+            $(ele).append(textHtml);
+        }
+
+        // Cookie相關
+        function setCookie(name) {
+            document.cookie = "userLang=" + name + "; path=/; max-age=" + (7 * 24 * 60 * 60);
+        }
+
+        function getCookie(name) {
+            var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+            return match ? match[2] : null;
+        }
+
+        function deleteCookie(name) {
+            document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+        }
+
+
+        //表單送出
+        function check_submit() {
+            $.LoadingOverlay("show", {
+                image: "",  // 不用預設圖片
+                custom: $("<div>", { class: "custom-spinner" })[0],
+                background: "rgba(255,255,255,0.8)"
+            });
+
+            $('#form').submit();
+        }
+ 
+
+        //滑鼠感應
+        $(document).ready(function () {
+            var isMouseDown = false;
+            var startX, scrollLeft;
+
+            $('#TabBar').on('mousedown', function (e) {
+                if (e.which === 1) {
+                    isMouseDown = true;
+                    $(this).css('cursor', 'grabbing');
+                    startX = e.pageX - $(this).offset().left;
+                    scrollLeft = $(this).scrollLeft();
+                }
+            });
+
+            $(document).on('mousemove', function (e) {
+                if (isMouseDown) {
+                    e.preventDefault();
+                    var x = e.pageX - $('#TabBar').offset().left;
+                    var walk = (x - startX) * 2;
+                    $('#TabBar').scrollLeft(scrollLeft - walk);
+
+                }
+            });
+
+            $(document).on('mouseup', function () {
+                if (isMouseDown) {
+                    isMouseDown = false;
+                    $('#TabBar').css('cursor', 'grab');
+                }
+            });
+        });
+
+        // 漸層遮罩
+        function checkTabBarScrollable() {
+                const tabBar = document.querySelector('.tab_bar');
+                if (!tabBar) return;
+
+                const isScrollable = tabBar.scrollWidth > tabBar.clientWidth;
+                if (isScrollable) {
+                    tabBar.classList.add('scrollable');
+                } else {
+                    tabBar.classList.remove('scrollable');
+                }
+                //卷軸到底
+                tabBar.addEventListener('scroll', () => {
+                const maxScrollLeft = tabBar.scrollWidth - tabBar.clientWidth;
+                const nearRightEdge = tabBar.scrollLeft >= maxScrollLeft - 5;
+
+                if (nearRightEdge) {
+                    tabBar.classList.remove('scrollable');
+                } else {
+                    tabBar.classList.add('scrollable');
+                }
+            });
+        }
+
+        // init & resize
+        window.addEventListener('load', checkTabBarScrollable);
+        window.addEventListener('resize', checkTabBarScrollable);
+
+            
+    </script>
+</body>
+<script>
+    initFunction({ "Type": "SelectPAID", "data": "eyJNU0dfVFlQRSI6IjAxMDAiLCJQQ09ERSI6IjMwMDAwMCIsIkNJRCI6IkMwMDAwMTAwMDAwMDIiLCJDT0lEIjoiQ1AyMDI1MDczMDE5MTgwMyIsIkNVSUQiOiJUV0QiLCJBTU9VTlQiOiIxNTAwLjAwIiwiUkVUVVJOX1VSTCI6Imh0dHA6XC9cLzE0LjIyNS4zLjEzMVwvdGVzdFwvcmV0dXJuX3VybC5waHAiLCJPUkRFUl9UWVBFIjoiRSIsIlBST0RVQ1RfTkFNRSI6IlRlc3QgUyAxNTAwLjAwIFRXRCIsIlBST0RVQ1RfSUQiOiJUV0RfMTUwMC4wMCIsIlVTRVJfQUNDVElEIjoiVVNFUl8xMjM0NTYiLCJFUlFDIjoic2tcLzhtbHpqOGxPaUh6eXp5NitzdStHbUtEOD0ifQ==", "COID": "C000010000002CP20250730191803", "PRODUCT": "Test S 1500.00 TWD", "AMOUNTList": [{ "AMOUNT": "46.88", "CUID": "USD" }, { "AMOUNT": "1500", "CUID": "TWD" }, { "AMOUNT": "328.1", "CUID": "CNY" }, { "AMOUNT": "375", "CUID": "HKD" }], "LastSelect": "", "PAIDList": [{ "PAID": "COPGAM09", "ShortName": "\u904a\u6232\u5e33\u865f\u7d81\u5b9a", "FullName": "GASH \u6703\u54e1\u904a\u6232\u5e33\u865f\u7d81\u5b9a", "Group": "WALLET", "CUID": "TWD", "Keyword": "COPGAM09|\u904a\u6232\u5e33\u865f\u7d81\u5b9a|GASH \u6703\u54e1\u904a\u6232\u5e33\u865f\u7d81\u5b9a", "ICON_URL": "https:\/\/stage-api-page.p99pay.com\/assets\/img\/gash.svg" }, { "PAID": "COPKWP09", "ShortName": "KIWI WALLET", "FullName": "KIWI WALLET", "Group": "WALLET", "CUID": "USD", "Keyword": "COPKWP09|KIWI WALLET|KIWI WALLET", "ICON_URL": "https:\/\/stage-api-page.p99pay.com\/assets\/img\/KIWI.svg" }, { "PAID": "WLTFUP01", "ShortName": "Alipay", "FullName": "\u652f\u4ed8\u5bf6 HK (FUP)", "Group": "WALLET", "CUID": "USD", "Keyword": "WLTFUP01|\u652f\u4ed8\u5bf6|\u652f\u4ed8\u5bf6", "ICON_URL": "https:\/\/stage-api-page.p99pay.com\/assets\/img\/Alipay.png" }, { "PAID": "TELCHT05", "ShortName": "\u4e2d\u83ef\u96fb\u4fe1 \u624b\u6a5f", "FullName": "\u4e2d\u83ef\u624b\u6a5f (\u5e33\u55ae\u652f\u4ed8)", "Group": "TELECO", "CUID": "TWD", "Keyword": "TELCHT05|\u4e2d\u83ef\u96fb\u4fe1 \u624b\u6a5f|\u4e2d\u83ef\u624b\u6a5f (\u5e33\u55ae\u652f\u4ed8)", "ICON_URL": "https:\/\/stage-api-page.p99pay.com\/assets\/img\/ct.svg" }, { "PAID": "TELCHT06", "ShortName": "\u4e2d\u83ef\u96fb\u4fe1 Hinet", "FullName": "\u4e2d\u83efHinet (\u5e33\u55ae\u652f\u4ed8)", "Group": "TELECO", "CUID": "TWD", "Keyword": "TELCHT06|\u4e2d\u83ef\u96fb\u4fe1 Hinet|\u4e2d\u83efHinet (\u5e33\u55ae\u652f\u4ed8)", "ICON_URL": "https:\/\/stage-api-page.p99pay.com\/assets\/img\/hinet.svg" }, { "PAID": "TELCHT07", "ShortName": "\u4e2d\u83ef\u96fb\u4fe1 \u5e02\u8a71", "FullName": "\u4e2d\u83ef\u5e02\u8a71 (\u5e33\u55ae\u652f\u4ed8)", "Group": "TELECO", "CUID": "TWD", "Keyword": "TELCHT07|\u4e2d\u83ef\u96fb\u4fe1 \u5e02\u8a71|\u4e2d\u83ef\u5e02\u8a71 (\u5e33\u55ae\u652f\u4ed8)", "ICON_URL": "https:\/\/stage-api-page.p99pay.com\/assets\/img\/ct.svg" }, { "PAID": "TELFET01", "ShortName": "\u9060\u50b3\u96fb\u4fe1 \u624b\u6a5f", "FullName": "\u9060\u50b3\u624b\u6a5f (\u5e33\u55ae\u652f\u4ed8)", "Group": "TELECO", "CUID": "TWD", "Keyword": "TELFET01|\u9060\u50b3\u96fb\u4fe1 \u624b\u6a5f|\u9060\u50b3\u624b\u6a5f (\u5e33\u55ae\u652f\u4ed8)", "ICON_URL": "https:\/\/stage-api-page.p99pay.com\/assets\/img\/fet.svg" }, { "PAID": "TELSON04", "ShortName": "\u4e9e\u592a\u96fb\u4fe1 \u624b\u6a5f", "FullName": "\u4e9e\u592a\u624b\u6a5f (\u5e33\u55ae\u652f\u4ed8)", "Group": "TELECO", "CUID": "TWD", "Keyword": "TELSON04|\u4e9e\u592a\u96fb\u4fe1 \u624b\u6a5f|\u4e9e\u592a\u624b\u6a5f (\u5e33\u55ae\u652f\u4ed8)", "ICON_URL": "https:\/\/stage-api-page.p99pay.com\/assets\/img\/gt.svg" }, { "PAID": "TELTCC01", "ShortName": "\u53f0\u7063\u5927\u54e5\u5927 \u624b\u6a5f", "FullName": "\u53f0\u54e5\u5927\u624b\u6a5f (\u5e33\u55ae\u652f\u4ed8)", "Group": "TELECO", "CUID": "TWD", "Keyword": "TELTCC01|\u53f0\u7063\u5927\u54e5\u5927 \u624b\u6a5f|\u53f0\u54e5\u5927\u624b\u6a5f (\u5e33\u55ae\u652f\u4ed8)", "ICON_URL": "https:\/\/stage-api-page.p99pay.com\/assets\/img\/tm.svg" }, { "PAID": "COPGAM05", "ShortName": "GASH \u9ede\u6578\u5361\u5145\u503c", "FullName": "GASH \u9ede\u6578\u5361\u5145\u503c", "Group": "PINCODE", "CUID": "TWD", "Keyword": "COPGAM05|GASH \u9ede\u6578\u5361\u5145\u503c|GASH \u9ede\u6578\u5361\u5145\u503c", "ICON_URL": "https:\/\/stage-api-page.p99pay.com\/assets\/img\/gash.svg" }, { "PAID": "COPKWP01", "ShortName": "KIWI PIN", "FullName": "KIWI PINCODE", "Group": "PINCODE", "CUID": "USD", "Keyword": "COPKWP01|KIWI PIN|KIWI PINCODE", "ICON_URL": "https:\/\/stage-api-page.p99pay.com\/assets\/img\/KIWI.svg" }, { "PAID": "BNKBES03", "ShortName": "7-11 \u8d85\u5546\u4ee3\u6536", "FullName": "7-11 \u8d85\u5546\u4ee3\u6536", "Group": "CVS", "CUID": "TWD", "Keyword": "BNKBES03|7-11|\u8d85\u5546\u4ee3\u6536|7-11 \u8d85\u5546\u4ee3\u6536", "ICON_URL": "https:\/\/stage-api-page.p99pay.com\/assets\/img\/711.svg" }, { "PAID": "BNKBES04", "ShortName": "Family \u8d85\u5546\u4ee3\u6536", "FullName": "Family \u8d85\u5546\u4ee3\u6536", "Group": "CVS", "CUID": "TWD", "Keyword": "BNKBES03|Family|\u8d85\u5546\u4ee3\u6536|Family \u8d85\u5546\u4ee3\u6536", "ICON_URL": "https:\/\/stage-api-page.p99pay.com\/assets\/img\/fam.svg" }, { "PAID": "BNKBES05", "ShortName": "OK \u8d85\u5546\u4ee3\u6536", "FullName": "OK \u8d85\u5546\u4ee3\u6536", "Group": "CVS", "CUID": "TWD", "Keyword": "BNKBES03|OK|\u8d85\u5546\u4ee3\u6536|OK \u8d85\u5546\u4ee3\u6536", "ICON_URL": "https:\/\/stage-api-page.p99pay.com\/assets\/img\/ok.svg" }, { "PAID": "BNK80801", "ShortName": "\u7389\u5c71\u63d0\u6b3e\u5361 (Web ATM)", "FullName": "\u7389\u5c71\u9280\u884c WEB ATM \u63d0\u6b3e\u5361", "Group": "BANK", "CUID": "TWD", "Keyword": "BNK80801|\u7389\u5c71\u63d0\u6b3e\u5361 (Web ATM)|\u7389\u5c71\u9280\u884c WEB ATM \u63d0\u6b3e\u5361", "ICON_URL": "https:\/\/stage-api-page.p99pay.com\/assets\/img\/esun.svg" }, { "PAID": "BNKBES01", "ShortName": "\u4fe1\u7528\u5361", "FullName": "\u6c38\u8c50\u4fe1\u7528\u5361", "Group": "BANK", "CUID": "TWD", "Keyword": "BNKBES01|\u4fe1\u7528\u5361|\u6c38\u8c50\u4fe1\u7528\u5361", "ICON_URL": "https:\/\/stage-api-page.p99pay.com\/assets\/img\/card.svg" }, { "PAID": "BNKBES02", "ShortName": "\u865b\u64ec\u5e33\u865f\u8f49\u5e33 (\u6c38\u8c50\u9280\u884c)", "FullName": "\u865b\u64ec\u5e33\u865f\u8f49\u5e33 (\u6c38\u8c50\u9280\u884c)", "Group": "BANK", "CUID": "TWD", "Keyword": "BNKBES02|\u4fe1\u7528\u5361|\u865b\u64ec\u5e33\u865f\u8f49\u5e33", "ICON_URL": "https:\/\/stage-api-page.p99pay.com\/assets\/img\/sino.svg" }, { "PAID": "BNKEZL01", "ShortName": "\u9280\u806f\u5361", "FullName": "\u9280\u806f\u5728\u7dda\u652f\u4ed8", "Group": "BANK", "CUID": "HKD", "Keyword": "BNKESL01|\u9280\u806f\u5361|\u9280\u806f\u5728\u7dda\u652f\u4ed8|\u4e2d\u570b\u9280\u806f (China UnionPay)", "ICON_URL": "https:\/\/stage-api-page.p99pay.com\/assets\/img\/ChinaUnionpay.png" }, { "PAID": "BNKFUP05", "ShortName": "\u570b\u969b\u4fe1\u7528\u5361", "FullName": "\u570b\u969b\u4fe1\u7528\u5361 (FUP)", "Group": "BANK", "CUID": "USD", "Keyword": "BNKFUP05|\u652f\u4ed8\u5bf6|\u570b\u969b\u4fe1\u7528\u5361", "ICON_URL": "https:\/\/stage-api-page.p99pay.com\/assets\/img\/card.svg" }], "LanguageDefault": "zh_TW", "LanguageList": { "en_US": "English", "th_TH": "\u0e20\u0e32\u0e29\u0e32\u0e44\u0e17\u0e22", "zh_TW": "\u4e2d\u6587" }, "StringID": { "en_US": { "PA_GROUP_BANK": "Financial", "PA_GROUP_KIOSK": "Store Payment", "PA_GROUP_PINCODE": "Point Card", "PA_GROUP_TELECO": "Telecom Bill", "PA_GROUP_WALLET": "E-Wallet", "PAYMENT_CONFIRM": "Confirm Payment", "PAYMENT_INFO": "Payment Details:", "PAYMENT_INFO_AMOUNT": "Amount", "PAYMENT_INFO_COID": "Transaction Number", "PAYMENT_INFO_CUID": "Currency", "PAYMENT_INFO_PRODUCT": "Product Name", "PAYMENT_SELECT": "Please select a payment method:" }, "th_TH": { "PA_GROUP_BANK": "\u0e1a\u0e23\u0e34\u0e01\u0e32\u0e23\u0e17\u0e32\u0e07\u0e01\u0e32\u0e23\u0e40\u0e07\u0e34\u0e19", "PA_GROUP_KIOSK": "\u0e08\u0e48\u0e32\u0e22\u0e17\u0e35\u0e48\u0e23\u0e49\u0e32\u0e19\u0e2a\u0e30\u0e14\u0e27\u0e01\u0e0b\u0e37\u0e49\u0e2d", "PA_GROUP_PINCODE": "\u0e1a\u0e31\u0e15\u0e23\u0e40\u0e15\u0e34\u0e21\u0e40\u0e07\u0e34\u0e19", "PA_GROUP_TELECO": "\u0e42\u0e17\u0e23\u0e04\u0e21\u0e19\u0e32\u0e04\u0e21", "PA_GROUP_WALLET": "\u0e01\u0e23\u0e30\u0e40\u0e1b\u0e4b\u0e32\u0e40\u0e07\u0e34\u0e19\u0e2d\u0e34\u0e40\u0e25\u0e47\u0e01\u0e17\u0e23\u0e2d\u0e19\u0e34\u0e01\u0e2a\u0e4c", "PAYMENT_CONFIRM": "\u0e22\u0e37\u0e19\u0e22\u0e31\u0e19\u0e01\u0e32\u0e23\u0e0a\u0e33\u0e23\u0e30\u0e40\u0e07\u0e34\u0e19", "PAYMENT_INFO": "\u0e23\u0e32\u0e22\u0e25\u0e30\u0e40\u0e2d\u0e35\u0e22\u0e14\u0e01\u0e32\u0e23\u0e0a\u0e33\u0e23\u0e30\u0e40\u0e07\u0e34\u0e19:", "PAYMENT_INFO_AMOUNT": "\u0e22\u0e2d\u0e14\u0e0a\u0e33\u0e23\u0e30", "PAYMENT_INFO_COID": "\u0e2b\u0e21\u0e32\u0e22\u0e40\u0e25\u0e02\u0e18\u0e38\u0e23\u0e01\u0e23\u0e23\u0e21", "PAYMENT_INFO_CUID": "\u0e2a\u0e01\u0e38\u0e25\u0e40\u0e07\u0e34\u0e19", "PAYMENT_INFO_PRODUCT": "\u0e0a\u0e37\u0e48\u0e2d\u0e2a\u0e34\u0e19\u0e04\u0e49\u0e32", "PAYMENT_SELECT": "\u0e01\u0e23\u0e38\u0e13\u0e32\u0e40\u0e25\u0e37\u0e2d\u0e01\u0e27\u0e34\u0e18\u0e35\u0e01\u0e32\u0e23\u0e0a\u0e33\u0e23\u0e30\u0e40\u0e07\u0e34\u0e19:" }, "zh_TW": { "PA_GROUP_BANK": "\u91d1\u878d\u985e", "PA_GROUP_KIOSK": "\u8d85\u5546\u4ee3\u6536", "PA_GROUP_PINCODE": "\u9ede\u6578\u5361", "PA_GROUP_TELECO": "\u96fb\u4fe1\u5e33\u55ae", "PA_GROUP_WALLET": "\u96fb\u5b50\u9322\u5305", "PAYMENT_CONFIRM": "\u78ba\u8a8d\u4ed8\u6b3e", "PAYMENT_INFO": "\u672c\u6b21\u6b32\u652f\u4ed8\u7684\u5167\u5bb9\uff1a", "PAYMENT_INFO_AMOUNT": "\u91d1\u984d", "PAYMENT_INFO_COID": "\u4ea4\u6613\u55ae\u865f", "PAYMENT_INFO_CUID": "\u5e63\u5225", "PAYMENT_INFO_PRODUCT": "\u5546\u54c1\u540d\u7a31", "PAYMENT_SELECT": "\u8acb\u9078\u64c7\u4ed8\u6b3e\u65b9\u5f0f\uff1a" } }, "Theme": { "BG_COLOR_PRIMARY": "", "BG_COLOR_SECOND": "", "BG_IMG_URL_PC": "", "BG_IMG_URL_M": "" } });
+</script>
+
+</html>
