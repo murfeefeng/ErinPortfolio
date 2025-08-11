@@ -1,10 +1,18 @@
-var settings = {
-    "url": "./asset/js/page.json",
-    "method": "GET",
-    "timeout": 0,
-};
 
-$.ajax(settings).done(function (response) {
+
+function loadData(num) {
+    var settings = {
+        "url": "./asset/js/page.json",
+        "method": "GET",
+        "timeout": 0,
+    };
+    const pageNum = `page${num}`;
+    console.log(pageNum);
+    
+    $.ajax(settings).done(function (response) {
+        const thisDATA = response[pageNum]; 
+        console.log(thisDATA);
+        
     var Page03HTML = `<figure><div class="sliderIMG"> <img src="asset/img/web/03-1177admin.png" alt=""> </div> <figcaption> <h2>系統後臺系統建置</h2> <p> <span>不便公開</span><span>會員資料表單建立</span><span>數據資料統計圖表化</span><span>資料建立與刪除</span><span>UI介面設計與美化</span> </p> <h4 class="mb-2">想了解更多??</h4> <a href="https://mail.google.com/mail/?view=cm&to=erin.feng210210@gmail.com" target="_blank" id="contectme" class="btn">Content Me</a> </figcaption> </figure>`;
 
     var Page05HTML = `
@@ -147,8 +155,8 @@ $.ajax(settings).done(function (response) {
         `;
 
     //page01 Info
-    response[0].page01.forEach(item => {
-        var pageHTML01 = `<figure class="wow fadeInUp" data-wow-duration="1s">
+    response["page01"].forEach(item => {
+        var pageHTML01 = `<figure>
                                         <div class="sliderIMG">
                                             <img src="` + item.img + `" alt="">
                                         </div>
@@ -162,8 +170,8 @@ $.ajax(settings).done(function (response) {
         $('#pageBOX01').append(pageHTML01);
     });
     //page02 Info
-    response[1].page02.forEach(item => {
-        var pageHTML02 = `<figure class="wow fadeInUp" data-wow-duration="1s">
+    response["page02"].forEach(item => {
+        var pageHTML02 = `<figure>
                                         <div class="sliderIMG">
                                             <img src="` + item.img + `" alt="">
                                         </div>
@@ -178,8 +186,8 @@ $.ajax(settings).done(function (response) {
     });
 
     //page03 Info
-    response[2].page03.forEach(item => {
-        var pageHTML03 = `<figure class="wow fadeInUp" data-wow-duration="1s">
+    response["page03"].forEach(item => {
+        var pageHTML03 = `<figure>
                                         <div class="sliderIMG">
                                             <img src="` + item.img + `" alt="">
                                         </div>
@@ -194,7 +202,7 @@ $.ajax(settings).done(function (response) {
     });
 
     //page04 Info
-    response[3].page04.forEach(page => {
+    response["page04"].forEach(page => {
         // alert(page.pageTIT);
 
         var pageTitle = ` <article>
@@ -207,7 +215,7 @@ $.ajax(settings).done(function (response) {
 
         page.items.forEach(item => {
             var pageHTML04 = `<div class="col-12 col-sm-6 col-md-4">
-                                        <figure class="wow fadeInUp" data-wow-duration="1s">
+                                        <figure>
                                             <img src="` + item.img + `" alt="">
                                             <figcaption>` + item.title + ` </figcaption>
                                         </figure>
@@ -223,60 +231,44 @@ $.ajax(settings).done(function (response) {
     $('#pageBOX05').html(Page05HTML);
 
 
-    $(".navClick ul li").on("click", function () {
-        $('.indexBGALL').addClass('z_index_up');
+    
+    //page info from array to list
+    for (let i = 0; i < $('.pageinfoTxT').length; i++) {
+        var arINFO = $('.pageinfoTxT').eq(i).text().split(",");
+        $('.pageinfoTxT').eq(i).html('');
+
+        for (let j = 0; j < arINFO.length; j++) {
+
+            var infoTXT = '<span>' + arINFO[j] + '</span>';
+            // console.log(infoTXT);
+            $('.pageinfoTxT').eq(i).append(infoTXT);
+        }
+
+    }
+
+});
+}
+
+
+$(".navClick ul li").on("click", function () {
+        $('.indexBGALL').addClass('z_index_up');    
         // $('.pageIndex').show().addClass('z_page_up');
         $('header').fadeIn(500);
+    
+    
+        // const num = $(this).data('page');
+        
 
+    const pageNum = $(this).data('page'); // 例如 "01"
+    console.log(pageNum);
+    
+    
+        loadData(pageNum);
+    
+        $('.sliderBN').hide(); // 隱藏所有 sliderBN
+        $(`#pageBOX${pageNum}`).fadeIn(); // 顯示對應 pageBOX
+        $(`#page${pageNum} .sliderCon`).scrollTop(0); // 捲到頂部
 
-        // $('#goTopMenu').fadeIn();
-        // $('footer').fadeIn();
-        //get data PAge01
-
-        if ($(this).hasClass('nav01')) {
-            // $('#page01').siblings('section').find('.sliderBN').html('');
-            $('.sliderBN').hide();
-            $('#pageBOX01').fadeIn();
-            $('#page01 .sliderCon').scrollTop();
-
-        }
-
-        //get data PAge02
-        if ($(this).hasClass('nav02')) {
-            $('.sliderBN').hide();
-            $('#pageBOX02').fadeIn();
-            // $('#page02').siblings('section').find('.sliderBN').html('');
-            $('#page02 .sliderCon').scrollTop();
-
-        }
-
-        //get data PAge03
-        if ($(this).hasClass('nav03')) {
-            $('.sliderBN').hide();
-            $('#pageBOX03').fadeIn();
-            // $('#page03').siblings('section').find('.sliderBN').html('');
-            $('#page03 .sliderCon').scrollTop();
-
-        }
-
-
-        //get data PAge04
-        if ($(this).hasClass('nav04')) {
-            $('.sliderBN').hide();
-            $('#pageBOX04').fadeIn();
-            // $('#page04').siblings('section').find('.sliderBN').html('');
-            $('#page04 .sliderCon').scrollTop();
-
-        }
-
-
-        //get data PAge05
-        if ($(this).hasClass('nav05')) {
-            $('.sliderBN').hide();
-            $('#pageBOX05').fadeIn();
-            // $('#page05').siblings('section').find('.sliderBN').html('');
-            $('#page05 .sliderCon').scrollTop();
-        }
 
         var NN = Number($(this).index()) + 1;
         // alert(NN);
@@ -298,21 +290,6 @@ $.ajax(settings).done(function (response) {
         }, 500);
         return false
     });
-    //page info from array to list
-    for (let i = 0; i < $('.pageinfoTxT').length; i++) {
-        var arINFO = $('.pageinfoTxT').eq(i).text().split(",");
-        $('.pageinfoTxT').eq(i).html('');
-
-        for (let j = 0; j < arINFO.length; j++) {
-
-            var infoTXT = '<span>' + arINFO[j] + '</span>';
-            // console.log(infoTXT);
-            $('.pageinfoTxT').eq(i).append(infoTXT);
-        }
-
-    }
-
-});
 
 
 

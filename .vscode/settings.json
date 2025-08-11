@@ -11,10 +11,14 @@
     "git.confirmSync": false,
     "git.autofetch": true,
     "liveSassCompile.settings.autoprefix": [],
+    "liveSassCompile.settings.includeItems": [
+    "./scss/*.scss"            // ✅ 只編譯專案根目錄的 SCSS
+  ],
     "liveSassCompile.settings.formats":[
         {
           "format": "compressed",
           "savePath": "./asset/css/",
+          "sourceMap": true,
           "editor.tabSize": 2,
           "editor.insertSpaces": true
         }

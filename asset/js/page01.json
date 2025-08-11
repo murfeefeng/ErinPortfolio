@@ -1,0 +1,79 @@
+
+{
+    "page01": [
+            {
+                "title": "PolyLulu官網",
+                "info": [
+                    "網站 UI & UX 規劃與設計",
+                    "電商網站",
+                    "網站RWD切版製作",
+                    "操作介面互動效果"
+                ],
+                "img": "asset/img/web/01-polylulu.png",
+                "url": "https://www.polylulu.com.tw/"
+            },
+            {
+                "title": "DATE網站設計",
+                "info": [
+                    "網站 UI & UX 規劃與設計",
+                    "資訊網站",
+                    "網站RWD切版製作",
+                    "操作介面互動效果"
+                ],
+                "img": "asset/img/web/01-dateweb.png",
+                "url": "asset/html/date/index.html"
+            },
+            {
+                "title": "數位電商基地官網",
+                "info": [
+                    "網站 UI & UX 規劃與設計",
+                    "資訊網站",
+                    "網站RWD切版製作",
+                    "操作介面互動效果"
+                ],
+                "img": "asset/img/web/01-gdweb.png",
+                "url": "asset/html/gd/index.html"
+            },
+            {
+                "title": "Aurora官網",
+                "info": [
+                    "網站 UI & UX 規劃與設計",
+                    "電商網站",
+                    "網站RWD切版製作",
+                    "操作介面互動效果"
+                ],
+                "img": "asset/img/web/01-aurora.png",
+                "url": "asset/html/aurora/index.html"
+            },
+            {
+                "title": "MyUncle官網",
+                "info": [
+                    "網站 UI & UX 規劃與設計",
+                    "電商網站",
+                    "操作介面互動效果"
+                ],
+                "img": "asset/img/web/01-myUncle.png",
+                "url": "https://www.myday-cn.com/"
+            },
+            {
+                "title": "智慧生物感應共同平台",
+                "info": [
+                    "網站 UI & UX 規劃與設計",
+                    "網站RWD切版製作",
+                    "JS動態資料整合",
+                    "操作介面互動效果"
+                ],
+                "img": "asset/img/web/01-IBP.png",
+                "url": "http://ibp.bime.ntu.edu.tw/home/index.html"
+            },
+            {
+                "title": "Matchbank形象官網",
+                "info": [
+                    "網站 UI & UX 規劃與設計",
+                    "形象官網"
+                ],
+                "img": "asset/img/web/01-matchbank.png",
+                "url": "asset/html/matchbank/index.html"
+            }
+        ]
+}
