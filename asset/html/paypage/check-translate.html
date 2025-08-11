@@ -62,8 +62,8 @@
                     </div>
                 </div>
                 <div class="confirm">
-                    <button id="paymentOK" type="submit" class="btn PAYMENT_SELECT"
-                        onclick="return check_submit();">前往儲值</button>
+                    <button id="paymentOK" type="button" class="btn PAYMENT_SELECT"
+                        onclick="location.href='receipt.html'">前往儲值</button>
                 </div>
 
             </div>
@@ -114,7 +114,7 @@
             initTranslation(json)//翻譯
         }
         function check_submit() {
-            document.getElementById('form').submit();
+            // document.getElementById('form').submit();
 
             //return true;
         }
@@ -122,59 +122,56 @@
 
     </script>
     <script>
-        initFunction({
-            "Type": "SelectPAID",
-            "data": "eyJNU0dfVFlQRSI6IjAxMDAiLCJQQ09ERSI6IjMwMDAwMCIsIkNJRCI6IkMwMDAwMTAwMDAwMDEiLCJDT0lEIjoiQ1AyMDI1MDUyMzE4MjA0MCIsIkNVSUQiOiJVU0QiLCJBTU9VTlQiOiIxIiwiUkVUVVJOX1VSTCI6Imh0dHA6XC9cLzE0LjIyNS4zLjEzMVwvdGVzdFwvcmV0dXJuX3VybC5waHAiLCJPUkRFUl9UWVBFIjoiRSIsIlBST0RVQ1RfTkFNRSI6IlRlc3QgUyAxIFVTRCIsIlBST0RVQ1RfSUQiOiJVU0RfMSIsIlVTRVJfQUNDVElEIjoiVVNFUl8xMjM0NTYiLCJFUlFDIjoiZ3BHR1FzRjRuWEpxXC9wRE0zSzBHdmh5TUFkUT0ifQ==",
-            "COID": "C000010000001CP20250523182040",
-            "PRODUCT": "KIWI PIN (100 points)",
-            "AMOUNTList": [
-                {
-                    "AMOUNT": 30,
-                    "CUID": "CNY"
-                }
-            ],
-            "LanguageDefault": "en_US",
-            "LanguageList": {
-                "en_US": "English",
-                "zh_TW": "中文",
-                "th_TH": "ภาษาไทย",
-            },
-            "StringID": {
-                "en_US": {
-                    "STEP_TEXT_1": "Payment",
-                    "STEP_TEXT_2": "Confirm",
-                    "STEP_TEXT_3": "Top-up",
-                    "PAYMENT_INFO_PRODUCT": "Product Name",
-                    "PAYMENT_INFO_AMOUNT": "Top-up Amount",
-                    "PAYMENT_INFO_CUID": "Currency",
-                    "PAYMENT_SELECT": "Go to Top-up"
+         initFunction({
+                "Tpye": "GetKIWICheck",
+                "data": "eyJNU0dfVFlQRSI6IjAxMDAiLCJQQ09ERSI6IjMwMDAwMCIsIkNJRCI6IkMwMDAwMTAwMDAwMDEiLCJDT0lEIjoiQ1AyMDI1MDczMTE1MzMyMiIsIkNVSUQiOiJUV0QiLCJBTU9VTlQiOiIxNTAwLjAwIiwiUkVUVVJOX1VSTCI6Imh0dHA6XC9cLzE0LjIyNS4zLjEzMVwvdGVzdFwvcmV0dXJuX3VybC5waHAiLCJPUkRFUl9UWVBFIjoiRSIsIlBST0RVQ1RfTkFNRSI6IlRlc3QgUyAxNTAwLjAwIFRXRCIsIlBST0RVQ1RfSUQiOiJUV0RfMTUwMC4wMCIsIlVTRVJfQUNDVElEIjoiVVNFUl8xMjM0NTYiLCJFUlFDIjoiQW9qR2JSemtORWdDNDBLSEh3Szh3RHF0OW1rPSJ9",
+                "COID": "C000010000001CP20250731153322",
+                "SPAID": "WLTEZL03",
+                "PRODUCT_NAME": "KIWI PIN ( Test S 1500.00 TWD )",
+                "AMOUNT": 375,
+                "CUID": "HKD",
+                "LanguageDefault": "zh_TW",
+                "LanguageList": {
+                    "en_US": "English",
+                    "th_TH": "ภาษาไทย",
+                    "zh_TW": "中文"
                 },
-                "zh_TW": {
-                    "STEP_TEXT_1": "付款方式",
-                    "STEP_TEXT_2": "交易確認",
-                    "STEP_TEXT_3": "前往儲值",
-                    "PAYMENT_INFO_PRODUCT": "商品名稱",
-                    "PAYMENT_INFO_AMOUNT": "儲值金額",
-                    "PAYMENT_INFO_CUID": "幣別",
-                    "PAYMENT_SELECT": "前往儲值"
+                "StringID": {
+                    "en_US": {
+                        "STEP_TEXT_1": "Payment",
+                        "STEP_TEXT_2": "Confirm",
+                        "STEP_TEXT_3": "Top-up",
+                        "PAYMENT_INFO_PRODUCT": "Product Name",
+                        "PAYMENT_INFO_AMOUNT": "Top-up Amount",
+                        "PAYMENT_INFO_CUID": "Currency",
+                        "PAYMENT_SELECT": "Go to Top-up"
+                    },
+                    "zh_TW": {
+                        "STEP_TEXT_1": "付款方式",
+                        "STEP_TEXT_2": "交易確認",
+                        "STEP_TEXT_3": "前往儲值",
+                        "PAYMENT_INFO_PRODUCT": "商品名稱",
+                        "PAYMENT_INFO_AMOUNT": "儲值金額",
+                        "PAYMENT_INFO_CUID": "幣別",
+                        "PAYMENT_SELECT": "前往儲值"
+                    },
+                    "th_TH": {
+                        "STEP_TEXT_1": "วิธีการชำระเงิน",
+                        "STEP_TEXT_2": "ยืนยันธุรกรรม",
+                        "STEP_TEXT_3": "ไปที่การเติมเงิน",
+                        "PAYMENT_INFO_PRODUCT": "ชื่อสินค้า",
+                        "PAYMENT_INFO_AMOUNT": "จำนวนเงินที่เติม",
+                        "PAYMENT_INFO_CUID": "สกุลเงิน",
+                        "PAYMENT_SELECT": "ไปยังหน้าชำระเงิน"
+                    }
                 },
-                "th_TH": {
-                    "STEP_TEXT_1": "วิธีการชำระเงิน",
-                    "STEP_TEXT_2": "ยืนยันธุรกรรม",
-                    "STEP_TEXT_3": "ไปที่การเติมเงิน",
-                    "PAYMENT_INFO_PRODUCT": "ชื่อสินค้า",
-                    "PAYMENT_INFO_AMOUNT": "จำนวนเงินที่เติม",
-                    "PAYMENT_INFO_CUID": "สกุลเงิน",
-                    "PAYMENT_SELECT": "ไปยังหน้าชำระเงิน"
+                "Theme": {
+                    "BG_COLOR_PRIMARY": "",
+                    "BG_COLOR_SECOND": "",
+                    "BG_IMG_URL_PC": "",
+                    "BG_IMG_URL_M": ""
                 }
-            },
-            "Theme": {
-                "BG_COLOR_PRIMARY": "",
-                "BG_COLOR_SECOND": "",
-                "BG_IMG_URL_PC": "",
-                "BG_IMG_URL_M": ""
-            }
-        });
+            });
     </script>
 </body>
 
