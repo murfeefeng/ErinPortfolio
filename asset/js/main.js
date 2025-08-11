@@ -95,6 +95,25 @@ function loadData(num) {
                                 <!-- work item -->
                                 <div class="infoItem">
                                     <div class="info_year">
+                                        <span>Until Now</span>
+                                        <i></i>
+                                        <span>2024.05</span>
+                                    </div>
+                                    <div class="info_work">
+                                        <h5>網頁前端工程師</h5>
+                                        <h6>✦ 酷魔數位科技.</h6>
+                                        <ol>
+                                            <li>網站開發與維護</li>
+                                            <li>跨部門溝通協調與進度掌控</li>
+                                            <li>前端效能調校</li>
+                                            <li>串接資料與動態效果</li>
+                                        </ol>
+                                        <small>#Scss #Webpack #JavaScript #Jquery #GitHub #figma #node.js #aws</small>
+                                    </div>
+                                </div>
+                                <!-- work item -->
+                                <div class="infoItem">
+                                    <div class="info_year">
                                         <span>2024.04</span>
                                         <i></i>
                                         <span>2020.04</span>
@@ -264,8 +283,9 @@ $(".navClick ul li").on("click", function () {
     
     
         loadData(pageNum);
+        
     
-        $('.sliderBN').hide(); // 隱藏所有 sliderBN
+        $('.sliderBN').hide().empty(); // 隱藏所有 sliderBN
         $(`#pageBOX${pageNum}`).fadeIn(); // 顯示對應 pageBOX
         $(`#page${pageNum} .sliderCon`).scrollTop(0); // 捲到頂部
 
@@ -276,8 +296,12 @@ $(".navClick ul li").on("click", function () {
         var titCN = $(this).find('b').text();
         var titlEHTML = titCN + '<span> #' + titEN + '</span>';
 
-        $('.pageBg').hide();
-        $(".page0" + NN).fadeIn();
+    $('.pageBg').hide().html('');
+    
+    $(".page0" + NN).fadeIn();
+
+
+    
 
         $('.pageNav').fadeOut(100);
 
@@ -288,8 +312,11 @@ $(".navClick ul li").on("click", function () {
         $('.areaPAGE').animate({
             scrollTop: 0
         }, 500);
+    // AOS.refresh();
+    
         return false
-    });
+});
+
 
 
 
