@@ -93,7 +93,7 @@ function loadData(num) {
                             <div class="infoBox info_experience">
                                 <h3>Experience</h3>
                                 <!-- work item -->
-                                <div class="infoItem wow fadeInUp" data-wow-duration="1s">
+                                <div class="infoItem">
                                     <div class="info_year">
                                         <span>2024.04</span>
                                         <i></i>
@@ -131,7 +131,7 @@ function loadData(num) {
                                     </div>
                                 </div>
                                 <!-- work item -->
-                                <div class="infoItem wow fadeInUp" data-wow-duration="1s">
+                                <div class="infoItem">
                                     <div class="info_year">
                                         <span>2014.02</span>
                                         <i></i>
