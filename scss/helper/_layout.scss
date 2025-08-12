@@ -613,9 +613,9 @@ h1#mainTITLE {
 
             @include media-breakpoint-down(sm) {
                 width: 100%;
-                min-height: 100dvh;
+                min-height: 100svh;
                 margin-top: 0;
-                padding: 9vw;
+                padding:6svh 9vw;
                 flex-direction: column;
                 justify-content: space-between;
                 font-weight: bold;
