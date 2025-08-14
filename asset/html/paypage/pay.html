@@ -26,14 +26,15 @@
 <body class="payBody">
     <div class="bg">
         <div class="container">
+            <div id="langSelect" class="languageBox">
+                <img src="https://stage-api-page.p99pay.com/assets/img/icon_language.svg" alt="" srcset="">
+                <span class="lang_text">語言</span>
+                <ul id="langListItem" class="langListItem">
+                </ul>
+            </div>
             <div class="pay">
                 <div class="pay_left">
-                    <div id="langSelect" class="languageBox">
-                        <img src="https://stage-api-page.p99pay.com/assets/img/icon_language.svg" alt="" srcset="">
-                        <span class="lang_text">語言</span>
-                        <ul id="langListItem" class="langListItem">
-                        </ul>
-                    </div>
+                    
                     <div class="info">
                         <div id="payPrice" class="textbox cardPrice">
                             <img src="https://stage-api-page.p99pay.com/assets/img/icon_money.svg" alt="">
@@ -43,7 +44,7 @@
                     </div>
                 </div>
                 <div class="pay_right">
-                    <div class="info">
+                    <div class="info" id="rightInfo">
                         <div class="title">
                             <h2 id="selectTIT"></h2>
                         </div>
@@ -462,26 +463,27 @@
         // 漸層遮罩
         function checkTabBarScrollable() {
                 const tabBar = document.querySelector('.tab_bar');
+                const rightInfo = document.querySelector('#rightInfo');
                 if (!tabBar) return;
 
                 const isScrollable = tabBar.scrollWidth > tabBar.clientWidth;
                 if (isScrollable) {
-                    tabBar.classList.add('scrollable');
+                    rightInfo.classList.add('scrollable');
                 } else {
-                    tabBar.classList.remove('scrollable');
+                    rightInfo.classList.remove('scrollable');
                 }
                 //卷軸到底
                 tabBar.addEventListener('scroll', () => {
-                const maxScrollLeft = tabBar.scrollWidth - tabBar.clientWidth;
-                const nearRightEdge = tabBar.scrollLeft >= maxScrollLeft - 5;
+                    const maxScrollLeft = tabBar.scrollWidth - tabBar.clientWidth;
+                    const nearRightEdge = tabBar.scrollLeft >= maxScrollLeft - 5;
 
-                if (nearRightEdge) {
-                    tabBar.classList.remove('scrollable');
-                } else {
-                    tabBar.classList.add('scrollable');
-                }
-            });
-        }
+                    if (nearRightEdge) {
+                        rightInfo.classList.remove('scrollable');
+                    } else {
+                        rightInfo.classList.add('scrollable');
+                    }
+                });
+            }
 
         // init & resize
         window.addEventListener('load', checkTabBarScrollable);
